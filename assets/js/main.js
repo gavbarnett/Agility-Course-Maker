@@ -9,8 +9,8 @@ function main() {
     var canvas = document.createElement('canvas');
     
     canvas.id = "MainCanvas";
-    canvas.width = 1224;
-    canvas.height = 768;
+    canvas.width = 620;
+    canvas.height = 620;
     canvas.style.zIndex = 8;
     canvas.style.position = "absolute";
     canvas.style.border = "1px solid";
@@ -64,6 +64,7 @@ function drawEquipment(item, scaler, offset){
                     ctx.strokeStyle = '#000000';
                     ctx.beginPath()
                     ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
+                    ctx.fill()
                     ctx.stroke()
                 }
                 break
@@ -74,6 +75,7 @@ function drawEquipment(item, scaler, offset){
                     ctx.strokeStyle = '#000000';
                     ctx.beginPath()
                     ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
+                    ctx.fill()
                     ctx.stroke()
                 }
                 break
@@ -84,6 +86,7 @@ function drawEquipment(item, scaler, offset){
                     ctx.strokeStyle = '#000000';
                     ctx.beginPath()
                     ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
+                    ctx.fill()
                     ctx.stroke()
                 }
                 break
@@ -165,9 +168,8 @@ function field(){
         canvas = document.getElementById('MainCanvas');
         ctx = canvas.getContext("2d");
         //Draw Field
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        ctx.stroke();
-        ctx.fillStyle = "#006400";
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.fillStyle = "#6A8455";
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.strokeStyle = '#AAAAAA';
         for (i = 0; i <= x; i+=this.gridSize){
