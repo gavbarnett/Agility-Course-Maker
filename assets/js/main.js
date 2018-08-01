@@ -119,7 +119,7 @@ function drawEquipment(item, scaler, offset){
                 ctx.fillStyle = "#000000";
                 var spread = 4
                 ctx.beginPath()
-                ctx.arc(scaler*(-0.6095-0.1), scaler*(-(0.225*spread)/2-0.1),0.1*scaler,0,2*Math.PI)
+                ctx.arc(scaler*(-0.6095-0.1), scaler*(-(0.225*spread)/2-0.2),0.1*scaler,0,2*Math.PI)
                 ctx.stroke()
                 ctx.fill()
                 ctx.beginPath()
@@ -127,7 +127,7 @@ function drawEquipment(item, scaler, offset){
                 ctx.stroke()
                 ctx.fill()
                 ctx.beginPath()
-                ctx.arc(scaler*(+0.6095+0.1), scaler*(-(0.225*spread)/2-0.1),0.1*scaler,0,2*Math.PI)
+                ctx.arc(scaler*(+0.6095+0.1), scaler*(-(0.225*spread)/2-0.2),0.1*scaler,0,2*Math.PI)
                 ctx.stroke()
                 ctx.fill()
                 ctx.beginPath()
