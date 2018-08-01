@@ -21,17 +21,78 @@ function main() {
 
 //http://agilitynerd.com/images/CourseLegend.jpg
 allEquipment = []
-allEquipment["Contact"] = ["A-frame","Dog Walk"]
+allEquipment["Contact"] = ["A-frame","Dog Walk", "See Saw"]
 allEquipment["Over"] = ["Winged Single Jump","Spread", "Tire Jump"]
 allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
 
 function drawEquipment(item, scaler, offset){
+    console.log(item)
     this.drawContact = function(){
         switch(item.type[1]){
-            case "A-frame":
+            case 0: //"A-frame"
+                ctx.fillStyle = "#FFFFFF";
+                ctx.strokeStyle = '#000000';
+                ctx.beginPath()
+                ctx.rect(scaler*-2.136,scaler*-0.4585,scaler*4.272,scaler*0.917)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.fillStyle = "#FFFF00";
+                ctx.rect(scaler*-2.136,scaler*-0.4585, scaler*0.836,scaler*0.917)
+                ctx.rect(scaler*1.3,scaler*-0.4585, scaler*0.836,scaler*0.917)
+                ctx.stroke()
+                ctx.fill()
+                ctx.moveTo(scaler*0,scaler*-0.4585)
+                ctx.lineTo(scaler*0,scaler*0.4585)
+                ctx.stroke()
                 break
-            case "Dog Walk":
+            case 1: //"Dog Walk"
+                ctx.fillStyle = "#FFFFFF";
+                ctx.strokeStyle = '#000000';
+                ctx.beginPath()
+                ctx.rect(scaler*-5.78,scaler*-0.135,scaler*11.56,scaler*0.27)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.fillStyle = "#FFFF00";
+                ctx.rect(scaler*-5.78,scaler*-0.135, scaler*0.86,scaler*0.27)
+                ctx.rect(scaler*4.92,scaler*-0.135, scaler*0.86,scaler*0.27)
+                ctx.stroke()
+                ctx.fill()
+                ctx.moveTo(scaler*-2,scaler*-0.135)
+                ctx.lineTo(scaler*-2,scaler*0.135)
+                ctx.moveTo(scaler*2,scaler*-0.135)
+                ctx.lineTo(scaler*2,scaler*0.135)
+                ctx.stroke()
+                break
+            case 2: //"See Saw"
+                ctx.beginPath()
+                ctx.strokeStyle = '#000000';
+                ctx.fillStyle = "#000000";
+                ctx.rect(scaler*-0.2,scaler*-0.3, scaler*0.4,scaler*0.6)
+                ctx.stroke()
+                ctx.fill()
+                ctx.fillStyle = "#FFFFFF";
+                ctx.beginPath()
+                ctx.rect(scaler*-1.879,scaler*-0.135,scaler*3.758,scaler*0.27)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.fillStyle = "#FFFF00";
+                ctx.rect(scaler*-1.879,scaler*-0.135, scaler*0.8589,scaler*0.27)
+                ctx.rect(scaler*1.02,scaler*-0.135, scaler*0.8589,scaler*0.27)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.fillStyle = "#000000";
+                ctx.moveTo(scaler*-0.5,scaler*0)
+                ctx.lineTo(scaler*0.5,scaler*0)
+                ctx.lineTo(scaler*0.3,scaler*-0.15)
+                ctx.lineTo(scaler*0.3,scaler*0.15)
+                ctx.lineTo(scaler*0.5,scaler*0)
+                ctx.stroke()
+                ctx.fill()
                 break
         }
     }
