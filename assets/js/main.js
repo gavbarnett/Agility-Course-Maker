@@ -43,6 +43,7 @@ function drawEquipment(item, scaler, offset){
                 ctx.rect(scaler*1.3,scaler*-0.4585, scaler*0.836,scaler*0.917)
                 ctx.stroke()
                 ctx.fill()
+                ctx.beginPath()
                 ctx.moveTo(scaler*0,scaler*-0.4585)
                 ctx.lineTo(scaler*0,scaler*0.4585)
                 ctx.stroke()
@@ -60,6 +61,7 @@ function drawEquipment(item, scaler, offset){
                 ctx.rect(scaler*4.92,scaler*-0.135, scaler*0.86,scaler*0.27)
                 ctx.stroke()
                 ctx.fill()
+                ctx.beginPath()
                 ctx.moveTo(scaler*-2,scaler*-0.135)
                 ctx.lineTo(scaler*-2,scaler*0.135)
                 ctx.moveTo(scaler*2,scaler*-0.135)
@@ -73,8 +75,8 @@ function drawEquipment(item, scaler, offset){
                 ctx.rect(scaler*-0.2,scaler*-0.3, scaler*0.4,scaler*0.6)
                 ctx.stroke()
                 ctx.fill()
-                ctx.fillStyle = "#FFFFFF";
                 ctx.beginPath()
+                ctx.fillStyle = "#FFFFFF";
                 ctx.rect(scaler*-1.879,scaler*-0.135,scaler*3.758,scaler*0.27)
                 ctx.stroke()
                 ctx.fill()
@@ -99,6 +101,18 @@ function drawEquipment(item, scaler, offset){
     this.drawOver = function(){
         switch(item.type[1]){
             case 0: //"Winged Single Jump":
+                ctx.beginPath()
+                ctx.strokeStyle = '#000000';
+                ctx.fillStyle = "#FFFFFF";
+                ctx.rect(scaler*-1.2095,scaler*-0.05, scaler*0.6,scaler*0.1)
+                ctx.rect(scaler*0.6095,scaler*-0.05, scaler*0.6,scaler*0.1)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(scaler*-0.6095,scaler*0)
+                ctx.lineTo(scaler*0.6095,scaler*0)
+                ctx.stroke()
                 break
             case 1: //"Spread":
                 break
