@@ -300,6 +300,7 @@ function field(){
             PlacedEquipment.push(Object.assign({},tempEquipment))
             Field.AddTempEquipment("")
         }
+        Field.draw()
     }
     this.draw = function() {
         canvas = document.getElementById('MainCanvas');
@@ -324,9 +325,15 @@ function field(){
         //Draw Placed Equipment
         /* note to self - draw through equipment after contacts */
         for (var i = 0; i <PlacedEquipment.length; i++){
-            drawEquipment(PlacedEquipment[i], scaler, offset)
+            if (PlacedEquipment[i].type[0] == "Through"){
+                drawEquipment(PlacedEquipment[i], scaler, offset)
+            }
         }
-
+        for (var i = 0; i <PlacedEquipment.length; i++){
+            if (PlacedEquipment[i].type[0] != "Through"){
+                drawEquipment(PlacedEquipment[i], scaler, offset)
+            }
+        }
         //Draw Temp Equipment
         if (tempEquipment.type != ""){
             tempEquipment.x = mouse.x
