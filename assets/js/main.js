@@ -27,7 +27,6 @@ allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
 
 function drawEquipment(item, scaler, offset){
-    console.log(item)
     this.drawContact = function(){
         switch(item.type[1]){
             case 0: //"A-frame"
@@ -178,10 +177,18 @@ function drawEquipment(item, scaler, offset){
     this.drawThrough = function(){
         switch(item.type[1]){
             case 0: //"Tunnel":
+                var length = item.type[2]
+                var radius = item.type[3]
+                ctx.strokeStyle = '#000000';
+                ctx.fillStyle = "#444444";
+                ctx.beginPath()
+                ctx.arc(0,radius*scaler,radius*scaler,-(length/radius)/2-Math.PI/2,(length/radius)/2-Math.PI/2)
+                ctx.arc(0,radius*scaler,(radius-0.609)*scaler,(length/radius)/2-Math.PI/2,-(length/radius)/2-Math.PI/2,true)
+                ctx.lineTo(Math.cos(-(length/radius)/2-Math.PI/2)*radius*scaler,Math.sin((length/radius)/2-Math.PI/2)*radius*scaler+radius*scaler)
+                ctx.stroke()
+                ctx.fill()
                 break
-            case 1: //"Chute":
-                break
-            case 2: //"Tire Jump":
+            case 3: //"Chute":
                 break
         }
     }
@@ -303,7 +310,6 @@ function field(){
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.strokeStyle = '#AAAAAA';
         for (i = 0; i <= x; i+=this.gridSize){
-            console.log(this.gridSize)
             ctx.beginPath()
             ctx.moveTo(this.scaled[0] + i * scaler, this.scaled[1])
             ctx.lineTo(this.scaled[0] + i * scaler, this.scaled[3])
@@ -365,11 +371,19 @@ function buttonMaster(){
                 Field.draw()
                 break
             case 84: //T
-                Field.AddTempEquipment(["Through", 0])
+                Field.AddTempEquipment(["Through", 0, 4.578, 1.457])
+                //var length = 4.578 //3.048 //4.578 6.096
+                //var radius = 1.457 
                 Field.draw()
                 break
             case 87: //W
                 Field.AddTempEquipment(["Weave",0])
+                Field.draw()
+                break
+            case 76: //L
+                //Field.TunnelLength()
+                //var length = 4.578 //3.048 //4.578 6.096
+                //var radius = 1.457 
                 Field.draw()
                 break
             case 82: //R - rotate
