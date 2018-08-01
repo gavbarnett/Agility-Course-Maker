@@ -115,8 +115,63 @@ function drawEquipment(item, scaler, offset){
                 ctx.stroke()
                 break
             case 1: //"Spread":
+                ctx.strokeStyle = '#000000';
+                ctx.fillStyle = "#000000";
+                var spread = 4
+                ctx.beginPath()
+                ctx.arc(scaler*(-0.6095-0.1), scaler*(-(0.225*spread)/2-0.1),0.1*scaler,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.arc(scaler*(-0.6095-0.1), scaler*((0.225*spread)/2+0.1),0.1*scaler,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.arc(scaler*(+0.6095+0.1), scaler*(-(0.225*spread)/2-0.1),0.1*scaler,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.arc(scaler*(+0.6095+0.1), scaler*((0.225*spread)/2+0.1),0.1*scaler,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                for (i = 0; i < spread; i ++){
+                    ctx.beginPath()
+                    ctx.rect(scaler*-0.6095,scaler*(-(0.225*spread)/2 + 0.225*i), scaler*1.219,scaler*0.10)
+                    ctx.stroke()
+                    ctx.fill()
+                }
+                //ctx.fill()
                 break
             case 2: //"Tire Jump":
+                ctx.strokeStyle = '#000000';
+                ctx.fillStyle = "#000000";
+                ctx.beginPath()
+                ctx.arc(0,0,scaler*0.733/2,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                ctx.fillStyle = "#FFFFFF";
+                ctx.beginPath()
+                ctx.arc(0,0,scaler*0.533/2,0,2*Math.PI)
+                ctx.stroke()
+                ctx.fill()
+                ctx.beginPath()
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(scaler*0.3665,scaler*0)
+                ctx.lineTo(scaler*0.7095,scaler*0)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.moveTo(scaler*0.7095,scaler*-0.2)
+                ctx.lineTo(scaler*0.7095,scaler*0.2)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(scaler*-0.3665,scaler*0)
+                ctx.lineTo(scaler*-0.7095,scaler*0)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.moveTo(scaler*-0.7095,scaler*-0.2)
+                ctx.lineTo(scaler*-0.7095,scaler*0.2)
+                ctx.stroke()
                 break
         }
     }
