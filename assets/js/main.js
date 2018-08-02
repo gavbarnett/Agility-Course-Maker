@@ -409,13 +409,30 @@ function field(){
             Field.draw()
         }
     }
+    this.click = function(){
+        if (tempEquipment.type != ""){ 
+            Field.PlaceEquipment()
+        } else{
+            //check if centre of any piece of placed equipment is < 1 meter from mouse
+            var distance = 0
+            for (var i = 0; i < PlacedEquipment.length; i++){
+                distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+                if (distance < 3){
+                    //console.log (PlacedEquipment[i])
+                    tempEquipment = PlacedEquipment[i]
+                    PlacedEquipment.splice(i, 1)
+                    break
+                }
+            }
+        }
+    }
 }
 
 
 function buttonMaster(){
     var canvas = document.getElementById('MainCanvas');
     
-    canvas.addEventListener("click",Field.PlaceEquipment)
+    canvas.addEventListener("click",Field.click)
 
     canvas.addEventListener("mousemove",Field.mousemove)
 
