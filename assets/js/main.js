@@ -399,6 +399,8 @@ function field(){
 
     }
     this.mousemove = function(){
+        mouse.oldx = x
+        mouse.oldy = y
         mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
         mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
         mouse.x = Math.max(mouse.x,0)
@@ -406,8 +408,22 @@ function field(){
         mouse.x = Math.min(mouse.x,x)
         mouse.y = Math.min(mouse.y,y)
         if (tempEquipment.type != ""){
+            var mouseStyle = "move"
             Field.draw()
+        } else {
+            var distance = 0
+            var mouseStyle = "auto"
+                for (var i = 0; i < PlacedEquipment.length; i++){
+                    distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+                    if (distance < 2){
+                        mouseStyle = "move";
+                        break
+                    }
+                }
         }
+        document.body.style.cursor = mouseStyle
+        
+        
     }
     this.click = function(){
         if (tempEquipment.type != ""){ 
