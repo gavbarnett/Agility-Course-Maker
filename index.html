@@ -14,7 +14,8 @@
             <p> Tunnels: [L]ength (10ft, 15ft, 20ft), [B]end</p>
             <p>
                 <input id="SaveAs" type="button" value="SaveAs..." onclick="saveDesign()" />
-                <input id="Open" type="button" value="Open..." onclick="Open()" />
+                <input id="loadFileXml" type="button" value="Open" onclick="document.getElementById('OpenFile').click();" />
+                <input type="file" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
             </p>
         <script type="text/javascript" src="assets/js/main.js"></script>
     </body>
