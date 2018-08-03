@@ -4,6 +4,7 @@
  */
 var Field = new field
 var Equipment = []
+var PlacedEquipment = []
 
 function main() {
     var canvas = document.createElement('canvas');
@@ -349,7 +350,6 @@ function field(){
             }
         }
     }
-    var PlacedEquipment = []
     this.PlaceEquipment = function(){
         if (tempEquipment){
             PlacedEquipment.push(Object.assign({},tempEquipment))
@@ -443,7 +443,18 @@ function field(){
         }
     }
 }
-
+function saveDesign(){
+    //this seems like an odd way of doing this but it works.
+    //this this should really be bound to the SaveAs button
+    var blob = new Blob([JSON.stringify(PlacedEquipment)], {type: 'text/json'}),
+    e = document.createEvent('MouseEvents'),
+    a = document.createElement('a')
+    a.download = 'MyCourseDesign.json'
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+}
 
 function buttonMaster(){
     var canvas = document.getElementById('MainCanvas');
