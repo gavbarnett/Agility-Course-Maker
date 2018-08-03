@@ -5,7 +5,7 @@
 var Field = new field
 var Equipment = []
 var PlacedEquipment = []
-var filename = "MyCourseDesign.json"
+
 function main() {
     var canvas = document.createElement('canvas');
     
@@ -449,27 +449,11 @@ function saveDesign(){
     var blob = new Blob([JSON.stringify(PlacedEquipment)], {type: 'text/json'}),
     e = document.createEvent('MouseEvents'),
     a = document.createElement('a')
-    a.download = filename
+    a.download = 'MyCourseDesign.json'
     a.href = window.URL.createObjectURL(blob)
     a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
     e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
     a.dispatchEvent(e)
-}
-
-function loadDesign(){
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-
-    reader.addEventListener("load", function () {
-        PlacedEquipment = JSON.parse(reader.result)
-        Field.draw()
-    }, false);
-
-    if (file) {
-        reader.readAsText(file);
-        filename = (document.getElementById('OpenFile').value.split(/(\\|\/)/g).pop())
-        document.getElementById('FileName').innerText = "Working on: "filename
-    }
 }
 
 function buttonMaster(){
