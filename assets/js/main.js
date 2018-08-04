@@ -335,13 +335,14 @@ function printDesign(){
         windowContent += '<head>'
             windowContent += '<title>Agility Course Maker</title>'
             windowContent += '<style>body {font-size: 100%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
+            windowContent += '<style>img {display: block; margin: 0 auto;}</style>'
             windowContent += '<style>textarea {resize: none; width:100%; height:100%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
-            windowContent += '<style>footer {font-size: 70%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
+            windowContent += '<style>footer {font-size: 75%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
             windowContent += '</head>';
         windowContent += '<body>';
-            windowContent += '<img align="middle" src="' + dataUrl + '" width=100% height=100%>';
+            windowContent += '<img align="middle" src="' + dataUrl + '" width=90% height=90%>';
             windowContent += '<h3> Course Notes </h3>';
-            windowContent += '<textarea resize="none" rows="13" cols="15">'  + notes + '</textarea>';
+            windowContent += '<textarea resize="none" rows="13" cols="20">'  + notes + '</textarea>';
         windowContent += '</body>';
         windowContent += '<footer>';
             windowContent +='<p>Created on <b>Agility Course Maker</b> an Open Source project under MIT License</a></p>'
