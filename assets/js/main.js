@@ -44,7 +44,7 @@ function main() {
 
 //http://agilitynerd.com/images/CourseLegend.jpg
 var allEquipment = []
-allEquipment["Contact"] = ["A-frame","Dog Walk", "See Saw"]
+allEquipment["Contact"] = ["A-frame","Dog Walk", "See Saw", "Table", "Pause Box"]
 allEquipment["Over"] = ["Winged Single Jump","Spread", "Tire Jump"]
 allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
