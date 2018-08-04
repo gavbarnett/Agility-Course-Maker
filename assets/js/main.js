@@ -17,7 +17,10 @@ function main() {
     canvas.style.border = "1px solid";
     canvas.tabIndex = 0
     canvasDiv.appendChild(canvas);
+    var notes = document.getElementById('Notes')
+    notes.width = canvas.width
     Field.draw()
+    
 
     //This is code to add a tool bar for users without keyboards
     //It is a work in progress
@@ -284,13 +287,16 @@ function field(){
             xoffset + x*scaler,
             yoffset + y*scaler,
         ]
+        var notes = document.getElementById('Notes')
+        notes.width = canvas.width
         Field.draw()
     }
 }
 function saveDesign(){
     //this seems like an odd way of doing this but it works.
     //this this should really be bound to the SaveAs button
-    var blob = new Blob([JSON.stringify(PlacedEquipment)], {type: 'text/json'}),
+    var notes = document.getElementById("Notes").value
+    var blob = new Blob([JSON.stringify({'Equipment': PlacedEquipment,'Notes':notes})], {type: 'text/json'}),
     e = document.createEvent('MouseEvents'),
     a = document.createElement('a')
     a.download = filename
@@ -304,9 +310,12 @@ function loadDesign(){
     numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     var file    = document.querySelector('input[type=file]').files[0];
     var reader  = new FileReader();
-
+    var notes = document.getElementById("Notes")
     reader.addEventListener("load", function () {
-        PlacedEquipment = JSON.parse(reader.result)
+        var FileData = JSON.parse(reader.result)
+        PlacedEquipment = FileData.Equipment
+        notes.value = FileData.Notes
+        console.log = (FileData.Notes)
         Field.draw()
     }, false);
 

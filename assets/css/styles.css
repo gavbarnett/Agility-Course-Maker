@@ -12,13 +12,22 @@ html *
 }
 #ToolDiv {
     display: flex;
-    align-content: center
 }
 #Controls {
     display: absolute;
 }
-.SaveLoad {
+#Notes {
+    resize: none;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 5em;
+    max-width: 800px;
 }
+#SaveLoad {
+}
+
 h1 {
     color: grey;
     font-family: 'Verdana', sans-serif;
