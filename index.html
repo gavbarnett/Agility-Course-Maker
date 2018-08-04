@@ -12,21 +12,22 @@
             <div id="ToolDiv">
             </div>
             <div id="NotesDiv">
+                <p> Field size: 30m x 30m</p>
                 <h3>Notes:</h3>
                 <textarea id="Notes">Add your notes here.</textarea>
             </div>
+            
+            <div id ="SaveLoad">
+                <button id="SaveAs" onclick="saveDesign()"> SaveAs... </button>
+                <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();">Open</button>
+                <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
+                <button id="Print" onclick="printDesign()"> Print </button>
+            </div>
             <div id="Controls">
-                <div class ="SaveLoad">
-                    <p> Field size: 30m x 30m</p>
-                    <button id="SaveAs" onclick="saveDesign()"> SaveAs... </button>
-                    <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();">Open</button>
-                    <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
-                    <button id="Print" onclick="printDesign()"> Print </button>
-                </div>
                 <h3> Keyboard Controls: </h3>
                 <p> <b>[C]</b>ontacts, <b>[O]</b>vers/<b>[J]</b>umps, <b>[T]</b>hroughs, <b>[W]</b>eaves, <b>[N]</b>umbers </p>
                 <p> Tunnels: <b>[L]</b>ength (3m, 4m, 6m), <b>[B]</b>end</p>
-                <p> <b>[R]</b>otate by 22.5&#176, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
+                <p> <b>[R]</b>otate, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
                 <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
             </div>
         <script type="text/javascript" src="assets/js/main.js"></script>
