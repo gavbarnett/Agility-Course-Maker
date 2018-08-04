@@ -21,7 +21,11 @@ h1 {
     font-weight: bold;
     font-variant: small-caps;
     font-size: 6vw;
-    margin: 1% 5% 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    max-width: calc(0.75 * 100vh);
 }
 canvas {
     padding-left: 0;
