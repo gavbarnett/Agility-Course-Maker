@@ -131,12 +131,17 @@ function field(){
         }
         Field.draw()
     }
-    this.draw = function() {
+    this.draw = function(print = false) {
         canvas = document.getElementById('MainCanvas');
         ctx = canvas.getContext("2d");
         //Draw Field
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        ctx.fillStyle = "#6A8455";
+        if (!print){
+            ctx.fillStyle = "#6A8455";
+        }else{
+            ctx.fillStyle = "#ffffff";
+        }
+
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.strokeStyle = '#AAAAAA';
         for (i = 0; i <= x; i+=this.gridSize){
@@ -256,6 +261,30 @@ function loadDesign(){
         reader.readAsText(file);
         filename = (document.getElementById('OpenFile').value.split(/(\\|\/)/g).pop())
     }
+}
+
+function printDesign(){
+    Field.draw(true)
+    const dataUrl = document.getElementById('MainCanvas').toDataURL(); 
+    let windowContent = '<!DOCTYPE html>';
+    windowContent += '<html>';
+    windowContent += '<head><title>Agility Course Designer</title></head>';
+    windowContent += '<body>';
+    windowContent += '<img src="' + dataUrl + '">';
+    windowContent += '</body>';
+    windowContent += '</html>';
+
+    const printWin = window.open('', '', 'width=' + screen.availWidth + ',height=' + screen.availHeight);
+    printWin.document.open();
+    printWin.document.write(windowContent); 
+
+    printWin.document.addEventListener('load', function() {
+        printWin.focus();
+        printWin.print();
+        printWin.document.close();
+        printWin.close();            
+    }, true);
+    Field.draw(false)
 }
 
 function buttonMaster(){
