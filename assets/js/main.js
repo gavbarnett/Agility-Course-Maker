@@ -15,8 +15,9 @@ function main() {
     canvas.style.zIndex = 8;
     canvas.style.position = "flex";
     canvas.style.border = "1px solid";
-    canvas.tabIndex = 0
+    canvas.tabIndex = 1
     canvasDiv.appendChild(canvas);
+    canvas.focus()
     var notes = document.getElementById('Notes')
     notes.width = canvas.width
     Field.draw()
