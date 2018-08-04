@@ -210,14 +210,18 @@ function field(){
         } else{
             //check if centre of any piece of placed equipment is < 1 meter from mouse
             var distance = 0
+            var minDist = 3
+            var itemSelected = 0
             for (var i = 0; i < PlacedEquipment.length; i++){
                 distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
-                if (distance < 3){
-                    //console.log (PlacedEquipment[i])
-                    tempEquipment = PlacedEquipment[i]
-                    PlacedEquipment.splice(i, 1)
-                    break
+                if (distance < minDist){
+                    minDist = distance
+                    itemSelected = i
                 }
+            }
+            if (minDist<3){
+                tempEquipment = PlacedEquipment[itemSelected]
+                PlacedEquipment.splice(itemSelected, 1)
             }
         }
     }
