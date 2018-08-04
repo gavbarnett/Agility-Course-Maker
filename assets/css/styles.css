@@ -1,6 +1,6 @@
 html *
 {
-   font-size: 1em;
+   font-size: 100%;
    color: #000;
    font-family: 'Verdana', sans-serif;
    text-align: center;
@@ -42,7 +42,7 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 100%;
 }
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
