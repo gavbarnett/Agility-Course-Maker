@@ -328,12 +328,15 @@ function loadDesign(){
 
 function printDesign(){
     Field.draw(true)
+    var notes = document.getElementById("Notes")
     const dataUrl = document.getElementById('MainCanvas').toDataURL(); 
     let windowContent = '<!DOCTYPE html>';
     windowContent += '<html>';
     windowContent += '<head><title>Agility Course Designer</title></head>';
     windowContent += '<body>';
     windowContent += '<img src="' + dataUrl + '">';
+    windowContent += '<h3> Notes </h3>';
+    windowContent += '<p>' + notes.value + '</p>';
     windowContent += '</body>';
     windowContent += '</html>';
 
