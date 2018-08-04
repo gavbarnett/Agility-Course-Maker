@@ -201,6 +201,19 @@ function drawEquipment(item, scaler, offset, canvas){
                 break
         }
     }
+    this.drawNumbers = function(){
+        ctx.fillStyle = "#FFFFFF";
+        ctx.strokeStyle = '#000000';
+        ctx.beginPath()
+        ctx.rect(scaler*-0.5,scaler*-0.5, scaler*1,scaler*1)
+        ctx.fill()
+        ctx.stroke()
+        ctx.fillStyle = "#000000";
+        ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("88",0,scaler*0.25);
+        ctx.t
+    }
     if (!canvas){
         canvas = document.getElementById('MainCanvas');
     }
@@ -220,6 +233,9 @@ function drawEquipment(item, scaler, offset, canvas){
             break
         case "Weave":
             this.drawWeave()
+            break
+        case "Numbers":
+            this.drawNumbers()
             break
     }
 

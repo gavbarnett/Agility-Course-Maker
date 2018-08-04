@@ -43,6 +43,7 @@ allEquipment["Contact"] = ["A-frame","Dog Walk", "See Saw"]
 allEquipment["Over"] = ["Winged Single Jump","Spread", "Tire Jump"]
 allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
+allEquipment["Numbers"] = ["S"]
 
 function field(){
     var mouse = []
@@ -355,6 +356,10 @@ function buttonMaster(){
                 break
             case 82: //R - rotate
                 Field.RotateTempEquipment()
+                Field.draw()
+                break
+            case 78: //N
+                Field.AddTempEquipment(["Numbers",0])
                 Field.draw()
                 break
             case 71: //G
