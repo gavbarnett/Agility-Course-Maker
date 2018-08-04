@@ -15,6 +15,7 @@ function main() {
     canvas.style.zIndex = 8;
     canvas.style.position = "flex";
     canvas.style.border = "1px solid";
+    canvas.tabIndex = 0
     canvasDiv.appendChild(canvas);
     Field.draw()
 
@@ -349,8 +350,7 @@ function buttonMaster(){
     canvas.addEventListener("click",Field.click)
     canvas.addEventListener("resize",Field.click)
     canvas.addEventListener("mousemove",Field.mousemove)
-
-    document.addEventListener("keydown", function(e){
+    canvas.addEventListener("keydown", function(e){
         var keyvalue = e.keyCode
         e.preventDefault()
         console.log (keyvalue)
