@@ -10,6 +10,10 @@ html *
     display: flex;
     align-content: center
 }
+#ToolDiv {
+    display: flex;
+    align-content: center
+}
 #Controls {
     display: absolute;
 }

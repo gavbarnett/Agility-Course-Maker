@@ -1,4 +1,4 @@
-function drawEquipment(item, scaler, offset){
+function drawEquipment(item, scaler, offset, canvas){
     this.drawContact = function(){
         switch(item.type[1]){
             case 0: //"A-frame"
@@ -201,7 +201,9 @@ function drawEquipment(item, scaler, offset){
                 break
         }
     }
-    canvas = document.getElementById('MainCanvas');
+    if (!canvas){
+        canvas = document.getElementById('MainCanvas');
+    }
     ctx = canvas.getContext("2d");
     ctx.save()
     ctx.translate(offset + scaler*item.x,offset + scaler*item.y)

@@ -6,7 +6,6 @@ var Field = new field
 var Equipment = []
 var PlacedEquipment = []
 var filename = "MyAgilityField.json"
-
 function main() {
     var canvas = document.createElement('canvas');
     var canvasDiv = document.getElementById('CanvasDiv')
@@ -18,6 +17,23 @@ function main() {
     canvas.style.border = "1px solid";
     canvasDiv.appendChild(canvas);
     Field.draw()
+
+    //This is code to add a tool bar for users without keyboards
+    //It is a work in progress
+    //***************
+    // var toolCanvas = document.createElement('canvas');
+    // var ToolDiv = document.getElementById('ToolDiv')
+    // toolCanvas.id = "ToolCanvas";
+    // toolCanvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+    // toolCanvas.height =  toolCanvas.width*0.2
+    // toolCanvas.style.zIndex = 8;
+    // toolCanvas.style.position = "flex";
+    // var tempeq = Field.AddTempEquipment({type:["Contact",0],'x':1,'y':1})
+    // console.log (tempeq)
+    // scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -10*2)/(50)
+    // drawEquipment(tempeq, scaler, 10, toolCanvas)
+    // Field.AddTempEquipment("")
+    // ToolDiv.appendChild(toolCanvas);
     buttonMaster()
 }
 
@@ -48,8 +64,13 @@ function field(){
     var tempEquipment = []
     this.AddTempEquipment = function(inputType){
         tempEquipment = []
-        tempEquipment.type = inputType
-        tempEquipment.rotation = 0
+        if (inputType.type){
+            tempEquipment = inputType
+        } else {
+            tempEquipment.type = inputType
+            tempEquipment.rotation = 0
+        }
+        return (tempEquipment)
     }
     this.AddTempEquipment("")
     this.SwitchTempEquipment = function(){
