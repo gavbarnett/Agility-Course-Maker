@@ -38,12 +38,13 @@ function main() {
 }
 
 //http://agilitynerd.com/images/CourseLegend.jpg
-allEquipment = []
+var allEquipment = []
 allEquipment["Contact"] = ["A-frame","Dog Walk", "See Saw"]
 allEquipment["Over"] = ["Winged Single Jump","Spread", "Tire Jump"]
 allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
-allEquipment["Numbers"] = ["S"]
+allEquipment["Numbers"] = ["S",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,"F"]
+var numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 function field(){
     var mouse = []
@@ -64,10 +65,30 @@ function field(){
     ]
     var tempEquipment = []
     this.AddTempEquipment = function(inputType){
+        if (tempEquipment.type){
+            if(tempEquipment.type[0] == "Numbers"){
+                numberTracker[tempEquipment.type[1]] = 1
+            }
+        }
+
         tempEquipment = []
+        
         if (inputType.type){
             tempEquipment = inputType
         } else {
+            if(inputType[0] == "Numbers"){
+                var noNumbers = true
+                for(i = 0; i < 22; i++){
+                    if (numberTracker[i] == 1){
+                        noNumbers = false
+                        inputType[1] = i
+                        break
+                    }
+                }
+                if (noNumbers == true){
+                    inputType = ""
+                }
+            }
             tempEquipment.type = inputType
             tempEquipment.rotation = 0
         }
@@ -148,7 +169,11 @@ function field(){
     }
     this.PlaceEquipment = function(){
         if (tempEquipment){
+            if(tempEquipment.type[0] == "Numbers"){
+                numberTracker[tempEquipment.type[1]] = 0
+            }
             PlacedEquipment.push(Object.assign({},tempEquipment))
+            tempEquipment= []
             Field.AddTempEquipment("")
         }
         Field.draw()
@@ -275,6 +300,7 @@ function saveDesign(){
 }
 
 function loadDesign(){
+    numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     var file    = document.querySelector('input[type=file]').files[0];
     var reader  = new FileReader();
 

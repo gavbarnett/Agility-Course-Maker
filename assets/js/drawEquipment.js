@@ -202,6 +202,8 @@ function drawEquipment(item, scaler, offset, canvas){
         }
     }
     this.drawNumbers = function(){
+        ctx.rotate(-item.rotation)
+        numberTracker[item.type[1]] = 0
         ctx.fillStyle = "#FFFFFF";
         ctx.strokeStyle = '#000000';
         ctx.beginPath()
@@ -211,8 +213,7 @@ function drawEquipment(item, scaler, offset, canvas){
         ctx.fillStyle = "#000000";
         ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("88",0,scaler*0.25);
-        ctx.t
+        ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,scaler*0.25);
     }
     if (!canvas){
         canvas = document.getElementById('MainCanvas');
