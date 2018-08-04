@@ -1,7 +1,7 @@
 # Agility Course Maker
 Open Source & Online dog agility course design tool.
 
-Link: www.AgilityCourseMaker.com
+Link: [AgilityCourseMaker.com](www.AgilityCourseMaker.com)
 
 Keyboard & mouse driven interface. 
 Allows designs to be saved to/loaded from the users computers as a JSON file. 
