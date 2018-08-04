@@ -419,6 +419,7 @@ function buttonMaster(){
                 }
                 Field.draw()
                 break
+            case 46: //Del
             case 27: //Esc
                 Field.AddTempEquipment("")
                 Field.draw()
