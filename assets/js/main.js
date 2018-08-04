@@ -121,52 +121,48 @@ function field(){
         if (tempEquipment){
             if ((tempEquipment.type[0] == "Through") && (tempEquipment.type[1] == 0)){
                 switch(tempEquipment.type[2]){
-                    case 3.048:
-                        tempEquipment.type[2] = 4.578
+                    case 3:
+                        tempEquipment.type[2] = 4
                         break
-                    case 4.578:
-                        tempEquipment.type[2] = 6.096
+                    case 4:
+                        tempEquipment.type[2] = 6
                         break
-                    case 6.096:
-                        tempEquipment.type[2] = 3.048
+                    case 6:
+                        tempEquipment.type[2] = 3
                         break
                 } 
             }
         }
     }
     this.TunnelRadius = function(){
+        var tunnelLength = 4
+        var minOuterDiameter = 1.309*2 //1.309
         if (tempEquipment){
             if ((tempEquipment.type[0] == "Through") && (tempEquipment.type[1] == 0)){
                 switch(tempEquipment.type[3]){
-                    case ((4.578+0.759*0)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*1)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*1).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*2).toFixed(3)
                         break
-                    case ((4.578+0.759*1)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*2)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*2).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*4).toFixed(3)
                         break
-                    case ((4.578+0.759*2)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*4)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*4).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*8).toFixed(3)
                         break
-                    case ((4.578+0.759*4)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*8)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*8).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*16).toFixed(3)
                         break
-                    case ((4.578+0.759*8)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*16)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*16).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*32).toFixed(3)
                         break
-                    case ((4.578+0.759*16)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*32)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*32).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*64).toFixed(3)
                         break
-                    case ((4.578+0.759*32)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*64)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*64).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*1024).toFixed(3)
                         break
-                    case ((4.578+0.759*64)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*128)/Math.PI).toFixed(3)
-                        break
-                    case ((4.578+0.759*128)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*1024)/Math.PI).toFixed(3)
-                        break
-                    case ((4.578+0.759*1024)/Math.PI).toFixed(3):
-                        tempEquipment.type[3] = ((4.578+0.759*0)/Math.PI).toFixed(3)
+                    case (minOuterDiameter*1024).toFixed(3):
+                        tempEquipment.type[3] = (minOuterDiameter*1).toFixed(3)
                         break
                 } 
             }
@@ -388,7 +384,7 @@ function buttonMaster(){
                 Field.draw()
                 break
             case 84: //T
-                Field.AddTempEquipment(["Through", 0, 3.048, ((4.578+0.759*0)/Math.PI).toFixed(3)]) 
+                Field.AddTempEquipment(["Through", 0, 3, (1.309*2).toFixed(3)]) 
                 Field.draw()
                 break
             case 87: //W
