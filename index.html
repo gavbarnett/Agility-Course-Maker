@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
     <title>Dog Agility Course Designer</title>
-    <!-- Styles -->
-
-    <!-- Scripts-->
+    <link rel="stylesheet" href="assets/css/styles.css">    
+    
+    
     <body onload="main()">
             <h1> Agility Course Designer </h1>
-            <p> By default the field size is 30m x 30m<p>
-            <h3> Controls: </h3>
-            <p> [C]ontacts, [O]vers/[J]umps, [T]hroughs, [W]eaves </p>
-            <p> [R]otate by 22.5&#176, [TAB] Cycle through objects, [G]rid (2m/5m)</p>
-            <p> [ESC] to abandon object, [Click] to place/select object</p>
-            <p> Tunnels: [L]ength (10ft, 15ft, 20ft), [B]end</p>
-            <p>
-                <input id="SaveAs" type="button" value="SaveAs..." onclick="saveDesign()" />
-                <input id="loadFileXml" type="button" value="Open" onclick="document.getElementById('OpenFile').click();" />
-                <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
-            </p>
+            <div id="CanvasDiv">
+            </div>
+            <div id="Controls">
+                <div class ="SaveLoad">
+                    <p> Field size: 30m x 30m</p>
+                    <button id="SaveAs" onclick="saveDesign()"> SaveAs... </button>
+                    <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();">Open</button>
+                    <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
+                </div>
+                <h3> Keyboard Controls: </h3>
+                <p> <b>[C]</b>ontacts, <b>[O]</b>vers/<b>[J]</b>umps, <b>[T]</b>hroughs, <b>[W]</b>eaves </p>
+                <p> <b>[R]</b>otate by 22.5&#176, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
+                <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
+                <p> Tunnels: <b>[L]</b>ength (10ft, 15ft, 20ft), <b>[B]</b>end</p>
+            </div>
         <script type="text/javascript" src="assets/js/main.js"></script>
+        <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
     </body>
     </html>

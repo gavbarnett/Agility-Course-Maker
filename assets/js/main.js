@@ -9,14 +9,14 @@ var filename = "MyAgilityField.json"
 
 function main() {
     var canvas = document.createElement('canvas');
-    
+    var canvasDiv = document.getElementById('CanvasDiv')
     canvas.id = "MainCanvas";
-    canvas.width = 620;
-    canvas.height = 620;
+    canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+    canvas.height =  canvas.width
     canvas.style.zIndex = 8;
-    canvas.style.position = "absolute";
+    canvas.style.position = "flex";
     canvas.style.border = "1px solid";
-    document.body.appendChild(canvas);
+    canvasDiv.appendChild(canvas);
     Field.draw()
     buttonMaster()
 }
@@ -28,233 +28,6 @@ allEquipment["Over"] = ["Winged Single Jump","Spread", "Tire Jump"]
 allEquipment["Through"] = ["Tunnel","Chute"]
 allEquipment["Weave"] = ["6", "9", "12"]
 
-function drawEquipment(item, scaler, offset){
-    this.drawContact = function(){
-        switch(item.type[1]){
-            case 0: //"A-frame"
-                ctx.fillStyle = "#FFFFFF";
-                ctx.strokeStyle = '#000000';
-                ctx.beginPath()
-                ctx.rect(scaler*-2.136,scaler*-0.4585,scaler*4.272,scaler*0.917)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.fillStyle = "#FFFF00";
-                ctx.rect(scaler*-2.136,scaler*-0.4585, scaler*0.836,scaler*0.917)
-                ctx.rect(scaler*1.3,scaler*-0.4585, scaler*0.836,scaler*0.917)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.moveTo(scaler*0,scaler*-0.4585)
-                ctx.lineTo(scaler*0,scaler*0.4585)
-                ctx.stroke()
-                break
-            case 1: //"Dog Walk"
-                ctx.fillStyle = "#FFFFFF";
-                ctx.strokeStyle = '#000000';
-                ctx.beginPath()
-                ctx.rect(scaler*-5.78,scaler*-0.135,scaler*11.56,scaler*0.27)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.fillStyle = "#FFFF00";
-                ctx.rect(scaler*-5.78,scaler*-0.135, scaler*0.86,scaler*0.27)
-                ctx.rect(scaler*4.92,scaler*-0.135, scaler*0.86,scaler*0.27)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.moveTo(scaler*-2,scaler*-0.135)
-                ctx.lineTo(scaler*-2,scaler*0.135)
-                ctx.moveTo(scaler*2,scaler*-0.135)
-                ctx.lineTo(scaler*2,scaler*0.135)
-                ctx.stroke()
-                break
-            case 2: //"See Saw"
-                ctx.beginPath()
-                ctx.strokeStyle = '#000000';
-                ctx.fillStyle = "#000000";
-                ctx.rect(scaler*-0.2,scaler*-0.3, scaler*0.4,scaler*0.6)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.fillStyle = "#FFFFFF";
-                ctx.rect(scaler*-1.879,scaler*-0.135,scaler*3.758,scaler*0.27)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.fillStyle = "#FFFF00";
-                ctx.rect(scaler*-1.879,scaler*-0.135, scaler*0.8589,scaler*0.27)
-                ctx.rect(scaler*1.02,scaler*-0.135, scaler*0.8589,scaler*0.27)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.fillStyle = "#000000";
-                ctx.moveTo(scaler*-0.5,scaler*0)
-                ctx.lineTo(scaler*0.5,scaler*0)
-                ctx.lineTo(scaler*0.3,scaler*-0.15)
-                ctx.lineTo(scaler*0.3,scaler*0.15)
-                ctx.lineTo(scaler*0.5,scaler*0)
-                ctx.stroke()
-                ctx.fill()
-                break
-        }
-    }
-    this.drawOver = function(){
-        switch(item.type[1]){
-            case 0: //"Winged Single Jump":
-                ctx.beginPath()
-                ctx.strokeStyle = '#000000';
-                ctx.fillStyle = "#FFFFFF";
-                ctx.rect(scaler*-1.2095,scaler*-0.05, scaler*0.6,scaler*0.1)
-                ctx.rect(scaler*0.6095,scaler*-0.05, scaler*0.6,scaler*0.1)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.strokeStyle = '#000000';
-                ctx.moveTo(scaler*-0.6095,scaler*0)
-                ctx.lineTo(scaler*0.6095,scaler*0)
-                ctx.stroke()
-                break
-            case 1: //"Spread":
-                ctx.strokeStyle = '#000000';
-                ctx.fillStyle = "#000000";
-                var spread = 4
-                ctx.beginPath()
-                ctx.arc(scaler*(-0.6095-0.1), scaler*(-(0.225*spread)/2-0.2),0.1*scaler,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.arc(scaler*(-0.6095-0.1), scaler*((0.225*spread)/2+0.1),0.1*scaler,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.arc(scaler*(+0.6095+0.1), scaler*(-(0.225*spread)/2-0.2),0.1*scaler,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.arc(scaler*(+0.6095+0.1), scaler*((0.225*spread)/2+0.1),0.1*scaler,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                for (i = 0; i < spread; i ++){
-                    ctx.beginPath()
-                    ctx.rect(scaler*-0.6095,scaler*(-(0.225*spread)/2 + 0.225*i), scaler*1.219,scaler*0.10)
-                    ctx.stroke()
-                    ctx.fill()
-                }
-                //ctx.fill()
-                break
-            case 2: //"Tire Jump":
-                ctx.strokeStyle = '#000000';
-                ctx.fillStyle = "#000000";
-                ctx.beginPath()
-                ctx.arc(0,0,scaler*0.733/2,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                ctx.fillStyle = "#FFFFFF";
-                ctx.beginPath()
-                ctx.arc(0,0,scaler*0.533/2,0,2*Math.PI)
-                ctx.stroke()
-                ctx.fill()
-                ctx.beginPath()
-                ctx.strokeStyle = '#000000';
-                ctx.moveTo(scaler*0.3665,scaler*0)
-                ctx.lineTo(scaler*0.7095,scaler*0)
-                ctx.stroke()
-                ctx.beginPath()
-                ctx.moveTo(scaler*0.7095,scaler*-0.2)
-                ctx.lineTo(scaler*0.7095,scaler*0.2)
-                ctx.stroke()
-                ctx.beginPath()
-                ctx.strokeStyle = '#000000';
-                ctx.moveTo(scaler*-0.3665,scaler*0)
-                ctx.lineTo(scaler*-0.7095,scaler*0)
-                ctx.stroke()
-                ctx.beginPath()
-                ctx.moveTo(scaler*-0.7095,scaler*-0.2)
-                ctx.lineTo(scaler*-0.7095,scaler*0.2)
-                ctx.stroke()
-                break
-        }
-    }
-    this.drawThrough = function(){
-        switch(item.type[1]){
-            case 0: //"Tunnel":
-                var length = item.type[2]
-                var radius = item.type[3]
-                ctx.strokeStyle = '#000000';
-                ctx.fillStyle = "#444444";
-                ctx.beginPath()
-                ctx.arc(0,radius*scaler,radius*scaler,-(length/radius)/2-Math.PI/2,(length/radius)/2-Math.PI/2)
-                ctx.arc(0,radius*scaler,(radius-0.609)*scaler,(length/radius)/2-Math.PI/2,-(length/radius)/2-Math.PI/2,true)
-                ctx.lineTo(Math.cos(-(length/radius)/2-Math.PI/2)*radius*scaler,Math.sin((length/radius)/2-Math.PI/2)*radius*scaler+radius*scaler)
-                ctx.stroke()
-                ctx.fill()
-                break
-            case 3: //"Chute":
-                break
-        }
-    }
-    this.drawWeave = function(){
-        switch(item.type[1]){
-            case 0: //"6":
-                var poles = 6
-                for (i = 0; i < poles; i ++){
-                    ctx.fillStyle = "#000000";
-                    ctx.strokeStyle = '#000000';
-                    ctx.beginPath()
-                    ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
-                    ctx.fill()
-                    ctx.stroke()
-                }
-                break
-            case 1: //"9":
-                var poles = 9
-                for (i = 0; i < poles; i ++){
-                    ctx.fillStyle = "#000000";
-                    ctx.strokeStyle = '#000000';
-                    ctx.beginPath()
-                    ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
-                    ctx.fill()
-                    ctx.stroke()
-                }
-                break
-            case 2: //"12":
-                var poles = 12
-                for (i = 0; i < poles; i ++){
-                    ctx.fillStyle = "#000000";
-                    ctx.strokeStyle = '#000000';
-                    ctx.beginPath()
-                    ctx.arc((0.6*(-(poles-1)/2+i))*scaler,0,0.05*scaler,0,2* Math.PI)
-                    ctx.fill()
-                    ctx.stroke()
-                }
-                break
-        }
-    }
-    canvas = document.getElementById('MainCanvas');
-    ctx = canvas.getContext("2d");
-    ctx.save()
-    ctx.translate(offset + scaler*item.x,offset + scaler*item.y)
-    ctx.rotate(item.rotation)
-    switch(item.type[0]){
-        case "Contact":
-            this.drawContact()
-            break
-        case "Over":
-            this.drawOver()
-            break
-        case "Through":
-            this.drawThrough()
-            break
-        case "Weave":
-            this.drawWeave()
-            break
-    }
-
-    ctx.restore()
-
-}
-
 function field(){
     var mouse = []
     mouse.x = 0
@@ -264,7 +37,7 @@ function field(){
     var yoffset = offset
     var x = 30
     var y = 30
-    var scaler = 20
+    var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/x
     this.gridSize = 5
     this.scaled = [
         xoffset,
@@ -443,6 +216,19 @@ function field(){
             }
         }
     }
+    this.resize = function(){
+        var canvas = document.getElementById('MainCanvas');
+        canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+        canvas.height =  canvas.width
+        scaler = (canvas.width-offset*2)/x
+        this.scaled = [
+            xoffset,
+            yoffset,
+            xoffset + x*scaler,
+            yoffset + y*scaler,
+        ]
+        Field.draw()
+    }
 }
 function saveDesign(){
     //this seems like an odd way of doing this but it works.
@@ -475,8 +261,12 @@ function loadDesign(){
 function buttonMaster(){
     var canvas = document.getElementById('MainCanvas');
     
+    window.onresize = function(e) {
+        Field.resize()
+    }
+    
     canvas.addEventListener("click",Field.click)
-
+    canvas.addEventListener("resize",Field.click)
     canvas.addEventListener("mousemove",Field.mousemove)
 
     document.addEventListener("keydown", function(e){
