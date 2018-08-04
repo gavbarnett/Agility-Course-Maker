@@ -106,7 +106,7 @@ function field(){
     }
     this.RotateTempEquipment = function(){
         if (tempEquipment){
-            tempEquipment.rotation += Math.PI/8
+            tempEquipment.rotation += Math.PI/16
             if(tempEquipment.rotation >= Math.PI*2){
                 tempEquipment.rotation = 0 
             }
