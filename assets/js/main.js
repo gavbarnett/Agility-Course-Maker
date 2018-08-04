@@ -332,12 +332,22 @@ function printDesign(){
     const dataUrl = document.getElementById('MainCanvas').toDataURL(); 
     let windowContent = '<!DOCTYPE html>';
     windowContent += '<html>';
-    windowContent += '<head><title>Agility Course Designer</title></head>';
-    windowContent += '<body>';
-    windowContent += '<img src="' + dataUrl + '">';
-    windowContent += '<h3> Notes </h3>';
-    windowContent += '<p>' + notes.value + '</p>';
-    windowContent += '</body>';
+        windowContent += '<head>'
+            windowContent += '<title>Agility Course Maker</title>'
+            windowContent += '<style>body {font-size: 100%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
+            windowContent += '<style>textarea {resize: none; width:100%; height:100%;}</style>'
+            windowContent += '<style>footer {font-size: 70%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
+
+            windowContent += '</head>';
+        windowContent += '<body>';
+            windowContent += '<img align="middle" src="' + dataUrl + '">';
+            windowContent += '<h3> Course Notes </h3>';
+            windowContent += '<textarea resize="none" rows="13" cols="20">'  + notes.value + '</textarea>';
+        windowContent += '</body>';
+        windowContent += '<footer>';
+            windowContent +='<p>Created on <b>Agility Course Maker</b> an Open Source project under MIT License</a></p>'
+            windowContent +='<p>Software Copyright © 2018 Gavin Barnett</a></p>'
+        windowContent += '<footer>';
     windowContent += '</html>';
 
     const printWin = window.open('', '', 'width=' + screen.availWidth + ',height=' + screen.availHeight);
