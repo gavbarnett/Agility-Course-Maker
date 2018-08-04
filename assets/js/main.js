@@ -325,6 +325,11 @@ function loadDesign(){
 function printDesign(){
     Field.draw(true)
     var notes = document.getElementById("Notes")
+    if (notes.textContent == "Add your notes here.") {
+        notes = ""
+    } else {
+        notes = notes.value
+    }
     const dataUrl = document.getElementById('MainCanvas').toDataURL(); 
     let windowContent = '<!DOCTYPE html>';
     windowContent += '<html>';
@@ -338,7 +343,7 @@ function printDesign(){
         windowContent += '<body>';
             windowContent += '<img align="middle" src="' + dataUrl + '">';
             windowContent += '<h3> Course Notes </h3>';
-            windowContent += '<textarea resize="none" rows="13" cols="20">'  + notes.value + '</textarea>';
+            windowContent += '<textarea resize="none" rows="13" cols="20">'  + notes + '</textarea>';
         windowContent += '</body>';
         windowContent += '<footer>';
             windowContent +='<p>Created on <b>Agility Course Maker</b> an Open Source project under MIT License</a></p>'
