@@ -187,13 +187,14 @@ function field(){
         ctx.clearRect(0,0,canvas.width,canvas.height)
         ctx.fillRect(0,0,canvas.width,canvas.height)
         if (!print){
-            ctx.fillStyle = "#6A8455";
+            ctx.fillStyle = "#9aa391"//"#6A8455";
         }else{
             ctx.fillStyle = "#ffffff";
         }
 
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
-        ctx.strokeStyle = '#AAAAAA';
+        ctx.strokeStyle = '#888';
+        ctx.setLineDash([2, 2])
         for (i = 0; i <= x; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0] + i * scaler, this.scaled[1])
@@ -206,6 +207,10 @@ function field(){
             ctx.lineTo(this.scaled[2], this.scaled[1] + i * scaler)
             ctx.stroke();
         }
+        ctx.setLineDash([1,0])
+        ctx.strokeStyle = '#000000';
+        ctx.rect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
+        ctx.stroke()
         //Draw Placed Equipment
         /* note to self - draw through equipment after contacts */
         for (var i = 0; i <PlacedEquipment.length; i++){
