@@ -8,6 +8,8 @@ body
    font-family: 'Verdana', sans-serif;
    text-align: center;
    background-color: #D5D5D5;
+   margin: 0 !important;
+   padding: 0 !important;
 }
 #CanvasDiv {
     display: flex;
@@ -20,9 +22,6 @@ body
     font-family: 'Verdana', sans-serif;
     font-size: 100%;
     display: absolute;
-    background-color: #9099A2;
-    outline: #9099A2 solid 10px;
-    color: white;
 }
 
 #SaveLoad {
@@ -42,8 +41,7 @@ body
         position:absolute;
         color: black;
         background-color:#D5D5D5;
-        outline: #D5D5D5 solid 10px;
-        top:0;
+        top:20%;
         bottom:0;
         left:0;
         width: 20%;
@@ -58,7 +56,7 @@ body
         display: absolute;
         position:absolute;
         padding-top: 2%;
-        top:0;
+        top:10%;
         bottom:0;
         right:0;
         width: 12%;
@@ -85,7 +83,7 @@ body
     margin-bottom: 20px;
     width: 100%;
     height: 5em;
-    max-width: 800px;
+    max-width: 700px;
 }
 
 h1 {
@@ -99,16 +97,19 @@ h1 {
     margin-top: auto;
     margin-bottom: 1%;
     width: 100%;
+    background-color: white;
 }
 
 footer{
-    margin:0;
+    position: flex;
     display: absolute;
     color: black;
+    bottom:0;
+    left: 0;
+    width: 100%;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 0.1%;
-    padding-bottom: 0.1%;
     font-family: 'Verdana', sans-serif;
     font-size: 0.75em;
     line-height: 0.5;

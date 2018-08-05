@@ -339,7 +339,7 @@ function printDesign(){
             windowContent += '<style>body {font-size: 100%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
             windowContent += '<style>img {display: block; margin: 0 auto;}</style>'
             windowContent += '<style>textarea {resize: none; width:100%; height:100%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
-            windowContent += '<style>footer {font-size: 75%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
+            windowContent += '<style>footer {position: fixed; bottom:0; left:0; width 100%; font-size: 75%; font-family: "Verdana", sans-serif; text-align: left;}</style>'
             windowContent += '</head>';
         windowContent += '<body>';
             windowContent += '<img align="middle" src="' + dataUrl + '" width=90% height=90%>';
