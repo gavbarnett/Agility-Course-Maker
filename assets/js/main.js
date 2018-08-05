@@ -183,7 +183,9 @@ function field(){
         canvas = document.getElementById('MainCanvas');
         ctx = canvas.getContext("2d");
         //Draw Field
+        ctx.fillStyle = "#ffffff";
         ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.fillRect(0,0,canvas.width,canvas.height)
         if (!print){
             ctx.fillStyle = "#6A8455";
         }else{

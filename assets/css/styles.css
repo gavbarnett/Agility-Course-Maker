@@ -1,10 +1,13 @@
+* {
+    box-sizing: border-box;
+}
 body
 {
    font-size: 100%;
    color: #000;
    font-family: 'Verdana', sans-serif;
    text-align: center;
-   background-color: white;
+   background-color: #D5D5D5;
 }
 #CanvasDiv {
     display: flex;
@@ -17,15 +20,17 @@ body
     font-family: 'Verdana', sans-serif;
     font-size: 100%;
     display: absolute;
+    background-color: #9099A2;
+    outline: #9099A2 solid 10px;
+    color: white;
 }
 
 #SaveLoad {
     font-family: 'Verdana', sans-serif;
-    background-color: lightgray;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    background-color: #9099A2;
     font-size: 100%;
     display: absolute; 
+    outline: #9099A2 solid 10px;
 }
 
 @media screen and (min-width: 1200px){
@@ -35,6 +40,9 @@ body
         text-align: left;
         display: absolute;
         position:absolute;
+        color: black;
+        background-color:#D5D5D5;
+        outline: #D5D5D5 solid 10px;
         top:0;
         bottom:0;
         left:0;
@@ -43,7 +51,6 @@ body
         padding-left: 1%;
     }
     #SaveLoad {
-        background-color: lightgray;
         align-content: right;
         font-family: 'Verdana', sans-serif;
         font-size: 100%;
@@ -55,7 +62,7 @@ body
         bottom:0;
         right:0;
         width: 12%;
-        height:75%;
+        height:100%;
     }
     #SaveLoad button {
         font-size: 100%;
@@ -75,13 +82,14 @@ body
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
     width: 100%;
     height: 5em;
     max-width: 800px;
 }
 
 h1 {
-    color: grey;
+    color: black;
     font-family: 'Verdana', sans-serif;
     font-weight: bold;
     font-variant: small-caps;
@@ -90,16 +98,17 @@ h1 {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: 1%;
+    width: 100%;
 }
 
 footer{
+    margin:0;
     display: absolute;
     color: black;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 0.1%;
     padding-bottom: 0.1%;
-    background-color: lightgrey;
     font-family: 'Verdana', sans-serif;
     font-size: 0.75em;
     line-height: 0.5;
@@ -123,16 +132,21 @@ canvas {
     display: flex;
 }
 button {
-    background-color: grey;
-    border: none;
+    background-color: #9099A2;
+    border: 2px solid white;
+    border-radius: 3px;
     color: white;
     font-size: 100%;
+    font-weight: bold;
     width: 30%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     padding: 15px 32px;
     min-width: fit-content;
     display: inline-block;
 }
 
 button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    color: black;
 }
