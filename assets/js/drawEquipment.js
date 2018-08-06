@@ -227,7 +227,6 @@ function drawEquipment(item, scaler, offset, canvas){
     }
     this.drawNumbers = function(){
         ctx.rotate(-item.rotation)
-        numberTracker[item.type[1]] = 0
         ctx.fillStyle = "#FFFFFF";
         ctx.strokeStyle = '#000000';
         ctx.beginPath()

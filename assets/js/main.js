@@ -220,6 +220,9 @@ function field(){
         }
         for (var i = 0; i <PlacedEquipment.length; i++){
             if (PlacedEquipment[i].type[0] != "Through"){
+                if (PlacedEquipment[i].type[0] == "Numbers"){
+                    numberTracker[PlacedEquipment[i].type[1]] = 0
+                }
                 drawEquipment(PlacedEquipment[i], scaler, offset)
             }
         }
