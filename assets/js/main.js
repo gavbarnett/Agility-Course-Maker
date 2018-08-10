@@ -97,6 +97,7 @@ function field(){
             tempEquipment.type = inputType
             tempEquipment.rotation = 0
         }
+        
         return (tempEquipment)
     }
     this.AddTempEquipment("")
@@ -182,6 +183,7 @@ function field(){
     this.draw = function(print = false) {
         canvas = document.getElementById('MainCanvas');
         ctx = canvas.getContext("2d");
+        canvas.focus();
         //Draw Field
         ctx.fillStyle = "#ffffff";
         ctx.clearRect(0,0,canvas.width,canvas.height)

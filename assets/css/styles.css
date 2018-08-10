@@ -18,13 +18,13 @@ body
 #ToolDiv {
     display: flex;
 }
-#Controls {
+#Shortcuts {
     font-family: 'Verdana', sans-serif;
     font-size: 100%;
     display: absolute;
 }
 
-#SaveLoad {
+#FileMenu {
     font-family: 'Verdana', sans-serif;
     background-color: #9099A2;
     font-size: 100%;
@@ -33,7 +33,7 @@ body
 }
 
 @media screen and (min-width: 1200px){
-    #Controls {
+    #Shortcuts {
         font-family: 'Verdana', sans-serif;
         font-size: 100%;
         text-align: left;
@@ -48,7 +48,7 @@ body
         height:100%;
         padding-left: 1%;
     }
-    #SaveLoad {
+    #FileMenu {
         align-content: right;
         font-family: 'Verdana', sans-serif;
         font-size: 100%;
@@ -62,7 +62,7 @@ body
         width: 12%;
         height:100%;
     }
-    #SaveLoad button {
+    #FileMenu button {
         font-size: 100%;
         width: 90%;
         margin-left: 5%;
