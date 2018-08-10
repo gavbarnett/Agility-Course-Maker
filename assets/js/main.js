@@ -103,10 +103,12 @@ function field(){
     this.AddTempEquipment("")
     this.SwitchTempEquipment = function(){
         if (tempEquipment){
-            if ((allEquipment[tempEquipment.type[0]].length-1)>tempEquipment.type[1]){
-                tempEquipment.type[1] += 1
-            } else{
-                tempEquipment.type[1] = 0
+            if(tempEquipment.type!=""){
+                if ((allEquipment[tempEquipment.type[0]].length-1)>tempEquipment.type[1]){
+                    tempEquipment.type[1] += 1
+                } else{
+                    tempEquipment.type[1] = 0
+                }
             }
         }
     }
@@ -238,8 +240,6 @@ function field(){
 
     }
     this.mousemove = function(){
-        mouse.oldx = x
-        mouse.oldy = y
         mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
         mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
         mouse.x = Math.max(mouse.x,0)
@@ -381,7 +381,10 @@ function buttonMaster(){
     window.onresize = function(e) {
         Field.resize()
     }
-    
+    canvas.addEventListener("touchstart",Field.click, false)
+    canvas.addEventListener("touchmove",Field.mousemove, false)
+    canvas.addEventListener("touchend",Field.click, false)
+
     canvas.addEventListener("click",Field.click)
     canvas.addEventListener("resize",Field.click)
     canvas.addEventListener("mousemove",Field.mousemove)
