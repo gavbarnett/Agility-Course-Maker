@@ -22,6 +22,14 @@
                 <button id="Print" onclick="printDesign()"> PRINT </button>
             </div>
             <div id = "ToolMenu">
+                
+                <h2>Modify</h2>
+                <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <u>R</u>otate </button>
+                <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
+                <button id="Bend" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
+                <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
+                <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
+                <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
                 <h2>Equipment</h2>
                 <h3><u>C</u>ontacts</h3>
                 <button id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"> A-frame </button>
@@ -40,16 +48,6 @@
                 <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"> Weaves 12 </button>
                 <h3><u>N</u>umbers</h3>
                 <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"> Numbers</button>
-
-                <h2>Modify</h2>
-                <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <u>R</u>otate </button>
-                <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
-                <button id="Bend" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
-                <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
-                <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
-                <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
-
-
             </div>
             <div id="Shortcuts">
                 <h3> Keyboard Controls: </h3>
