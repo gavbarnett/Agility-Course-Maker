@@ -7,7 +7,6 @@ var mousebutton = false
 var Field = new field
 var Equipment = []
 var PlacedEquipment = []
-var filename = "MyAgilityField.json"
 function main() {
     var canvas = document.getElementById('MainCanvas');
     var canvasDiv = document.getElementById('CanvasDiv')
@@ -437,7 +436,9 @@ function saveDesign(){
     var blob = new Blob([JSON.stringify({'Equipment': PlacedEquipment,'Notes':notes})], {type: 'text/json'}),
     e = document.createEvent('MouseEvents'),
     a = document.createElement('a')
-    a.download = filename
+    var date = new Date().toDateString();
+    var time = new Date().toLocaleTimeString();
+    a.download = "MyAgilityField" + " ("+ date + " - "+ time +").json"
     a.href = window.URL.createObjectURL(blob)
     a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
     e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
