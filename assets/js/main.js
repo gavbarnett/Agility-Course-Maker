@@ -299,13 +299,38 @@ function field(){
         }
         document.body.style.cursor = mouseStyle
     }
-
     this.mouseup = function(){
         if (tempEquipment.type != ""){ 
             Field.PlaceEquipment()
         }
     }
     this.mousedown = function(){
+            //check if centre of any piece of placed equipment is < 1 meter from mouse
+            event.preventDefault();
+            canvas = document.getElementById('MainCanvas');
+            mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
+            mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
+            var distance = 0
+            var minDist = 3
+            var itemSelected = 0
+            for (var i = 0; i < PlacedEquipment.length; i++){
+                distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+                if (distance < minDist){
+                    minDist = distance
+                    itemSelected = i
+                }
+            }
+            if (minDist<3){
+                tempEquipment = PlacedEquipment[itemSelected]
+                PlacedEquipment.splice(itemSelected, 1)
+            }
+    }
+    this.touchend = function(){
+        if (tempEquipment.type != ""){ 
+            Field.PlaceEquipment()
+        }
+    }
+    this.touchstart = function(){
             //check if centre of any piece of placed equipment is < 1 meter from mouse
             event.preventDefault();
             canvas = document.getElementById('MainCanvas');
@@ -327,6 +352,28 @@ function field(){
                 PlacedEquipment.splice(itemSelected, 1)
             }
     }
+    this.mouseclick = function(){
+        //check if centre of any piece of placed equipment is < 1 meter from mouse
+        event.preventDefault();
+        canvas = document.getElementById('MainCanvas');
+        var touch = event.touches[0];
+        mouse.x = (touch.clientX-xoffset-canvas.offsetLeft+window.scrollX)/scaler
+        mouse.y = (touch.clientY-yoffset-canvas.offsetTop+window.scrollY)/scaler
+        var distance = 0
+        var minDist = 3
+        var itemSelected = 0
+        for (var i = 0; i < PlacedEquipment.length; i++){
+            distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+            if (distance < minDist){
+                minDist = distance
+                itemSelected = i
+            }
+        }
+        if (minDist<3){
+            tempEquipment = PlacedEquipment[itemSelected]
+            PlacedEquipment.splice(itemSelected, 1)
+        }
+}
     this.resize = function(){
         var canvas = document.getElementById('MainCanvas');
         canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
@@ -423,11 +470,13 @@ function buttonMaster(){
     window.onresize = function(e) {
         Field.resize()
     }
-    canvas.addEventListener("touchstart",Field.mousedown, false)
+    canvas.addEventListener("touchstart",Field.touchstart, false)
     canvas.addEventListener("touchmove",Field.touchmove, false)
-    canvas.addEventListener("touchend",Field.mouseup, false)
+    canvas.addEventListener("touchend",Field.touchend, false)
     canvas.addEventListener("mouseup",Field.mouseup)
     canvas.addEventListener("mousedown",Field.mousedown)
+    canvas.addEventListener("mouseclick",Field.mouseclick)
+
     canvas.addEventListener("resize",Field.click)
     canvas.addEventListener("mousemove",Field.mousemove)
     canvas.addEventListener("keydown", function(e){
