@@ -2,6 +2,7 @@
  * Area = 30 x 30 m
  * 
  */
+var dragging = false
 var Field = new field
 var Equipment = []
 var PlacedEquipment = []
@@ -257,6 +258,9 @@ function field(){
         mouse.y = Math.max(mouse.y,0)
         mouse.x = Math.min(mouse.x,x)
         mouse.y = Math.min(mouse.y,y)
+        if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
+            dragging = true
+        }
         if (tempEquipment.type != ""){
             var mouseStyle = "move"
             Field.draw()
@@ -283,6 +287,9 @@ function field(){
         mouse.y = Math.max(mouse.y,0)
         mouse.x = Math.min(mouse.x,x)
         mouse.y = Math.min(mouse.y,y)
+        if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
+            dragging = true
+        }
         if (tempEquipment.type != ""){
             var mouseStyle = "move"
             Field.draw()
@@ -300,13 +307,18 @@ function field(){
         document.body.style.cursor = mouseStyle
     }
     this.mouseup = function(){
-        if (tempEquipment.type != ""){ 
-            Field.PlaceEquipment()
+        if (dragging){
+            if (tempEquipment.type != ""){ 
+                Field.PlaceEquipment()
+            }
         }
     }
     this.mousedown = function(){
             //check if centre of any piece of placed equipment is < 1 meter from mouse
             event.preventDefault();
+            mouse.oldx = mouse.x
+            mouse.oldy = mouse.y
+            dragging = false;
             canvas = document.getElementById('MainCanvas');
             mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
             mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
@@ -324,35 +336,20 @@ function field(){
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
             }
+            Field.draw()
     }
     this.touchend = function(){
-        if (tempEquipment.type != ""){ 
-            Field.PlaceEquipment()
+        if (dragging){
+            if (tempEquipment.type != ""){ 
+                Field.PlaceEquipment()
+            }
         }
     }
     this.touchstart = function(){
-            //check if centre of any piece of placed equipment is < 1 meter from mouse
-            event.preventDefault();
-            canvas = document.getElementById('MainCanvas');
-            var touch = event.touches[0];
-            mouse.x = (touch.clientX-xoffset-canvas.offsetLeft+window.scrollX)/scaler
-            mouse.y = (touch.clientY-yoffset-canvas.offsetTop+window.scrollY)/scaler
-            var distance = 0
-            var minDist = 3
-            var itemSelected = 0
-            for (var i = 0; i < PlacedEquipment.length; i++){
-                distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
-                if (distance < minDist){
-                    minDist = distance
-                    itemSelected = i
-                }
-            }
-            if (minDist<3){
-                tempEquipment = PlacedEquipment[itemSelected]
-                PlacedEquipment.splice(itemSelected, 1)
-            }
-    }
-    this.mouseclick = function(){
+        console.log("start")
+        mouse.oldx = mouse.x
+        mouse.oldy = mouse.y
+        dragging = false;
         //check if centre of any piece of placed equipment is < 1 meter from mouse
         event.preventDefault();
         canvas = document.getElementById('MainCanvas');
@@ -372,8 +369,11 @@ function field(){
         if (minDist<3){
             tempEquipment = PlacedEquipment[itemSelected]
             PlacedEquipment.splice(itemSelected, 1)
+        } else {
+            Field.PlaceEquipment()
         }
-}
+        Field.draw()
+    }
     this.resize = function(){
         var canvas = document.getElementById('MainCanvas');
         canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
