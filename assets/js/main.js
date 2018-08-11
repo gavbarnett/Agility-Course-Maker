@@ -234,12 +234,23 @@ function field(){
         if (tempEquipment.type != ""){
             tempEquipment.x = mouse.x
             tempEquipment.y = mouse.y
+            //draw highlight circle
+            var grd=ctx.createRadialGradient(offset+scaler*mouse.x,offset+scaler*mouse.y,0,offset+scaler*mouse.x,offset+scaler*mouse.y,2*scaler);
+            grd.addColorStop(0,"rgba(255, 255, 255, 0.5)");
+            grd.addColorStop(1,"rgba(255, 255, 255, 0)");    
+            ctx.fillStyle = grd;
+            ctx.beginPath()
+            ctx.arc(offset+scaler*mouse.x,offset+scaler*mouse.y,2*scaler,0,2*Math.PI)
+            ctx.fill()
+            
+            //draw item
             drawEquipment(tempEquipment, scaler, offset)
         }
 
 
     }
     this.mousemove = function(){
+        
         mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
         mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
         mouse.x = Math.max(mouse.x,0)
@@ -261,9 +272,8 @@ function field(){
                 }
         }
         document.body.style.cursor = mouseStyle
-        
-        
     }
+
     this.click = function(){
         if (tempEquipment.type != ""){ 
             Field.PlaceEquipment()
