@@ -276,8 +276,11 @@ function field(){
                         }
                     }
             }
-            document.body.style.cursor = mouseStyle    
+        } else {
+            var mouseStyle = "auto"
         }
+        document.body.style.cursor = mouseStyle    
+
         
     }
     this.touchmove = function(){
