@@ -9,7 +9,7 @@ var Equipment = []
 var PlacedEquipment = []
 var filename = "MyAgilityField.json"
 function main() {
-    var canvas = document.createElement('canvas');
+    var canvas = document.getElementById('MainCanvas');
     var canvasDiv = document.getElementById('CanvasDiv')
     canvas.id = "MainCanvas";
     canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
@@ -17,7 +17,7 @@ function main() {
     canvas.style.zIndex = 8;
     canvas.style.border = "1px solid";
     canvas.tabIndex = 1
-    canvasDiv.appendChild(canvas);
+    //canvasDiv.appendChild(canvas);
     canvas.focus()
     var notes = document.getElementById('Notes')
     notes.width = canvas.width
