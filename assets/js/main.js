@@ -341,6 +341,7 @@ function field(){
                 }
             }
             if (minDist<3){
+                Field.PlaceEquipment()
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
             } else {
@@ -377,6 +378,7 @@ function field(){
             }
         }
         if (minDist<3){
+            Field.PlaceEquipment()
             tempEquipment = PlacedEquipment[itemSelected]
             PlacedEquipment.splice(itemSelected, 1)
         } else {
