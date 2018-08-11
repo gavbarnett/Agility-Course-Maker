@@ -183,7 +183,10 @@ function field(){
         }
         Field.draw()
     }
-    this.draw = function(print = false) {
+    this.draw = function(print) {
+        if (!print){
+            print = false
+        }
         canvas = document.getElementById('MainCanvas');
         ctx = canvas.getContext("2d");
         canvas.focus();
