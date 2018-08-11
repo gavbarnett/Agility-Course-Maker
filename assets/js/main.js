@@ -277,8 +277,8 @@ function field(){
         event.preventDefault();
         canvas = document.getElementById('MainCanvas');
         var touch = event.touches[0];
-        mouse.x = (touch.clientX-xoffset-canvas.offsetLeft)/scaler
-        mouse.y = (touch.clientY-yoffset-canvas.offsetTop)/scaler
+        mouse.x = (touch.clientX-xoffset-canvas.offsetLeft+window.scrollX)/scaler
+        mouse.y = (touch.clientY-yoffset-canvas.offsetTop+window.scrollY)/scaler
         mouse.x = Math.max(mouse.x,0)
         mouse.y = Math.max(mouse.y,0)
         mouse.x = Math.min(mouse.x,x)
@@ -310,8 +310,8 @@ function field(){
             event.preventDefault();
             canvas = document.getElementById('MainCanvas');
             var touch = event.touches[0];
-            mouse.x = (touch.clientX-xoffset-canvas.offsetLeft)/scaler
-            mouse.y = (touch.clientY-yoffset-canvas.offsetTop)/scaler
+            mouse.x = (touch.clientX-xoffset-canvas.offsetLeft+window.scrollX)/scaler
+            mouse.y = (touch.clientY-yoffset-canvas.offsetTop+window.scrollY)/scaler
             var distance = 0
             var minDist = 3
             var itemSelected = 0
