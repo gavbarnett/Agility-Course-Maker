@@ -313,7 +313,7 @@ function field(){
         mousebutton = false
         if (dragging){
             if (tempEquipment.type != ""){ 
-                Field.PlaceEquipment()
+                //Field.PlaceEquipment()
             }
         }
     }
@@ -348,7 +348,7 @@ function field(){
     this.touchend = function(){
         if (dragging){
             if (tempEquipment.type != ""){ 
-                Field.PlaceEquipment()
+                //Field.PlaceEquipment()
             }
         }
     }
