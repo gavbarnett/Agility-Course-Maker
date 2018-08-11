@@ -55,13 +55,13 @@ var numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 function field(){
     var mouse = []
-    mouse.x = 0
-    mouse.y = 0
+    var x = 30
+    var y = 30
+    mouse.x = x/2
+    mouse.y = y/2
     var offset = 10
     var xoffset = offset
     var yoffset = offset
-    var x = 30
-    var y = 30
     var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/x
     this.gridSize = 5
     this.scaled = [
