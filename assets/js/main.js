@@ -3,6 +3,7 @@
  * 
  */
 var dragging = false
+var mousebutton = false
 var Field = new field
 var Equipment = []
 var PlacedEquipment = []
@@ -251,31 +252,33 @@ function field(){
 
     }
     this.mousemove = function(){
-        
-        mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
-        mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
-        mouse.x = Math.max(mouse.x,0)
-        mouse.y = Math.max(mouse.y,0)
-        mouse.x = Math.min(mouse.x,x)
-        mouse.y = Math.min(mouse.y,y)
-        if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
-            dragging = true
-        }
-        if (tempEquipment.type != ""){
-            var mouseStyle = "move"
-            Field.draw()
-        } else {
-            var distance = 0
-            var mouseStyle = "auto"
-                for (var i = 0; i < PlacedEquipment.length; i++){
-                    distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
-                    if (distance < 2){
-                        mouseStyle = "move";
-                        break
+        if (mousebutton){
+            mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
+            mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
+            mouse.x = Math.max(mouse.x,0)
+            mouse.y = Math.max(mouse.y,0)
+            mouse.x = Math.min(mouse.x,x)
+            mouse.y = Math.min(mouse.y,y)
+            if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
+                dragging = true
+            }
+            if (tempEquipment.type != ""){
+                var mouseStyle = "move"
+                Field.draw()
+            } else {
+                var distance = 0
+                var mouseStyle = "auto"
+                    for (var i = 0; i < PlacedEquipment.length; i++){
+                        distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+                        if (distance < 2){
+                            mouseStyle = "move";
+                            break
+                        }
                     }
-                }
+            }
+            document.body.style.cursor = mouseStyle    
         }
-        document.body.style.cursor = mouseStyle
+        
     }
     this.touchmove = function(){
         event.preventDefault();
@@ -307,6 +310,7 @@ function field(){
         document.body.style.cursor = mouseStyle
     }
     this.mouseup = function(){
+        mousebutton = false
         if (dragging){
             if (tempEquipment.type != ""){ 
                 Field.PlaceEquipment()
@@ -314,6 +318,7 @@ function field(){
         }
     }
     this.mousedown = function(){
+            mousebutton = true
             //check if centre of any piece of placed equipment is < 1 meter from mouse
             event.preventDefault();
             mouse.oldx = mouse.x
@@ -335,6 +340,8 @@ function field(){
             if (minDist<3){
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
+            } else {
+                Field.PlaceEquipment()
             }
             Field.draw()
     }
