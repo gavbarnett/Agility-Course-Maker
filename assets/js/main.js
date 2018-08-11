@@ -242,7 +242,7 @@ function field(){
             ctx.beginPath()
             ctx.arc(offset+scaler*mouse.x,offset+scaler*mouse.y,2*scaler,0,2*Math.PI)
             ctx.fill()
-            
+
             //draw item
             drawEquipment(tempEquipment, scaler, offset)
         }
@@ -273,12 +273,45 @@ function field(){
         }
         document.body.style.cursor = mouseStyle
     }
+    this.touchmove = function(){
+        event.preventDefault();
+        canvas = document.getElementById('MainCanvas');
+        var touch = event.touches[0];
+        mouse.x = (touch.clientX-xoffset-canvas.offsetLeft)/scaler
+        mouse.y = (touch.clientY-yoffset-canvas.offsetTop)/scaler
+        mouse.x = Math.max(mouse.x,0)
+        mouse.y = Math.max(mouse.y,0)
+        mouse.x = Math.min(mouse.x,x)
+        mouse.y = Math.min(mouse.y,y)
+        if (tempEquipment.type != ""){
+            var mouseStyle = "move"
+            Field.draw()
+        } else {
+            var distance = 0
+            var mouseStyle = "auto"
+                for (var i = 0; i < PlacedEquipment.length; i++){
+                    distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
+                    if (distance < 2){
+                        mouseStyle = "move";
+                        break
+                    }
+                }
+        }
+        document.body.style.cursor = mouseStyle
+    }
 
-    this.click = function(){
+    this.mouseup = function(){
         if (tempEquipment.type != ""){ 
             Field.PlaceEquipment()
-        } else{
+        }
+    }
+    this.mousedown = function(){
             //check if centre of any piece of placed equipment is < 1 meter from mouse
+            event.preventDefault();
+            canvas = document.getElementById('MainCanvas');
+            var touch = event.touches[0];
+            mouse.x = (touch.clientX-xoffset-canvas.offsetLeft)/scaler
+            mouse.y = (touch.clientY-yoffset-canvas.offsetTop)/scaler
             var distance = 0
             var minDist = 3
             var itemSelected = 0
@@ -293,7 +326,6 @@ function field(){
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
             }
-        }
     }
     this.resize = function(){
         var canvas = document.getElementById('MainCanvas');
@@ -391,11 +423,11 @@ function buttonMaster(){
     window.onresize = function(e) {
         Field.resize()
     }
-    canvas.addEventListener("touchstart",Field.click, false)
-    canvas.addEventListener("touchmove",Field.mousemove, false)
-    canvas.addEventListener("touchend",Field.click, false)
-
-    canvas.addEventListener("click",Field.click)
+    canvas.addEventListener("touchstart",Field.mousedown, false)
+    canvas.addEventListener("touchmove",Field.touchmove, false)
+    canvas.addEventListener("touchend",Field.mouseup, false)
+    canvas.addEventListener("mouseup",Field.mouseup)
+    canvas.addEventListener("mousedown",Field.mousedown)
     canvas.addEventListener("resize",Field.click)
     canvas.addEventListener("mousemove",Field.mousemove)
     canvas.addEventListener("keydown", function(e){
