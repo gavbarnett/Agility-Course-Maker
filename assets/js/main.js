@@ -278,7 +278,7 @@ function field(){
 
 
     }
-    this.mousemove = function(){
+    this.mousemove = function(event){
         if (mousebutton){
             mouse.x = ((event.offsetX || event.layerX)-xoffset)/scaler
             mouse.y = ((event.offsetY || event.layerY)-yoffset)/scaler
@@ -310,7 +310,7 @@ function field(){
 
         
     }
-    this.touchmove = function(){
+    this.touchmove = function(event){
         event.preventDefault();
         canvas = document.getElementById('MainCanvas');
         var touch = event.touches[0];
@@ -339,7 +339,7 @@ function field(){
         }
         document.body.style.cursor = mouseStyle
     }
-    this.mouseup = function(){
+    this.mouseup = function(event){
         mousebutton = false
         if (dragging){
             if (tempEquipment.type != ""){ 
@@ -347,7 +347,7 @@ function field(){
             }
         }
     }
-    this.mousedown = function(){
+    this.mousedown = function(event){
             mousebutton = true
             //check if centre of any piece of placed equipment is < 1 meter from mouse
             event.preventDefault();
@@ -376,14 +376,14 @@ function field(){
             }
             Field.draw()
     }
-    this.touchend = function(){
+    this.touchend = function(event){
         if (dragging){
             if (tempEquipment.type != ""){ 
                 //Field.PlaceEquipment()
             }
         }
     }
-    this.touchstart = function(){
+    this.touchstart = function(event){
         console.log("start")
         mouse.oldx = mouse.x
         mouse.oldy = mouse.y
@@ -511,15 +511,13 @@ function buttonMaster(){
     window.onresize = function(e) {
         Field.resize()
     }
-    canvas.addEventListener("touchstart",Field.touchstart, false)
-    canvas.addEventListener("touchmove",Field.touchmove, false)
-    canvas.addEventListener("touchend",Field.touchend, false)
-    canvas.addEventListener("mouseup",Field.mouseup)
-    canvas.addEventListener("mousedown",Field.mousedown)
-    canvas.addEventListener("mouseclick",Field.mouseclick)
-
-    canvas.addEventListener("resize",Field.click)
-    canvas.addEventListener("mousemove",Field.mousemove)
+    canvas.addEventListener("touchstart",function(e){Field.touchstart(e)}, false)
+    canvas.addEventListener("touchmove",function(e){Field.touchmove(e)}, false)
+    canvas.addEventListener("touchend",function(e){Field.touchend(e)}, false)
+    canvas.addEventListener("mouseup",function(e){Field.mouseup(e)})
+    canvas.addEventListener("mousedown",function(e){Field.mousedown(e)})
+    canvas.addEventListener("resize",Field.resize)
+    canvas.addEventListener("mousemove",function(e){Field.mousemove(e)})
     canvas.addEventListener("keydown", function(e){
         var keyvalue = e.keyCode
         e.preventDefault()
