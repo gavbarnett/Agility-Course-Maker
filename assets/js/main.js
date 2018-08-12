@@ -470,7 +470,7 @@ function printDesign(){
         notes = notes.value
     }
     const dataUrl = document.getElementById('MainCanvas').toDataURL()
-    let windowContent = '<!DOCTYPE html>'
+    var windowContent = '<!DOCTYPE html>'
     windowContent += '<html>'
         windowContent += '<head>'
             windowContent += '<title>Agility Course Maker</title>'
