@@ -13,10 +13,8 @@ function main() {
     canvas.id = "MainCanvas";
     canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
     canvas.height =  canvas.width
-    canvas.style.zIndex = 8;
     canvas.style.border = "1px solid";
     canvas.tabIndex = 1
-    //canvasDiv.appendChild(canvas);
     canvas.focus()
     var notes = document.getElementById('Notes')
     notes.width = canvas.width
