@@ -3,7 +3,7 @@ Open Source & Online dog agility course design tool.
 
 Link: [AgilityCourseMaker.com](https://agilitycoursemaker.com/)
 
-Keyboard & mouse driven interface. -> Now also touch compatible on Andriod! 
+Keyboard & mouse driven interface. -> Now also touch compatible!
 Allows designs to be saved to/loaded from the users computers as a JSON file. 
 
   JSON file Includes: 
@@ -19,4 +19,4 @@ No server, No log-in. And it's free.
 
 *This is still a work in progress so feedback welcome!*
 
-Currently optimised for Chrome.
+Currently optimised for Desktop on Chrome, but functional on Edge, Firefox, IE, Safari, Android and iPad devices.
