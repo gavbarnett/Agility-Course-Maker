@@ -443,7 +443,7 @@ function saveDesign(){
     //this seems like an odd way of doing this but it works.
     //this this should really be bound to the SaveAs button
     var notes = document.getElementById("Notes").value
-    var blob = new Blob([JSON.stringify({'Equipment': PlacedEquipment,'Notes':notes})], {type: 'text/json'}),
+    var blob = new Blob([JSON.stringify({'Equipment': PlacedEquipment,'Notes':notes},null,2)], {type: 'text/json'}),
     e = document.createEvent('MouseEvents'),
     a = document.createElement('a')
     var date = new Date().toDateString();
