@@ -414,7 +414,12 @@ function field(){
             tempEquipment = PlacedEquipment[itemSelected]
             PlacedEquipment.splice(itemSelected, 1)
         } else {
-            Field.PlaceEquipment()
+            distance = Math.sqrt(Math.pow((tempEquipment.x-mouse.x),2)+Math.pow((tempEquipment.y-mouse.y),2))
+            if(distance<3){
+                //keep focus on current item and don't place it yet.
+            } else {
+                Field.PlaceEquipment()
+            }
         }
         Field.draw()
     }
