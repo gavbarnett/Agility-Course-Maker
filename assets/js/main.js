@@ -197,12 +197,14 @@ function field(){
     }
     this.PlaceEquipment = function(){
         if (tempEquipment){
-            if(tempEquipment.type[0] == "Numbers"){
-                numberTracker[tempEquipment.type[1]] = 0
+            if(tempEquipment.type!=""){
+                if(tempEquipment.type[0] == "Numbers"){
+                    numberTracker[tempEquipment.type[1]] = 0
+                }
+                PlacedEquipment.push(Object.assign({},tempEquipment))
+                tempEquipment= []
+                Field.AddTempEquipment("")
             }
-            PlacedEquipment.push(Object.assign({},tempEquipment))
-            tempEquipment= []
-            Field.AddTempEquipment("")
         }
         Field.draw()
     }
