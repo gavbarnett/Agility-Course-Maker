@@ -1,9 +1,10 @@
 
 function drawEquipment3D(item, scaler, offset, canvas){
     console.log("Going 3D")
-   
+    var canvasDiv = document.getElementById('CanvasDiv')
+
     var renderer = new THREE.WebGLRenderer()
-    document.body.appendChild(renderer.domElement)
+    canvasDiv.appendChild(renderer.domElement)
     renderer.setClearColor(0x00ff00)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth*0.5, window.innerHeight*0.5)
