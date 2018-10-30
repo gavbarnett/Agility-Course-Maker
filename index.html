@@ -49,6 +49,9 @@
                 <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"> Weaves 12 </button>
                 <h3><u>N</u>umbers</h3>
                 <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"> Numbers</button>
+                <h3><u>3</u>D / <u>2</u>D  </h3>
+                <button id="3D" onclick="drawEquipment3D()"> 3D</button>
+                <button id="2D" onclick=""> 2D</button>
             </div>
             <div id="Shortcuts">
                 <h3> Keyboard Controls: </h3>
@@ -57,8 +60,10 @@
                 <p> <b>[R]</b>otate, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
                 <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
             </div>
+        <script type="text/javascript" src="assets/js/three.js"></script>
         <script type="text/javascript" src="assets/js/main.js"></script>
         <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
+        <script type="text/javascript" src="assets/js/3DEngine.js"></script>
         <footer>
             <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a></p>
             <p>Copyright © 2018 <a href = https://github.com/gavbarnett>Gavin Barnett</a></p>
