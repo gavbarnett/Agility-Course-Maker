@@ -1,5 +1,6 @@
 var container;
-var camera, scene, renderer, elf;
+var camera, scene, renderer
+var equipment = [];
 function drawEquipment3D() {
     container = document.getElementById( 'MainCanvas2' );
     container.id = "MainCanvas2";
@@ -15,13 +16,19 @@ function drawEquipment3D() {
     scene = new THREE.Scene();
     // loading manager
     var loadingManager = new THREE.LoadingManager( function () {
-        scene.add( elf );
+        scene.add( equipment );
     } );
     // collada
-    var loader = new THREE.ColladaLoader( loadingManager );
-    loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
-        elf = collada.scene;
-    } );
+
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0)
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 2,0,0)
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 4,0,0)
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,1)
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2)
+    //var loader = new THREE.ColladaLoader( loadingManager );
+    //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
+    //    equipment = collada.scene;
+    //} );
     //
     var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
     scene.add( ambientLight );
@@ -33,11 +40,29 @@ function drawEquipment3D() {
 				//renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( document.getElementById( 'MainCanvas2' ).width, document.getElementById( 'MainCanvas2' ).height );
-    //container.appendChild( renderer.domElement );
+                renderer.setClearColor( 0x7EC0EE, 1 );
+                //container.appendChild( renderer.domElement );
     //
     window.addEventListener( 'resize', onWindowResize, false );
     animate();
 
+}
+function load(daeLocation, x, y, z){
+    var manager = new THREE.LoadingManager();
+    manager.onProgress = function(item, loaded, total) {
+        console.log(item, loaded, total);
+    };
+
+    var loader = new THREE.ColladaLoader(manager);
+
+    loader.load(daeLocation, function(collada) {
+            dae = collada.scene;
+            dae.position.set(x, y, z); 
+            scene.add(dae);
+            render();
+        }, function(progress) {
+            // show some progress
+    });
 }
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -49,8 +74,9 @@ function animate() {
     render();
 }
 function render() {
-    if ( elf !== undefined ) {
+    if ( equipment !== undefined ) {
     } else {
     }
+    camera.lookAt(new THREE.Vector3(0,0,0));
     renderer.render( scene, camera );
 }
