@@ -86,6 +86,10 @@ function render() {
     if ( equipment !== undefined ) {
     } else {
     }
+    if ( camera.position.y > 1 ) {
+        camera.position.y -= 0.1
+    } else {
+    }
     camera.lookAt(new THREE.Vector3(0,0,0));
     renderer.render( scene, camera );
 }
