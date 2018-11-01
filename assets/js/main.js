@@ -367,13 +367,13 @@ function field(){
                     itemSelected = i
                 }
             }
-            if (minDist<3){
+            if (minDist<(2*scaler)){
                 Field.PlaceEquipment()
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
             } else {
                 distance = Math.sqrt(Math.pow((tempEquipment.x-mouse.x),2)+Math.pow((tempEquipment.y-mouse.y),2))
-                if(distance<3){
+                if(distance<(2*scaler)){
                     //keep focus on current item and don't place it yet.
                 } else {
                     Field.PlaceEquipment()
@@ -409,13 +409,13 @@ function field(){
                 itemSelected = i
             }
         }
-        if (minDist<3){
+        if (minDist<(2*scaler)){
             Field.PlaceEquipment()
             tempEquipment = PlacedEquipment[itemSelected]
             PlacedEquipment.splice(itemSelected, 1)
         } else {
             distance = Math.sqrt(Math.pow((tempEquipment.x-mouse.x),2)+Math.pow((tempEquipment.y-mouse.y),2))
-            if(distance<3){
+            if(distance<(2*scaler)){
                 //keep focus on current item and don't place it yet.
             } else {
                 Field.PlaceEquipment()
