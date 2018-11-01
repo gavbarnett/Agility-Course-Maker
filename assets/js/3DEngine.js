@@ -19,12 +19,17 @@ function drawEquipment3D() {
         scene.add( equipment );
     } );
     // collada
-
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0)
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 2,0,0)
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 4,0,0)
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,1)
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2)
+    //Load Grass
+   // for (var x = 0; x < 6; x++) {
+     //   for (var z = 0; z < 6; z++) {
+            load( './assets/3Dassets/Collada Objects/grass-5m.dae', 0,0,0)
+     //   }
+    //}
+    //load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0)
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 2,0,0)
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 4,0,0)
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,1)
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2)
     //var loader = new THREE.ColladaLoader( loadingManager );
     //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
     //    equipment = collada.scene;
@@ -47,19 +52,23 @@ function drawEquipment3D() {
     animate();
 
 }
+var loader = new THREE.ColladaLoader(manager);
+var manager = new THREE.LoadingManager();
+
 function load(daeLocation, x, y, z){
-    var manager = new THREE.LoadingManager();
     manager.onProgress = function(item, loaded, total) {
         console.log(item, loaded, total);
     };
-
-    var loader = new THREE.ColladaLoader(manager);
-
     loader.load(daeLocation, function(collada) {
             dae = collada.scene;
-            dae.position.set(x, y, z); 
-            scene.add(dae);
-            render();
+            for (var x = 0; x < 6; x++) {
+                for (var z = 0; z < 6; z++) {
+                    instance = dae.clone()
+                    instance.position.set(x, y, z); 
+                    scene.add(instance);
+                    render();
+                }
+            }
         }, function(progress) {
             // show some progress
     });
