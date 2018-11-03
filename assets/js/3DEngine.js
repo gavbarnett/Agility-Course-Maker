@@ -23,12 +23,13 @@ function drawEquipment3D() {
     var loadingManager = new THREE.LoadingManager( function () {
         scene.add( equipment );
     } );
+
     // collada
     load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0,0)
     load( './assets/3Dassets/Collada Objects/Over-1.dae', 5,0,5, Math.PI/2)
-   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 4,0,0)
-   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,1)
-   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2)
+    load( './assets/3Dassets/Collada Objects/Over-3.dae', 4,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-1.dae', 0,0,10,0)
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2,0)
     //var loader = new THREE.ColladaLoader( loadingManager );
     //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
     //    equipment = collada.scene;
