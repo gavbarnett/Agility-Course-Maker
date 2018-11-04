@@ -80,7 +80,7 @@ function drawEquipment3D() {
     //
     //controls
     var controls = new THREE.OrbitControls( camera, container );
-				controls.maxPolarAngle = Math.PI * 0.5;
+                controls.maxPolarAngle = Math.PI * 0.49;
 				controls.minDistance = 1;
 				controls.maxDistance = 50;
    
@@ -124,11 +124,5 @@ function render() {
     if ( equipment !== undefined ) {
     } else {
     }
-    //if ( camera.position.y > 1 ) {
-     //   camera.position.y -= 0.1
-      //  camera.lookAt(new THREE.Vector3(0,0,0));
-        renderer.render( scene, camera );
-    //} else {
-    //    pause = true
-    //}
+    renderer.render( scene, camera );
 }
