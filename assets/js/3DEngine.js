@@ -13,12 +13,12 @@ function drawEquipment3D() {
     container.style.border = "1px solid";
     container.tabIndex = 1
     container.focus()
-    camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+    camera = new THREE.PerspectiveCamera( 45, container.width / container.height, 0.1, 2000 );
     camera.position.set( 8, 10, 8 );
     camera.lookAt( 0, 3, 0 );
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xcce0ff );
-    scene.fog = new THREE.Fog( 0xcce0ff, 500, 10000 );
+    scene.fog = new THREE.Fog( 0xcce0ff, 30, 150 );
     // loading manager
     var loadingManager = new THREE.LoadingManager( function () {
         scene.add( equipment );
@@ -29,7 +29,9 @@ function drawEquipment3D() {
     load( './assets/3Dassets/Collada Objects/Over-1.dae', 5,0,5, Math.PI/2)
     load( './assets/3Dassets/Collada Objects/Over-3.dae', 3,0,0,0)
     load( './assets/3Dassets/Collada Objects/Contact-1.dae', 5,0,0,0)
-    load( './assets/3Dassets/Collada Objects/Contact-3.dae', 7,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-2.dae', 7,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-3.dae', 8,0,0,0)
+
    // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2,0)
     //var loader = new THREE.ColladaLoader( loadingManager );
     //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
@@ -52,7 +54,7 @@ function drawEquipment3D() {
 				light.shadow.camera.far = 1000;
 				scene.add( light );
 
-    camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 10000 );
 	camera.position.set( 0, 5, 0 );
 
     // ground
@@ -62,7 +64,7 @@ function drawEquipment3D() {
     groundTexture.repeat.set( 25, 25 );
     groundTexture.anisotropy = 16;
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
-    var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 200, 200 ), groundMaterial );
+    var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
     mesh.position.y = 0;
     mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
