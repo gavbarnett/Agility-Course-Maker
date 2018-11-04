@@ -55,7 +55,8 @@ function drawEquipment3D() {
 				scene.add( light );
 
     camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 10000 );
-	camera.position.set( 0, 5, 0 );
+    camera.position.set( 20, 5, 20 );
+    camera.lookAt( scene.position )
 
     // ground
     var loaderT = new THREE.TextureLoader();
