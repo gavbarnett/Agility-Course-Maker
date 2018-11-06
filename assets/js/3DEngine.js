@@ -47,7 +47,7 @@ function start3D() {
 
     // ground
     var loaderT = new THREE.TextureLoader();
-    var groundTexture = loaderT.load( './assets/3Dassets/textures/grasslight-big.jpg' );
+    var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
     groundTexture.repeat.set( 25, 25 );
     groundTexture.anisotropy = 16;
