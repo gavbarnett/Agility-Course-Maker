@@ -28,23 +28,39 @@ function start3D() {
     FieldDraw3D()
 
     //scene
-    scene.add( new THREE.AmbientLight( 0x666666 ) );
-				var light = new THREE.DirectionalLight( 0xdfebff, 1 );
-				light.position.set( 50, 200, 100 );
-				light.position.multiplyScalar( 1.3 );
-				light.castShadow = true;
-				light.shadow.mapSize.width = 1024;
-				light.shadow.mapSize.height = 1024;
-				var d = 300;
-				light.shadow.camera.left = - d;
-				light.shadow.camera.right = d;
-				light.shadow.camera.top = d;
-				light.shadow.camera.bottom = - d;
-				light.shadow.camera.far = 1000;
-				scene.add( light );
+   // LIGHTS
+   hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+   hemiLight.color.setHSL( 0.6, 1, 0.6 );
+   hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+   hemiLight.position.set( 0, 50, 0 );
+   scene.add( hemiLight );
+   hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
+   scene.add( hemiLightHelper );
+   //
+   dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+   dirLight.color.setHSL( 0.1, 1, 0.95 );
+   dirLight.position.set( 60, 50, 60 );
+   dirLight.position.multiplyScalar( 1 );
+   scene.add( dirLight );
+   dirLight.castShadow = true;
+   dirLight.shadow.mapSize.width = 2048;
+   dirLight.shadow.mapSize.height = 2048;
+   var d = 25;
+   dirLight.shadow.camera.left = - d;
+   dirLight.shadow.camera.right = d;
+   dirLight.shadow.camera.top = d;
+   dirLight.shadow.camera.bottom = - d;
+   dirLight.shadow.camera.far = 3500;
+   dirLight.shadow.bias = - 0.0001;
+   dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
+   //scene.add( dirLightHeper );
+
 
     camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 1000 );
-
+    
+    //var helper = new THREE.CameraHelper( light.shadow.camera );
+    //scene.add( helper );
+    
     // ground
     var loaderT = new THREE.TextureLoader();
     var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
@@ -52,6 +68,7 @@ function start3D() {
     groundTexture.repeat.set( 25, 25 );
     groundTexture.anisotropy = 16;
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+    groundMaterial.receiveShadow = true
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
     mesh.position.y = 0;
     mesh.rotation.x = - Math.PI / 2;
@@ -63,7 +80,8 @@ function start3D() {
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( document.getElementById( 'MainCanvas2' ).width, document.getElementById( 'MainCanvas2' ).height );
                 renderer.setClearColor( 0x7EC0EE, 1 );
-                //container.appendChild( renderer.domElement );
+                renderer.shadowMap.enabled = true
+                renderer.shadowMapSoft = true;
     //
     //controls
     var controls = new THREE.OrbitControls( camera, container );
@@ -176,6 +194,12 @@ function load(daeLocation, x, y, z, rot){
                   //  instance = dae.clone()
                     dae.position.set(x, y, z); 
                     dae.rotation.z = rot
+                    dae.traverse( function ( child ) {
+                        if ( child instanceof THREE.Mesh ) {
+                            child.castShadow = true;
+                            child.receiveShadow = true;                   
+                        }
+                    } );
                     scene.add(dae);
                     render();
                // }
