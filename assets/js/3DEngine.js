@@ -5,7 +5,7 @@ var equipment = [];
 var loader = new THREE.ColladaLoader(manager);
 var manager = new THREE.LoadingManager();
 
-function drawEquipment3D() {
+function start3D() {
     container = document.getElementById( 'MainCanvas2' );
     container.id = "MainCanvas2";
     container.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
@@ -25,18 +25,7 @@ function drawEquipment3D() {
     } );
 
     // collada
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0,0)
-    load( './assets/3Dassets/Collada Objects/Over-1.dae', 5,0,5, Math.PI/2)
-    load( './assets/3Dassets/Collada Objects/Over-3.dae', 3,0,0,0)
-    load( './assets/3Dassets/Collada Objects/Contact-1.dae', 5,0,0,0)
-    load( './assets/3Dassets/Collada Objects/Contact-2.dae', 7,0,0,0)
-    load( './assets/3Dassets/Collada Objects/Contact-3.dae', 8,0,0,0)
-
-   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2,0)
-    //var loader = new THREE.ColladaLoader( loadingManager );
-    //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
-    //    equipment = collada.scene;
-    //} );
+    drawEquipment3D()
 
     //scene
     scene.add( new THREE.AmbientLight( 0x666666 ) );
@@ -88,6 +77,21 @@ function drawEquipment3D() {
     animate();
     
 
+}
+
+function drawEquipment3D(){
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Over-1.dae', 5,0,5, Math.PI/2)
+    load( './assets/3Dassets/Collada Objects/Over-3.dae', 3,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-1.dae', 5,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-2.dae', 7,0,0,0)
+    load( './assets/3Dassets/Collada Objects/Contact-3.dae', 8,0,0,0)
+
+   // load( './assets/3Dassets/Collada Objects/Over-1.dae', 0,0,2,0)
+    //var loader = new THREE.ColladaLoader( loadingManager );
+    //loader.load( './assets/3Dassets/Collada Objects/Over-1.dae', function ( collada ) {
+    //    equipment = collada.scene;
+    //} );
 }
 
 function load(daeLocation, x, y, z, rot){
