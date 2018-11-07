@@ -146,10 +146,12 @@ function drawEquipment3D(item){
                 var mesh = new THREE.Mesh(geometry,material)
                 mesh.position.set(item.x, 0.609, item.y); 
                 mesh.rotation.y = 0//Math.PI/2
-                mesh.rotation.z = -Math.PI/2-((length/rads)/2)//item.rotation
+                mesh.rotation.z = -Math.PI/2-((length/rads)/2)+item.rotation
                 mesh.rotation.x = Math.PI/2
                 mesh.castShadow = true
                 mesh.receiveShadow = true 
+                mesh.position.x -= Math.cos(Math.PI/2-item.rotation)*rads 
+                mesh.position.z += Math.sin(Math.PI/2-item.rotation)*rads
                 //mesh.doubleSided =  true
                 scene.add(mesh)
                 
@@ -235,3 +237,4 @@ function animate() {
 function render() {
     renderer.render( scene, camera );
 }
+
