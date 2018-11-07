@@ -146,7 +146,7 @@ function drawEquipment3D(item){
                 var mesh = new THREE.Mesh(geometry,material)
                 mesh.position.set(item.x, 0.609, item.y); 
                 mesh.rotation.y = 0//Math.PI/2
-                mesh.rotation.z = item.rotation
+                mesh.rotation.z = -Math.PI/2-((length/rads)/2)//item.rotation
                 mesh.rotation.x = Math.PI/2
                 mesh.castShadow = true
                 mesh.receiveShadow = true 
