@@ -141,7 +141,7 @@ function drawEquipment3D(item){
                 //var tunnel = new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc);
                 var length = item.type[2]
                 var rads = item.type[3]*1 //not sure why *1 required... but it is
-                var geometry = new THREE.TorusGeometry(rads, 0.609, 9, 20, ((length/rads)/2-Math.PI/2));
+                var geometry = new THREE.TorusGeometry(rads, 0.609, 9, 20, length/rads);
                 var material = new THREE.MeshLambertMaterial({color: 0x0000FF, side: THREE.DoubleSide})
                 var mesh = new THREE.Mesh(geometry,material)
                 mesh.position.set(item.x, 0.609, item.y); 
