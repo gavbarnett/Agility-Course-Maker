@@ -29,13 +29,10 @@ function start3D() {
 
     //scene
    // LIGHTS
-   hemiLight = new THREE.HemisphereLight( 0xffcc99, 0xffcc99, 0.6 );
-   hemiLight.color.setHSL( 0.6, 1, 0.6 );
-   hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
-   hemiLight.position.set( 0, 1000, 0 );
-   scene.add( hemiLight );
-   hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
-   scene.add( hemiLightHelper );
+   scene.add( new THREE.AmbientLight( 0xffffff, 0.3 ))
+
+   //hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
+   //scene.add( hemiLightHelper );
    //
    dirLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
    dirLight.color.setHSL( 0.1, 1, 0.95 );
@@ -52,8 +49,8 @@ function start3D() {
    dirLight.shadow.camera.bottom = - d;
    dirLight.shadow.camera.far = 3500;
    dirLight.shadow.bias = - 0.0001;
-   dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
-   scene.add( dirLightHeper );
+   //dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
+   //scene.add( dirLightHeper );
 
 
     camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 1000 );
@@ -82,12 +79,13 @@ function start3D() {
                 renderer.setClearColor( 0x7EC0EE, 1 );
                 renderer.shadowMap.enabled = true
                 renderer.shadowMapSoft = true;
-    //
+    //fence
+    load( './assets/3Dassets/Collada Objects/Fence30m.dae', 0, 0, 30, 0)
     //controls
     var controls = new THREE.OrbitControls( camera, container );
                 controls.maxPolarAngle = Math.PI * 0.49;
 				controls.minDistance = 1;
-                controls.maxDistance = 50;
+                controls.maxDistance = 70;
                 controls.object.position.set(15, 50, 30);
                 controls.target = new THREE.Vector3(15,0,15)
                 //window.addEventListener( 'resize', onWindowResize, false );
@@ -140,6 +138,21 @@ function drawEquipment3D(item){
     this.drawThrough = function(){
         switch(item.type[1]){
             case 0: //"Tunnel":
+                //var tunnel = new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc);
+                var length = item.type[2]
+                var rads = item.type[3]*1 //not sure why *1 required... but it is
+                var geometry = new THREE.TorusGeometry(rads, 0.609, 9, 20, ((length/rads)/2-Math.PI/2));
+                var material = new THREE.MeshLambertMaterial({color: 0x0000FF, side: THREE.DoubleSide})
+                var mesh = new THREE.Mesh(geometry,material)
+                mesh.position.set(item.x, 0.609, item.y); 
+                mesh.rotation.y = 0//Math.PI/2
+                mesh.rotation.z = item.rotation
+                mesh.rotation.x = Math.PI/2
+                mesh.castShadow = true
+                mesh.receiveShadow = true 
+                //mesh.doubleSided =  true
+                scene.add(mesh)
+                
                 break
             case 1: //"Chute":
                 break
