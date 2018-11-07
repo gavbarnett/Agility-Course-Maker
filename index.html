@@ -9,6 +9,8 @@
             <h1 id="Header"> Agility Course Maker </h1>
             <div id="CanvasDiv">
                 <canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
+                <canvas id="MainCanvas2" width="0" height="0" style="border:1px solid #ffffff;" ></canvas>
+
             </div>
             <div id="NotesDiv">
                 <p> Field size: 30m x 30m</p>
@@ -49,6 +51,9 @@
                 <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"> Weaves 12 </button>
                 <h3><u>N</u>umbers</h3>
                 <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"> Numbers</button>
+                <h3><u>3</u>D / <u>2</u>D  </h3>
+                <button id="3D" onclick="start3D()"> 3D</button>
+                <button id="2D" onclick=""> 2D</button>
             </div>
             <div id= "Patreon">
                     <a href="https://www.patreon.com/AgilityCourseMaker">
@@ -61,8 +66,13 @@
                 <p> <b>[R]</b>otate, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
                 <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
             </div>
+        <script type="text/javascript" src="assets/js/three.js"></script>
+        <script type="text/javascript" src="assets/js/WebGL.js"></script>
+        <script type="text/javascript" src="assets/js/ColladaLoader.js"></script>
         <script type="text/javascript" src="assets/js/main.js"></script>
         <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
+        <script type="text/javascript" src="assets/js/3DEngine.js"></script>
+        <script type="text/javascript" src="assets/js/OrbitControls.js"></script>
         <footer>
             <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a></p>
             <p>Copyright © 2018 <a href = https://github.com/gavbarnett>Gavin Barnett</a></p>
