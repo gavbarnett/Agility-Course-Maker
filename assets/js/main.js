@@ -597,6 +597,12 @@ function buttonMaster(){
                 Field.SwitchTempEquipment()
                 Field.draw()
                 break
+            case 51: //3
+                start3D()
+            break
+            case 50: //2
+                end3D()
+            break
         }
     })
 }
