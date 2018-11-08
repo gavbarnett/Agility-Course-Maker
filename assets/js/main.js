@@ -8,6 +8,8 @@ var Field = new field
 var Equipment = []
 var PlacedEquipment = []
 function main() {
+    container = document.getElementById( 'MainCanvas2' );
+    container.style.visibility = "collapse";
     var canvas = document.getElementById('MainCanvas');
     var canvasDiv = document.getElementById('CanvasDiv')
     canvas.id = "MainCanvas";
@@ -207,6 +209,9 @@ function field(){
             }
         }
         Field.draw()
+        if (document.getElementById( 'MainCanvas2' ).style.visibility != "collapse"){
+            update3D()
+        }
     }
     this.draw = function(print) {
         if (!print){
@@ -445,7 +450,7 @@ function field(){
         container.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
         container.height =  container.width
         container.style.border = "1px solid";
-        start3D()
+        //start3D()
     }
 }
 function saveDesign(){

@@ -4,101 +4,100 @@ var camera, scene, renderer
 var equipment = [];
 var loader = new THREE.ColladaLoader(manager);
 var manager = new THREE.LoadingManager();
-
+var sceneObjects = []
 function start3D() {
     container = document.getElementById( 'MainCanvas2' );
     container.id = "MainCanvas2";
     container.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
     container.height =  container.width
     container.style.border = "1px solid";
+    container.style.visibility = "visible";
     container.tabIndex = 1
     container.focus()
-    camera = new THREE.PerspectiveCamera( 45, container.width / container.height, 0.1, 2000 );
+    pause = false
     //camera.position.set( 30, 30, 10 );
     //camera.lookAt( 15, 3, 15 );
     try {
-        scene = scene.remove.apply(scene, scene.children);
+        scene = scene.dispose.apply(scene, scene.children);//scene.remove.apply(scene, scene.children);
     }
     catch {
         scene = new THREE.Scene();
+        sceneObjects.background = new THREE.Color( 0xcce0ff ); 
+        sceneObjects.fog = new THREE.Fog( 0xcce0ff, 30, 150 );
+        sceneObjects.ambLight = new THREE.AmbientLight( 0xffffff, 0.3 )
+        sceneObjects.dirLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
+            sceneObjects.dirLight = sceneObjects.dirLight
+            sceneObjects.dirLight.color.setHSL( 0.1, 1, 0.95 );
+            sceneObjects.dirLight.position.set( 200, 200, 200 );
+            sceneObjects.dirLight.position.multiplyScalar( 1 );
+            sceneObjects.dirLight.castShadow = true;
+            sceneObjects.dirLight.shadow.mapSize.width = 2048;
+            sceneObjects.dirLight.shadow.mapSize.height = 2048;
+            var d = 25;
+            sceneObjects.dirLight.shadow.camera.left = - d;
+            sceneObjects.dirLight.shadow.camera.right = d;
+            sceneObjects.dirLight.shadow.camera.top = d;
+            sceneObjects.dirLight.shadow.camera.bottom = - d;
+            sceneObjects.dirLight.shadow.camera.far = 3500;
+            sceneObjects.dirLight.shadow.bias = - 0.0001;
+        sceneObjects.camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 1000 )    
+        sceneObjects.renderer = new THREE.WebGLRenderer( { canvas: MainCanvas2 } );
+            //renderer = new THREE.WebGLRenderer();
+            sceneObjects.renderer.setPixelRatio( window.devicePixelRatio );
+            sceneObjects.renderer.setSize( document.getElementById( 'MainCanvas2' ).width, document.getElementById( 'MainCanvas2' ).height );
+            sceneObjects.renderer.setClearColor( 0x7EC0EE, 1 );
+            sceneObjects.renderer.shadowMap.enabled = true
+            sceneObjects.renderer.shadowMapSoft = true;
+            sceneObjects.controls = new THREE.OrbitControls( sceneObjects.camera, container );
+            sceneObjects.controls.maxPolarAngle = Math.PI * 0.49;
+            sceneObjects.controls.minDistance = 1;
+            sceneObjects.controls.maxDistance = 70;
+            sceneObjects.controls.object.position.set(15, 50, 30);
+            sceneObjects.controls.target = new THREE.Vector3(15,0,15)
+            //window.addEventListener( 'resize', onWindowResize, false );
+            var loaderT = new THREE.TextureLoader();
+            var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
+            groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+            groundTexture.repeat.set( 25, 25 );
+            groundTexture.anisotropy = 16;
+            var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+            groundMaterial.receiveShadow = true
+            sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
+            sceneObjects.groundMesh.position.y = 0;
+            sceneObjects.groundMesh.rotation.x = - Math.PI / 2;
+            sceneObjects.groundMesh.receiveShadow = true;
     }
-    
-    scene.background = new THREE.Color( 0xcce0ff );
-    scene.fog = new THREE.Fog( 0xcce0ff, 30, 150 );
-    // loading manager
-    var loadingManager = new THREE.LoadingManager( function () {
-        scene.add( equipment );
-    } );
-
-    // collada
+    scene.background = sceneObjects.background;
+    scene.fog = sceneObjects.fog 
+    // draw equipment
     FieldDraw3D()
+    // LIGHTS
+    scene.add( sceneObjects.ambLight)
+    scene.add( sceneObjects.dirLight );
+    //dirLightHeper = new THREE.DirectionalLightHelper( sceneObjects.dirLight, 10 );
+    //scene.add( dirLightHeper );
 
-    //scene
-   // LIGHTS
-   scene.add( new THREE.AmbientLight( 0xffffff, 0.3 ))
-
-   //hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
-   //scene.add( hemiLightHelper );
-   //
-   dirLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
-   dirLight.color.setHSL( 0.1, 1, 0.95 );
-   dirLight.position.set( 200, 200, 200 );
-   dirLight.position.multiplyScalar( 1 );
-   scene.add( dirLight );
-   dirLight.castShadow = true;
-   dirLight.shadow.mapSize.width = 2048;
-   dirLight.shadow.mapSize.height = 2048;
-   var d = 25;
-   dirLight.shadow.camera.left = - d;
-   dirLight.shadow.camera.right = d;
-   dirLight.shadow.camera.top = d;
-   dirLight.shadow.camera.bottom = - d;
-   dirLight.shadow.camera.far = 3500;
-   dirLight.shadow.bias = - 0.0001;
-   //dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
-   //scene.add( dirLightHeper );
-
-
-    camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 1000 );
+    camera = sceneObjects.camera
     
     //var helper = new THREE.CameraHelper( light.shadow.camera );
     //scene.add( helper );
     
     // ground
-    var loaderT = new THREE.TextureLoader();
-    var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
-    groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
-    groundTexture.repeat.set( 25, 25 );
-    groundTexture.anisotropy = 16;
-    var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
-    groundMaterial.receiveShadow = true
-    var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
-    mesh.position.y = 0;
-    mesh.rotation.x = - Math.PI / 2;
-    mesh.receiveShadow = true;
-    scene.add( mesh );
+    scene.add( sceneObjects.groundMesh );
 
-    renderer = new THREE.WebGLRenderer( { canvas: MainCanvas2 } );
-				//renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( document.getElementById( 'MainCanvas2' ).width, document.getElementById( 'MainCanvas2' ).height );
-                renderer.setClearColor( 0x7EC0EE, 1 );
-                renderer.shadowMap.enabled = true
-                renderer.shadowMapSoft = true;
+    renderer = sceneObjects.renderer
+    
     //fence
     load( './assets/3Dassets/Collada Objects/Fence30m.dae', 0, 0, 30, 0)
     //controls
-    var controls = new THREE.OrbitControls( camera, container );
-                controls.maxPolarAngle = Math.PI * 0.49;
-				controls.minDistance = 1;
-                controls.maxDistance = 70;
-                controls.object.position.set(15, 50, 30);
-                controls.target = new THREE.Vector3(15,0,15)
-                //window.addEventListener( 'resize', onWindowResize, false );
-                controls.update();
-                animate();
+    controls = sceneObjects.controls
+    controls.update();
+    animate();
     
 
+}
+function update3D(){
+        start3D()
 }
 
 function FieldDraw3D(){
@@ -237,5 +236,13 @@ function animate() {
 }
 function render() {
     renderer.render( scene, camera );
+}
+function end3D(){
+    container = document.getElementById( 'MainCanvas2' );
+    container.style.visibility = "collapse";
+    pause = true
+    container.width = 1 
+    container.height =  container.width
+    Field.resize()
 }
 
