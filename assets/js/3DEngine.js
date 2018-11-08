@@ -16,7 +16,13 @@ function start3D() {
     camera = new THREE.PerspectiveCamera( 45, container.width / container.height, 0.1, 2000 );
     //camera.position.set( 30, 30, 10 );
     //camera.lookAt( 15, 3, 15 );
-    scene = new THREE.Scene();
+    try {
+        scene = scene.remove.apply(scene, scene.children);
+    }
+    catch {
+        scene = new THREE.Scene();
+    }
+    
     scene.background = new THREE.Color( 0xcce0ff );
     scene.fog = new THREE.Fog( 0xcce0ff, 30, 150 );
     // loading manager
@@ -223,11 +229,6 @@ function load(daeLocation, x, y, z, rot){
             // show some progress
     });
 }
-//function onWindowResize() {
- //   camera.aspect = window.innerWidth / window.innerHeight;
-  //  camera.updateProjectionMatrix();
-  //  renderer.setSize( window.innerWidth, window.innerHeight );
-//}
 function animate() {
     render();
     if (!pause) {

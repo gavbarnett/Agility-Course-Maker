@@ -427,6 +427,9 @@ function field(){
         var canvas = document.getElementById('MainCanvas');
         canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
         canvas.height =  canvas.width
+        var canvas2 = document.getElementById('MainCanvas2');
+        canvas2.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+        canvas2.height =  canvas2.width
         scaler = (canvas.width-offset*2)/x
         this.scaled = [
             xoffset,
@@ -437,6 +440,12 @@ function field(){
         var notes = document.getElementById('Notes')
         notes.width = canvas.width
         Field.draw()
+        container = document.getElementById( 'MainCanvas2' );
+        container.id = "MainCanvas2";
+        container.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+        container.height =  container.width
+        container.style.border = "1px solid";
+        start3D()
     }
 }
 function saveDesign(){
