@@ -254,6 +254,6 @@ function end3D(){
     pause = true
     container.width = 1 
     container.height =  container.width
-    Field.resize()
+    //Field.resize()
 }
 
