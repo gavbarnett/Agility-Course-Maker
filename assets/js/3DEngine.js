@@ -7,10 +7,13 @@ var manager = new THREE.LoadingManager();
 var sceneObjects = []
 var lastposition
 function start3D() {
+    var canvas = document.getElementById('MainCanvas');
+    var canvasDiv = document.getElementById('CanvasDiv')
+    canvas.id = "MainCanvas";
     container = document.getElementById( 'MainCanvas2' );
     container.id = "MainCanvas2";
-    container.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
-    container.height =  container.width
+    container.width =  canvas.width 
+    container.height =   canvas.width
     container.style.border = "1px solid";
     container.style.visibility = "visible";
     container.tabIndex = 1
@@ -45,7 +48,7 @@ function start3D() {
         sceneObjects.camera = new THREE.PerspectiveCamera( 30, container.width / container.height, 1, 1000 )    
         sceneObjects.renderer = new THREE.WebGLRenderer( { canvas: MainCanvas2 } );
             //renderer = new THREE.WebGLRenderer();
-            sceneObjects.renderer.setPixelRatio( window.devicePixelRatio );
+            sceneObjects.renderer.setPixelRatio( container.devicePixelRatio );
             sceneObjects.renderer.setSize( document.getElementById( 'MainCanvas2' ).width, document.getElementById( 'MainCanvas2' ).height );
             sceneObjects.renderer.setClearColor( 0x7EC0EE, 1 );
             sceneObjects.renderer.shadowMap.enabled = true
@@ -70,6 +73,7 @@ function start3D() {
             sceneObjects.groundMesh.receiveShadow = true;
             camera = sceneObjects.camera
             renderer = sceneObjects.renderer
+            renderer.setPixelRatio( container.devicePixelRatio );
             controls = sceneObjects.controls
             controls.update();
     }
@@ -98,7 +102,7 @@ function start3D() {
     //controls
     //controls = sceneObjects.controls
     //controls.update();
-    controls.position = 
+    //controls.position = 
     animate();
     
 
