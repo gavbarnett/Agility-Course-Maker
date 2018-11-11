@@ -5,6 +5,7 @@ var equipment = [];
 var loader = new THREE.ColladaLoader(manager);
 var manager = new THREE.LoadingManager();
 var sceneObjects = []
+var lastposition
 function start3D() {
     container = document.getElementById( 'MainCanvas2' );
     container.id = "MainCanvas2";
@@ -18,7 +19,8 @@ function start3D() {
     //camera.position.set( 30, 30, 10 );
     //camera.lookAt( 15, 3, 15 );
     try {
-        scene = scene.dispose.apply(scene, scene.children);//scene.remove.apply(scene, scene.children);
+        //scene = scene.dispose.apply(scene, scene.children);
+        scene.remove.apply(scene, scene.children);
     }
     catch {
         scene = new THREE.Scene();
@@ -55,17 +57,21 @@ function start3D() {
             sceneObjects.controls.object.position.set(15, 50, 30);
             sceneObjects.controls.target = new THREE.Vector3(15,0,15)
             //window.addEventListener( 'resize', onWindowResize, false );
-            var loaderT = new THREE.TextureLoader();
-            var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
+        var loaderT = new THREE.TextureLoader();
+        var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
             groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
             groundTexture.repeat.set( 25, 25 );
             groundTexture.anisotropy = 16;
-            var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+        var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
             groundMaterial.receiveShadow = true
-            sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
+         sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
             sceneObjects.groundMesh.position.y = 0;
             sceneObjects.groundMesh.rotation.x = - Math.PI / 2;
             sceneObjects.groundMesh.receiveShadow = true;
+            camera = sceneObjects.camera
+            renderer = sceneObjects.renderer
+            controls = sceneObjects.controls
+            controls.update();
     }
     scene.background = sceneObjects.background;
     scene.fog = sceneObjects.fog 
@@ -77,7 +83,7 @@ function start3D() {
     //dirLightHeper = new THREE.DirectionalLightHelper( sceneObjects.dirLight, 10 );
     //scene.add( dirLightHeper );
 
-    camera = sceneObjects.camera
+    //camera = sceneObjects.camera
     
     //var helper = new THREE.CameraHelper( light.shadow.camera );
     //scene.add( helper );
@@ -85,13 +91,14 @@ function start3D() {
     // ground
     scene.add( sceneObjects.groundMesh );
 
-    renderer = sceneObjects.renderer
+    //renderer = sceneObjects.renderer
     
     //fence
     load( './assets/3Dassets/Collada Objects/Fence30m.dae', 0, 0, 30, 0)
     //controls
-    controls = sceneObjects.controls
-    controls.update();
+    //controls = sceneObjects.controls
+    //controls.update();
+    controls.position = 
     animate();
     
 
