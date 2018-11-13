@@ -59,6 +59,8 @@ body {
 #CanvasDiv {
     padding: 10px;
     grid-area: canv;
+    display:block;
+
 }
 #NotesDiv {
     grid-area: note;

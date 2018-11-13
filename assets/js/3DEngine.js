@@ -250,10 +250,11 @@ function render() {
 }
 function end3D(){
     container = document.getElementById( 'MainCanvas2' );
-    container.style.visibility = "collapse";
     pause = true
     container.width = 1 
     container.height =  container.width
-    //Field.resize()
+    container.style.visibility = "collapse";
+
+    Field.resize()
 }
 
