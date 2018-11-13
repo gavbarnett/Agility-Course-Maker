@@ -13,7 +13,11 @@
 
             </div>
             <div id="NotesDiv">
-                <p> Field size: 30m x 30m</p>
+                Field Width: 
+                <input type="text" id="fieldx" value="30" maxlength=4 min = 2>
+                Field Height:
+                <input type="text" id="fieldy" value="30" maxlength=4 min = 2>
+                <button id="UpdateFieldSize" onclick="updateFieldSize()"> Update Field Size </button>
                 <h3>Notes:</h3>
                 <textarea id="Notes">Add your notes here.</textarea>
             </div>

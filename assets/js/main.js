@@ -545,6 +545,12 @@ function printDesign(){
     Field.draw(false)
 }
 
+function updateFieldSize(){
+    Field = new field(document.getElementById('fieldx').value,document.getElementById('fieldy').value)
+    Field.draw()
+
+}
+
 function buttonMaster(){
     var canvas = document.getElementById('MainCanvas');
     
