@@ -488,9 +488,13 @@ function loadDesign(){
         var FileData = JSON.parse(reader.result)
         try{
             Field = new field(FileData.Field.x, FileData.Field.y)
+            document.getElementById('fieldx').value = FileData.Field.x
+            document.getElementById('fieldx').value = FileData.Field.y
         }
         catch{
             Field = new field(30, 30)
+            document.getElementById('fieldx').value = 30
+            document.getElementById('fieldx').value = 30
         }
         PlacedEquipment = FileData.Equipment
         notes.value = FileData.Notes
