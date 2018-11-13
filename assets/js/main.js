@@ -3,6 +3,7 @@
  * 
  */
 var dragging = false
+var oldwindowwidth = 0
 var mousebutton = false
 var Field = new field(30,30)
 var Equipment = []
@@ -14,6 +15,7 @@ function main() {
     var canvasDiv = document.getElementById('CanvasDiv')
     canvas.id = "MainCanvas";
     canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+    oldwindowwidth = window.innerWidth
     canvas.height =  canvas.width
     canvas.style.border = "1px solid";
     canvas.tabIndex = 1
@@ -442,23 +444,26 @@ function field(x,y){
     }
     this.resize = function(){
         var canvas = document.getElementById('MainCanvas');
-        canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
-        canvas.height =  canvas.width
-        this.scaled = [
-            xoffset,
-            yoffset,
-            xoffset + x*scaler,
-            yoffset + y*scaler,
-        ]
-        var notes = document.getElementById('Notes')
-        notes.width = canvas.width
-        scaler = (canvas.width-offset*2)/x
-        Field.draw()
-        if (pause = false) {
-            var canvas2 = document.getElementById('MainCanvas2');
-            canvas2.width = canvas.width 
-            canvas2.height =  canvas.width
-            start3D()
+        if (window.innerWidth != oldwindowwidth) {
+            canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
+            canvas.height =  canvas.width
+            this.scaled = [
+                xoffset,
+                yoffset,
+                xoffset + x*scaler,
+                yoffset + y*scaler,
+            ]
+            var notes = document.getElementById('Notes')
+            notes.width = canvas.width
+            scaler = (canvas.width-offset*2)/x
+            Field.draw()
+            if (pause = false) {
+                var canvas2 = document.getElementById('MainCanvas2');
+                canvas2.width = canvas.width 
+                canvas2.height =  canvas.width
+                start3D()
+            }
+            oldwindowwidth = window.innerWidth
         }
     }
 }
