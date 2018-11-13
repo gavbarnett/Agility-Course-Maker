@@ -4,7 +4,7 @@
  */
 var dragging = false
 var mousebutton = false
-var Field = new field
+var Field = new field(30,30)
 var Equipment = []
 var PlacedEquipment = []
 function main() {
@@ -77,16 +77,28 @@ allEquipment["Weave"] = ["6", "9", "12"]
 allEquipment["Numbers"] = ["S",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,"F"]
 var numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-function field(){
+function field(x,y){
     var mouse = []
-    var x = 30
-    var y = 30
+    if (!x) {
+        var x = 30
+        this.x = x
+    } else {
+        x = x
+        this.x = x
+    }
+    if (!y) {
+        var y = 30
+        this.y = y
+    } else {
+        y = y
+        this.y = y
+    }
     mouse.x = x/2
     mouse.y = y/2
     var offset = 10
     var xoffset = offset
     var yoffset = offset
-    var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/x
+    var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(x,y)
     this.gridSize = 5
     this.scaled = [
         xoffset,
@@ -454,7 +466,8 @@ function saveDesign(){
     //this seems like an odd way of doing this but it works.
     //this this should really be bound to the SaveAs button
     var notes = document.getElementById("Notes").value
-    var blob = new Blob([JSON.stringify({'Equipment': PlacedEquipment,'Notes':notes},null,2)], {type: 'text/json'}),
+    var fieldSize = {"x": Field.x, "y": Field.y}
+    var blob = new Blob([JSON.stringify({'Field': fieldSize, 'Equipment': PlacedEquipment,'Notes':notes},null,2)], {type: 'text/json'}),
     e = document.createEvent('MouseEvents'),
     a = document.createElement('a')
     var date = new Date().toDateString();
@@ -473,6 +486,12 @@ function loadDesign(){
     var notes = document.getElementById("Notes")
     reader.addEventListener("load", function () {
         var FileData = JSON.parse(reader.result)
+        try{
+            Field = new field(FileData.Field.x, FileData.Field.y)
+        }
+        catch{
+            Field = new field(30, 30)
+        }
         PlacedEquipment = FileData.Equipment
         notes.value = FileData.Notes
         Field.draw()
