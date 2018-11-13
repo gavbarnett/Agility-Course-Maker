@@ -546,8 +546,22 @@ function printDesign(){
 }
 
 function updateFieldSize(){
-    Field = new field(document.getElementById('fieldx').value,document.getElementById('fieldy').value)
-    Field.draw()
+    try{
+        tempx = 30
+        tempy = 30
+        if (document.getElementById('fieldx').value>2){
+            tempx = document.getElementById('fieldx').value
+        }
+        if (document.getElementById('fieldy').value>2){
+            tempy = document.getElementById('fieldy').value
+        }
+        Field = new field(tempx, tempy)
+    }
+    catch{
+        Field = new field(30,30)
+
+    }
+        Field.draw()
 
 }
 
