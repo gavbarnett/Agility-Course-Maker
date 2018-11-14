@@ -236,6 +236,7 @@ function drawEquipment(item, scaler, offset, canvas){
         ctx.fillStyle = "#000000";
         ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
         ctx.textAlign = "center";
+        ctx.textBaseline = 'bottom';
         ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,scaler*0.25);
     }
     if (!canvas){
