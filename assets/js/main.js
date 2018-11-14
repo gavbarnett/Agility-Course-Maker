@@ -103,7 +103,9 @@ function field(x,y){
     offset = 10
     var xoffset = offset
     var yoffset = offset
-    scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(this.x,this.y)
+    if (window.innerWidth != oldwindowwidth){
+        scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(this.x,this.y)
+    }
     this.gridSize = 5
     this.scaled = [
         xoffset,
