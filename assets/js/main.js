@@ -18,7 +18,7 @@ function main() {
     canvas.id = "MainCanvas";
     canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
     oldwindowwidth = window.innerWidth
-    canvas.height =  canvas.width
+    canvas.height =  canvas.width * 1.1
     canvas.style.border = "1px solid";
     canvas.tabIndex = 1
     canvas.focus()
@@ -452,7 +452,7 @@ function field(x,y){
         if (window.innerWidth != oldwindowwidth) {
             var canvas = document.getElementById('MainCanvas');
             canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
-            canvas.height =  canvas.width
+            canvas.height =  canvas.width * 1.1
             this.scaled = [
                 xoffset,
                 yoffset,
