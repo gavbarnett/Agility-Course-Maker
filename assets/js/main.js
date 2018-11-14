@@ -8,6 +8,8 @@ var mousebutton = false
 var Field = new field(30,30)
 var Equipment = []
 var PlacedEquipment = []
+var offset = 10
+var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(30,30)
 function main() {
     container = document.getElementById( 'MainCanvas2' );
     container.style.visibility = "collapse";
@@ -97,10 +99,10 @@ function field(x,y){
     }
     mouse.x = x/2
     mouse.y = y/2
-    var offset = 10
+    offset = 10
     var xoffset = offset
     var yoffset = offset
-    var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(x,y)
+    scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(this.x,this.y)
     this.gridSize = 5
     this.scaled = [
         xoffset,
@@ -239,21 +241,23 @@ function field(x,y){
         ctx.clearRect(0,0,canvas.width,canvas.height)
         ctx.fillRect(0,0,canvas.width,canvas.height)
         if (!print){
+            //if display for web fill green
             ctx.fillStyle = "#9aa391"//"#6A8455";
         }else{
+            //if display for printing fill white
             ctx.fillStyle = "#ffffff";
         }
-
+        //draw grid
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.strokeStyle = '#888';
         ctx.setLineDash([2, 2])
-        for (i = 0; i <= x; i+=this.gridSize){
+        for (i = 0; i <= this.x; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0] + i * scaler, this.scaled[1])
             ctx.lineTo(this.scaled[0] + i * scaler, this.scaled[3])
             ctx.stroke();
         }
-        for (i = 0; i <= y; i+=this.gridSize){
+        for (i = 0; i <= this.y; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0], this.scaled[1] + i * scaler)
             ctx.lineTo(this.scaled[2], this.scaled[1] + i * scaler)
@@ -261,10 +265,11 @@ function field(x,y){
         }
         ctx.setLineDash([1,0])
         ctx.strokeStyle = '#000000';
+        ctx.beginPath()
         ctx.rect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.stroke()
         //Draw Placed Equipment
-        /* note to self - draw through equipment after contacts */
+        /* note to self - draw through equipment before contacts */
         for (var i = 0; i <PlacedEquipment.length; i++){
             if (PlacedEquipment[i].type[0] == "Through"){
                 drawEquipment(PlacedEquipment[i], scaler, offset)
@@ -443,8 +448,9 @@ function field(x,y){
         Field.draw()
     }
     this.resize = function(){
-        var canvas = document.getElementById('MainCanvas');
+        scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(this.x,this.y)
         if (window.innerWidth != oldwindowwidth) {
+            var canvas = document.getElementById('MainCanvas');
             canvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
             canvas.height =  canvas.width
             this.scaled = [
@@ -455,7 +461,6 @@ function field(x,y){
             ]
             var notes = document.getElementById('Notes')
             notes.width = canvas.width
-            scaler = (canvas.width-offset*2)/x
             Field.draw()
             if (pause = false) {
                 var canvas2 = document.getElementById('MainCanvas2');
