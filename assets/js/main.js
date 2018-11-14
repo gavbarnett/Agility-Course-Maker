@@ -2,6 +2,7 @@
  * Area = 30 x 30 m
  * 
  */
+var drawLogo = false
 var dragging = false
 var oldwindowwidth = 0
 var mousebutton = false
@@ -254,7 +255,7 @@ function field(x,y){
         ctx.font = "14px Arial";
         ctx.fillStyle = "#888";
         ctx.textAlign = "center";
-        ctx. textBaseline = 'middle';
+        ctx.textBaseline = 'middle';
         for (i = 0; i <= this.x; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0] + i * scaler, this.scaled[1])
@@ -308,6 +309,16 @@ function field(x,y){
 
             //draw item
             drawEquipment(tempEquipment, scaler, offset)
+        }
+        //Draw Logo bottom
+        if (drawLogo == true){
+            ctx.fillStyle = "#888";
+            ctx.textAlign = "center";
+            ctx.textBaseline = 'middle';
+            ctx.font = "30px Verdana";
+            ctx.globalAlpha = 0.5;
+            ctx.fillText("AgilityCourseMaker.com",(this.scaled[1]+this.scaled[2])/2, this.scaled[3]-0.25*this.gridSize*scaler);
+            ctx.globalAlpha = 1;
         }
 
 
@@ -567,6 +578,27 @@ function printDesign(){
         printWin.close();            
     }, true);
     Field.draw(false)
+}
+
+function imageDesign(){
+    //const dataUrl = document.getElementById('MainCanvas').toDataURL("image/png")
+    var canvas = document.getElementById("MainCanvas");
+    drawLogo = true
+    Field.draw()
+    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); //Convert image to 'octet-stream' (Just a download, really)
+    var notes = document.getElementById("Notes").value
+    e = document.createEvent('MouseEvents'),
+    a = document.createElement('a')
+    var date = new Date().toDateString();
+    var time = new Date().toLocaleTimeString();
+    a.download = "MyAgilityField" + " ("+ date + " - "+ time +").png"
+    a.href = image
+    a.dataset.downloadurl =  ['image/png', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+    drawLogo = false
+    Field.draw()
+
 }
 
 function updateFieldSize(){
