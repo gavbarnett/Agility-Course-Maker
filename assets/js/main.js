@@ -251,17 +251,27 @@ function field(x,y){
         ctx.fillRect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.strokeStyle = '#888';
         ctx.setLineDash([2, 2])
+        ctx.font = "14px Arial";
+        ctx.fillStyle = "#888";
+        ctx.textAlign = "center";
+        ctx. textBaseline = 'middle';
         for (i = 0; i <= this.x; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0] + i * scaler, this.scaled[1])
             ctx.lineTo(this.scaled[0] + i * scaler, this.scaled[3])
             ctx.stroke();
+            if (i !=0 && i != this.x){
+                ctx.fillText(i,this.scaled[0] + i * scaler, this.scaled[1]+0.5*this.gridSize*scaler);
+            }
         }
         for (i = 0; i <= this.y; i+=this.gridSize){
             ctx.beginPath()
             ctx.moveTo(this.scaled[0], this.scaled[1] + i * scaler)
             ctx.lineTo(this.scaled[2], this.scaled[1] + i * scaler)
             ctx.stroke();
+            if (i !=0 && i != this.y){
+                ctx.fillText(i,this.scaled[0]+0.5*this.gridSize*scaler, this.scaled[1] + i * scaler);
+            }
         }
         ctx.setLineDash([1,0])
         ctx.strokeStyle = '#000000';
