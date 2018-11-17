@@ -3,13 +3,16 @@ function drawEquipment(item, scaler, offset, addPoints){
     var b = offset + scaler*item.y
     var Theta = item.rotation
 
-    this.PathOptionPoints = function (x,y){
-        if (addPoints == true){
-            var tempPoints = []
-            tempPoints.x = a + (x * Math.cos(Theta) - y * Math.sin(Theta))
-            tempPoints.y = b + (x * Math.sin(Theta) + y * Math.cos(Theta)) 
+    this.PathOptionPoints = function (x1,y1,x2,y2){
+        var tempPoints = []
+        tempPoints.x1 = a + (x1 * Math.cos(Theta) - y1 * Math.sin(Theta))
+        tempPoints.y1 = b + (x1 * Math.sin(Theta) + y1 * Math.cos(Theta))
+        tempPoints.x2 = a + (x2 * Math.cos(Theta) - y2 * Math.sin(Theta))
+        tempPoints.y2 = b + (x2 * Math.sin(Theta) + y2 * Math.cos(Theta))
+        if (addPoints == true){ 
             PathOptions.push(Object.assign({},tempPoints))
         }
+        return (tempPoints)
     }
 
     this.drawContact = function(){
@@ -121,8 +124,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
-                PathOptionPoints(0,0.5)
-                PathOptionPoints(0,-0.5)
+                PathOptionPoints(0, 0.5, 0, -0.5)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
@@ -253,6 +255,30 @@ function drawEquipment(item, scaler, offset, addPoints){
         ctx.textAlign = "center";
         ctx.textBaseline = 'middle';
         ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,0);
+        //find nearest PathOption and add to DogsPath
+        //list will be ordered this later
+        var minDist = 9999
+        addPoints = false
+        var numLocation = this.PathOptionPoints(0,0,0,0)
+        var tempDogPoint = []
+        tempDogPoint = numLocation
+        tempDogPoint.direction = 1
+        for (let tempPath of PathOptions){
+            tempDist = Math.sqrt(Math.pow(numLocation.x1 - tempPath.x1,2)+Math.pow(numLocation.y1 - tempPath.y1,2))
+            if (tempDist < minDist){
+                minDist = tempDist
+                tempDogPoint = tempPath
+                tempDogPoint.direction = 1
+            }
+            tempDist = Math.sqrt(Math.pow(numLocation.x1 - tempPath.x2,2)+Math.pow(numLocation.y1 - tempPath.y2,2))
+            if (tempDist < minDist){
+                minDist = tempDist
+                tempDogPoint = tempPath
+                tempDogPoint.direction = 2
+            }
+        }
+        tempDogPoint.n = item.type[1]
+        DogsPath.push(Object.assign({},tempDogPoint))
     }
     //if (!canvas){
         canvas = document.getElementById('MainCanvas');
@@ -281,4 +307,15 @@ function drawEquipment(item, scaler, offset, addPoints){
 
     ctx.restore()
 
+}
+
+function drawDogsPath(points){
+    points.sort(function(a,b){
+        return a.n - b.n
+    })
+    canvas = document.getElementById('MainCanvas');
+    ctx = canvas.getContext("2d");
+    for (let tempPath of PathOptions){
+
+    }
 }

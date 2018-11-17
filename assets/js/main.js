@@ -303,6 +303,8 @@ function field(x,y){
                     drawEquipment(PlacedEquipment[i], scaler, offset, true)
                 }
         }
+        //Draw Dogs Path
+        drawDogsPath(DogsPath)
 
         //Draw Temp Equipment
         if (tempEquipment.type != ""){
