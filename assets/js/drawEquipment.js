@@ -124,7 +124,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
-                PathOptionPoints(0, 0.5, 0, -0.5)
+                PathOptionPoints(0, 3, 0, -3)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
@@ -315,7 +315,22 @@ function drawDogsPath(points){
     })
     canvas = document.getElementById('MainCanvas');
     ctx = canvas.getContext("2d");
-    for (let tempPath of PathOptions){
 
+    if(points.length>0){
+        ctx.beginPath()
+        if (points[0].direction == 1) {
+            ctx.moveTo(points[0].x1,points[0].y1)
+        } else {
+            ctx.moveTo(points[0].x2,points[0].y2)
+        }
+        for (let tempPoints of points){
+            if (tempPoints.direction == 1) {
+                ctx.lineTo(tempPoints.x1,tempPoints.y1)
+                ctx.lineTo(tempPoints.x2,tempPoints.y2)
+            } else {
+                ctx.lineTo(tempPoints.x2,tempPoints.y2)
+                ctx.lineTo(tempPoints.x1,tempPoints.y1)
+            }        }
+        ctx.stroke()
     }
 }
