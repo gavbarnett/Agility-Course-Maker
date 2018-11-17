@@ -1,4 +1,17 @@
-function drawEquipment(item, scaler, offset, canvas){
+function drawEquipment(item, scaler, offset, addPoints){
+    var a = offset + scaler*item.x
+    var b = offset + scaler*item.y
+    var Theta = item.rotation
+
+    this.PathOptionPoints = function (x,y){
+        if (addPoints == true){
+            var tempPoints = []
+            tempPoints.x = a + (x * Math.cos(Theta) - y * Math.sin(Theta))
+            tempPoints.y = b + (x * Math.sin(Theta) + y * Math.cos(Theta)) 
+            PathOptions.push(Object.assign({},tempPoints))
+        }
+    }
+
     this.drawContact = function(){
         switch(item.type[1]){
             case 0: //"A-frame"
@@ -108,6 +121,8 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
+                PathOptionPoints(0,0.5)
+                PathOptionPoints(0,-0.5)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
@@ -236,12 +251,12 @@ function drawEquipment(item, scaler, offset, canvas){
         ctx.fillStyle = "#000000";
         ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
         ctx.textAlign = "center";
-        ctx.textBaseline = 'bottom';
-        ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,scaler*0.25);
+        ctx.textBaseline = 'middle';
+        ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,0);
     }
-    if (!canvas){
+    //if (!canvas){
         canvas = document.getElementById('MainCanvas');
-    }
+    //}
     ctx = canvas.getContext("2d");
     ctx.save()
     ctx.translate(offset + scaler*item.x,offset + scaler*item.y)

@@ -9,6 +9,8 @@ var mousebutton = false
 var Field = new field(30,30)
 var Equipment = []
 var PlacedEquipment = []
+var PathOptions = []
+var DogsPath = []
 var offset = 10
 var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(30,30)
 function main() {
@@ -233,6 +235,8 @@ function field(x,y){
         }
     }
     this.draw = function(print) {
+        PathOptions = []
+        DogsPath = []
         if (!print){
             print = false
         }
@@ -285,17 +289,21 @@ function field(x,y){
         /* note to self - draw through equipment before contacts */
         for (var i = 0; i <PlacedEquipment.length; i++){
             if (PlacedEquipment[i].type[0] == "Through"){
-                drawEquipment(PlacedEquipment[i], scaler, offset)
+                drawEquipment(PlacedEquipment[i], scaler, offset, true)
             }
         }
         for (var i = 0; i <PlacedEquipment.length; i++){
-            if (PlacedEquipment[i].type[0] != "Through"){
-                if (PlacedEquipment[i].type[0] == "Numbers"){
-                    numberTracker[PlacedEquipment[i].type[1]] = 0
-                }
-                drawEquipment(PlacedEquipment[i], scaler, offset)
+            if (PlacedEquipment[i].type[0] != "Through" && PlacedEquipment[i].type[0] != "Numbers"){
+                drawEquipment(PlacedEquipment[i], scaler, offset, true)
             }
         }
+        for (var i = 0; i <PlacedEquipment.length; i++){
+                if (PlacedEquipment[i].type[0] == "Numbers"){
+                    numberTracker[PlacedEquipment[i].type[1]] = 0
+                    drawEquipment(PlacedEquipment[i], scaler, offset, true)
+                }
+        }
+
         //Draw Temp Equipment
         if (tempEquipment.type != ""){
             tempEquipment.x = mouse.x
@@ -310,7 +318,7 @@ function field(x,y){
             ctx.fill()
 
             //draw item
-            drawEquipment(tempEquipment, scaler, offset)
+            drawEquipment(tempEquipment, scaler, offset, false)
         }
         //Draw Logo bottom
         if (drawLogo == true){
