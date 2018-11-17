@@ -124,7 +124,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
-                PathOptionPoints(0, 3, 0, -3)
+                PathOptionPoints(0, scaler*0.5, 0, scaler*-0.5)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
@@ -257,7 +257,7 @@ function drawEquipment(item, scaler, offset, addPoints){
         ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,0);
         //find nearest PathOption and add to DogsPath
         //list will be ordered this later
-        var minDist = 9999
+        var minDist = 99999
         addPoints = false
         var numLocation = this.PathOptionPoints(0,0,0,0)
         var tempDogPoint = []
@@ -317,20 +317,42 @@ function drawDogsPath(points){
     ctx = canvas.getContext("2d");
 
     if(points.length>0){
+        var bezPoints = []
+        bezPoints.a = []
+        bezPoints.b = []
         ctx.beginPath()
         if (points[0].direction == 1) {
             ctx.moveTo(points[0].x1,points[0].y1)
+            bezPoints.b.ang = Math.atan((points[0].x1-points[0].x2)/(points[0].y1-points[0].y2))
+            bezPoints.a.x = points[0].x2 - 1*scaler*Math.sin(bezPoints.b.ang)
+            bezPoints.a.y = points[0].y2 - 1*scaler*Math.cos(bezPoints.b.ang)
         } else {
             ctx.moveTo(points[0].x2,points[0].y2)
+            bezPoints.b.ang = Math.atan((points[0].x2-points[0].x1)/(points[0].y2-points[0].y1))
+            bezPoints.a.x = points[0].x1 + 1*scaler*Math.sin(bezPoints.b.ang)
+            bezPoints.a.y = points[0].y1 + 1*scaler*Math.cos(bezPoints.b.ang)
         }
         for (let tempPoints of points){
             if (tempPoints.direction == 1) {
+                bezPoints.b.ang = Math.atan((tempPoints.x1-tempPoints.x2)/(tempPoints.y1-tempPoints.y2))
+                bezPoints.b.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.b.ang)
+                ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x1, tempPoints.y1)
                 ctx.lineTo(tempPoints.x1,tempPoints.y1)
                 ctx.lineTo(tempPoints.x2,tempPoints.y2)
+                bezPoints.a.x = tempPoints.x2 - 5*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.a.y = tempPoints.y2 - 5*scaler*Math.cos(bezPoints.b.ang)
             } else {
+                bezPoints.b.ang = Math.atan((tempPoints.x2-tempPoints.x1)/(tempPoints.y2-tempPoints.y1))
+                bezPoints.b.x = tempPoints.x2 - 5*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y2 - 5*scaler*Math.cos(bezPoints.b.ang)
+                ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x2, tempPoints.y2)
                 ctx.lineTo(tempPoints.x2,tempPoints.y2)
                 ctx.lineTo(tempPoints.x1,tempPoints.y1)
-            }        }
+                bezPoints.a.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.a.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.b.ang)
+            }        
+        }
         ctx.stroke()
     }
 }
