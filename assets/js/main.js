@@ -717,6 +717,14 @@ function buttonMaster(){
             case 50: //2
                 end3D()
             break
+            case 68: //d
+            if (DrawDogsPath == true){
+                DrawDogsPath = false
+            } else {
+                DrawDogsPath = true
+            }
+            Field.draw()
+            break
         }
     })
 }
