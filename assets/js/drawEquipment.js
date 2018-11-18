@@ -226,6 +226,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
             case 1: //"9":
                 var poles = 9
@@ -237,6 +238,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
             case 2: //"12":
                 var poles = 12
@@ -248,6 +250,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
         }
     }
