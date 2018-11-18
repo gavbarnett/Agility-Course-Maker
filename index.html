@@ -51,6 +51,8 @@
                 <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
                 <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
                 <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
+                <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
+
                 <h2>Equipment</h2>
                 <h3><u>C</u>ontacts</h3>
                 <button id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"> A-frame </button>

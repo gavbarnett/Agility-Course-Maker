@@ -11,6 +11,7 @@ var Equipment = []
 var PlacedEquipment = []
 var PathOptions = []
 var DogsPath = []
+var DrawDogsPath = true
 var offset = 10
 var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(30,30)
 function main() {
@@ -327,7 +328,9 @@ function field(x,y){
         
         
         //Draw Dogs Path
-        drawDogsPath(DogsPath)
+        if (DrawDogsPath){
+            drawDogsPath(DogsPath)
+        }
 
         //Draw Logo bottom
         if (drawLogo == true){
