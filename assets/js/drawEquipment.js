@@ -124,7 +124,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
-                PathOptionPoints(0, scaler*0.5, 0, scaler*-0.5)
+                PathOptionPoints(0, scaler*0.05, 0, scaler*-0.05)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
