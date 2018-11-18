@@ -361,8 +361,8 @@ function drawDogsPath(points){
                     tempPoints.y2 = tempPoints.y3
                 } 
                 bezPoints.b.ang = Math.atan2((tempPoints.x1-tempPoints.x2),(tempPoints.y1-tempPoints.y2))
-                bezPoints.b.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.b.ang)
-                bezPoints.b.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.b.ang)
+                bezPoints.b.x = tempPoints.x1 + 1.8*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y1 + 1.8*scaler*Math.cos(bezPoints.b.ang)
                 ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x1, tempPoints.y1)
                 //ctx.lineTo(tempPoints.x1,tempPoints.y1)
                 ctx.stroke()
@@ -373,8 +373,8 @@ function drawDogsPath(points){
                 }else{
                     bezPoints.a.ang = Math.PI + bezPoints.b.ang
                 }
-                bezPoints.a.x = m1 + 5*scaler*Math.sin(bezPoints.a.ang)
-                bezPoints.a.y = m2 + 5*scaler*Math.cos(bezPoints.a.ang)
+                bezPoints.a.x = m1 + 1.8*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = m2 + 1.8*scaler*Math.cos(bezPoints.a.ang)
             } else {
                 m1= tempPoints.x1
                 m2= tempPoints.y1
@@ -383,8 +383,8 @@ function drawDogsPath(points){
                     tempPoints.y1 = tempPoints.y3
                 } 
                 bezPoints.b.ang = Math.atan2((tempPoints.x2-tempPoints.x1),(tempPoints.y2-tempPoints.y1))
-                bezPoints.b.x = tempPoints.x2 + 5*scaler*Math.sin(bezPoints.b.ang)
-                bezPoints.b.y = tempPoints.y2 + 5*scaler*Math.cos(bezPoints.b.ang)
+                bezPoints.b.x = tempPoints.x2 + 1.8*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y2 + 1.8*scaler*Math.cos(bezPoints.b.ang)
                 ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x2, tempPoints.y2)
                 //ctx.lineTo(tempPoints.x2,tempPoints.y2)
                 ctx.stroke()
@@ -394,8 +394,9 @@ function drawDogsPath(points){
                     bezPoints.a.ang = Math.atan2((m1-tempPoints.x1),(m2-tempPoints.y1))
                 }else{
                     bezPoints.a.ang = Math.PI + bezPoints.b.ang
-                }                bezPoints.a.x = m1 + 5*scaler*Math.sin(bezPoints.a.ang)
-                bezPoints.a.y = m2 + 5*scaler*Math.cos(bezPoints.a.ang)
+                }        
+                bezPoints.a.x = m1 + 1.8*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = m2 + 1.8*scaler*Math.cos(bezPoints.a.ang)
             }        
         }
         ctx.stroke()
