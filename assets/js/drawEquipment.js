@@ -34,6 +34,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*0,scaler*-0.4585)
                 ctx.lineTo(scaler*0,scaler*0.4585)
                 ctx.stroke()
+                PathOptionPoints(scaler*(2.136+0.05),0,scaler*-(2.136+0.05),0)
                 break
             case 1: //"Dog Walk"
                 ctx.fillStyle = "#FFFFFF";
@@ -54,6 +55,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*2,scaler*-0.135)
                 ctx.lineTo(scaler*2,scaler*0.135)
                 ctx.stroke()
+                PathOptionPoints(scaler*(5.78+0.05),0,scaler*-(5.78+0.05),0)
                 break
             case 2: //"See Saw"
                 ctx.beginPath()
@@ -82,6 +84,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.lineTo(scaler*0.5,scaler*0)
                 ctx.stroke()
                 ctx.fill()
+                PathOptionPoints(scaler*(1.879+0.05),0,scaler*-(1.879+0.05),0)
                 break
             case 3: //"Table"
                 ctx.fillStyle = "#FFFF00";
@@ -93,7 +96,10 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
                 ctx.textAlign = "center";
-                ctx.fillText("T",0,scaler*0.25);
+                ctx.textBaseline = 'middle';
+                ctx.fillText("T",0,0);
+                PathOptionPoints(0,0,0,0)
+
                 break
             case 4: //"Pause Box"
                 ctx.fillStyle = "#FFFF00";
@@ -105,7 +111,9 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
                 ctx.textAlign = "center";
-                ctx.fillText("P",0,scaler*0.25);
+                ctx.textBaseline = 'middle';
+                ctx.fillText("P",0,0);
+                PathOptionPoints(0,0,0,0)
                 break
         }
     }
