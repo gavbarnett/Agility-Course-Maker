@@ -1,4 +1,24 @@
-function drawEquipment(item, scaler, offset, canvas){
+function drawEquipment(item, scaler, offset, addPoints){
+    var a = offset + scaler*item.x
+    var b = offset + scaler*item.y
+    var Theta = item.rotation
+
+    this.PathOptionPoints = function (x1,y1,x2,y2,x3,y3){
+        var tempPoints = []
+        tempPoints.x1 = a + (x1 * Math.cos(Theta) - y1 * Math.sin(Theta))
+        tempPoints.y1 = b + (x1 * Math.sin(Theta) + y1 * Math.cos(Theta))
+        tempPoints.x2 = a + (x2 * Math.cos(Theta) - y2 * Math.sin(Theta))
+        tempPoints.y2 = b + (x2 * Math.sin(Theta) + y2 * Math.cos(Theta))
+        if (x3 || y3){
+            tempPoints.x3 = a + (x3 * Math.cos(Theta) - y3 * Math.sin(Theta))
+            tempPoints.y3 = b + (x3 * Math.sin(Theta) + y3 * Math.cos(Theta))
+        }
+        if (addPoints == true){ 
+            PathOptions.push(Object.assign({},tempPoints))
+        }
+        return (tempPoints)
+    }
+
     this.drawContact = function(){
         switch(item.type[1]){
             case 0: //"A-frame"
@@ -18,6 +38,7 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.moveTo(scaler*0,scaler*-0.4585)
                 ctx.lineTo(scaler*0,scaler*0.4585)
                 ctx.stroke()
+                PathOptionPoints(scaler*(2.136+0.05),0,scaler*-(2.136+0.05),0)
                 break
             case 1: //"Dog Walk"
                 ctx.fillStyle = "#FFFFFF";
@@ -38,6 +59,7 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.moveTo(scaler*2,scaler*-0.135)
                 ctx.lineTo(scaler*2,scaler*0.135)
                 ctx.stroke()
+                PathOptionPoints(scaler*(5.78+0.05),0,scaler*-(5.78+0.05),0)
                 break
             case 2: //"See Saw"
                 ctx.beginPath()
@@ -66,6 +88,7 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.lineTo(scaler*0.5,scaler*0)
                 ctx.stroke()
                 ctx.fill()
+                PathOptionPoints(scaler*(1.879+0.05),0,scaler*-(1.879+0.05),0)
                 break
             case 3: //"Table"
                 ctx.fillStyle = "#FFFF00";
@@ -77,7 +100,10 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
                 ctx.textAlign = "center";
-                ctx.fillText("T",0,scaler*0.25);
+                ctx.textBaseline = 'middle';
+                ctx.fillText("T",0,0);
+                PathOptionPoints(0,0,0,0)
+
                 break
             case 4: //"Pause Box"
                 ctx.fillStyle = "#FFFF00";
@@ -89,7 +115,9 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
                 ctx.textAlign = "center";
-                ctx.fillText("P",0,scaler*0.25);
+                ctx.textBaseline = 'middle';
+                ctx.fillText("P",0,0);
+                PathOptionPoints(0,0,0,0)
                 break
         }
     }
@@ -108,6 +136,7 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.moveTo(scaler*-0.6095,scaler*0)
                 ctx.lineTo(scaler*0.6095,scaler*0)
                 ctx.stroke()
+                PathOptionPoints(0, scaler*0.05, 0, scaler*-0.05)
                 break
             case 1: //"Spread":
                 ctx.strokeStyle = '#000000';
@@ -135,7 +164,7 @@ function drawEquipment(item, scaler, offset, canvas){
                     ctx.stroke()
                     ctx.fill()
                 }
-                //ctx.fill()
+                PathOptionPoints(0, scaler*spread*0.225/2+0.05, 0, scaler*((spread+1)*-0.225/2-0.05))
                 break
             case 2: //"Tire Jump":
                 ctx.strokeStyle = '#000000';
@@ -167,6 +196,7 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.moveTo(scaler*-0.7095,scaler*-0.2)
                 ctx.lineTo(scaler*-0.7095,scaler*0.2)
                 ctx.stroke()
+                PathOptionPoints(0, scaler*0.05+scaler*0.733/2, 0, scaler*-0.05-scaler*0.733/2)
                 break
         }
     }
@@ -183,6 +213,12 @@ function drawEquipment(item, scaler, offset, canvas){
                 ctx.lineTo(Math.cos(-(length/radius)/2-Math.PI/2)*radius*scaler,Math.sin((length/radius)/2-Math.PI/2)*radius*scaler+radius*scaler)
                 ctx.stroke()
                 ctx.fill()
+                var length2 = (length/radius)*(radius-0.3045)
+                var x1 = Math.cos(-(length2/(radius-0.3045))/2-Math.PI/2)*(radius-0.3045)*scaler 
+                var y1 = Math.sin((length2/(radius-0.3045))/2-Math.PI/2)*(radius-0.3045)*scaler+(radius)*scaler
+                var x3 = 0
+                var y3 = 0.3045
+                PathOptionPoints(x1, y1,-x1, y1, x3, y3)
                 break
             case 1: //"Chute":
                 break
@@ -200,6 +236,7 @@ function drawEquipment(item, scaler, offset, canvas){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
             case 1: //"9":
                 var poles = 9
@@ -211,6 +248,7 @@ function drawEquipment(item, scaler, offset, canvas){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
             case 2: //"12":
                 var poles = 12
@@ -222,6 +260,7 @@ function drawEquipment(item, scaler, offset, canvas){
                     ctx.fill()
                     ctx.stroke()
                 }
+                PathOptionPoints((0.6*(-(poles-1)/2+0))*scaler+scaler*0.05, 0, (0.6*(-(poles-1)/2+(poles-1)))*scaler+scaler*-0.05,0)
                 break
         }
     }
@@ -236,12 +275,36 @@ function drawEquipment(item, scaler, offset, canvas){
         ctx.fillStyle = "#000000";
         ctx.font = "bold " + Math.round(scaler/1.5) + "px Arial";
         ctx.textAlign = "center";
-        ctx.textBaseline = 'bottom';
-        ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,scaler*0.25);
+        ctx.textBaseline = 'middle';
+        ctx.fillText((allEquipment["Numbers"][item.type[1]]),0,0);
+        //find nearest PathOption and add to DogsPath
+        //list will be ordered this later
+        var minDist = 99999
+        addPoints = false
+        var numLocation = this.PathOptionPoints(0,0,0,0)
+        var tempDogPoint = []
+        tempDogPoint = numLocation
+        tempDogPoint.direction = 1
+        for (let tempPath of PathOptions){
+            tempDist = Math.sqrt(Math.pow(numLocation.x1 - tempPath.x1,2)+Math.pow(numLocation.y1 - tempPath.y1,2))
+            if (tempDist < minDist){
+                minDist = tempDist
+                tempDogPoint = tempPath
+                tempDogPoint.direction = 1
+            }
+            tempDist = Math.sqrt(Math.pow(numLocation.x1 - tempPath.x2,2)+Math.pow(numLocation.y1 - tempPath.y2,2))
+            if (tempDist < minDist){
+                minDist = tempDist
+                tempDogPoint = tempPath
+                tempDogPoint.direction = 2
+            }
+        }
+        tempDogPoint.n = item.type[1]
+        DogsPath.push(Object.assign({},tempDogPoint))
     }
-    if (!canvas){
+    //if (!canvas){
         canvas = document.getElementById('MainCanvas');
-    }
+    //}
     ctx = canvas.getContext("2d");
     ctx.save()
     ctx.translate(offset + scaler*item.x,offset + scaler*item.y)
@@ -266,4 +329,77 @@ function drawEquipment(item, scaler, offset, canvas){
 
     ctx.restore()
 
+}
+
+function drawDogsPath(points){
+    points.sort(function(a,b){
+        return a.n - b.n
+    })
+    canvas = document.getElementById('MainCanvas');
+    ctx = canvas.getContext("2d");
+
+    if(points.length>0){
+        var bezPoints = []
+        bezPoints.a = []
+        bezPoints.b = []
+        ctx.strokeStyle = '#0e1cea';
+        ctx.setLineDash([3, 2])
+        ctx.beginPath()
+        if (points[0].direction == 1) {
+            ctx.moveTo(points[0].x1,points[0].y1)
+         
+        } else {
+            ctx.moveTo(points[0].x2,points[0].y2)
+            
+        }
+        for (let tempPoints of points){
+            if (tempPoints.direction == 1) {
+                m1= tempPoints.x2
+                m2= tempPoints.y2
+                if (tempPoints.x3 || tempPoints.y3){
+                    tempPoints.x2 = tempPoints.x3
+                    tempPoints.y2 = tempPoints.y3
+                } 
+                bezPoints.b.ang = Math.atan2((tempPoints.x1-tempPoints.x2),(tempPoints.y1-tempPoints.y2))
+                bezPoints.b.x = tempPoints.x1 + 1.8*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y1 + 1.8*scaler*Math.cos(bezPoints.b.ang)
+                ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x1, tempPoints.y1)
+                //ctx.lineTo(tempPoints.x1,tempPoints.y1)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.moveTo(m1,m2)
+                if (tempPoints.x3 || tempPoints.y3){
+                    bezPoints.a.ang = Math.atan2((m1-tempPoints.x2),(m2-tempPoints.y2))
+                }else{
+                    bezPoints.a.ang = Math.PI + bezPoints.b.ang
+                }
+                bezPoints.a.x = m1 + 1.8*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = m2 + 1.8*scaler*Math.cos(bezPoints.a.ang)
+            } else {
+                m1= tempPoints.x1
+                m2= tempPoints.y1
+                if (tempPoints.x3 || tempPoints.y3){
+                    tempPoints.x1 = tempPoints.x3
+                    tempPoints.y1 = tempPoints.y3
+                } 
+                bezPoints.b.ang = Math.atan2((tempPoints.x2-tempPoints.x1),(tempPoints.y2-tempPoints.y1))
+                bezPoints.b.x = tempPoints.x2 + 1.8*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y2 + 1.8*scaler*Math.cos(bezPoints.b.ang)
+                ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x2, tempPoints.y2)
+                //ctx.lineTo(tempPoints.x2,tempPoints.y2)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.moveTo(m1,m2)
+                if (tempPoints.x3 || tempPoints.y3){
+                    bezPoints.a.ang = Math.atan2((m1-tempPoints.x1),(m2-tempPoints.y1))
+                }else{
+                    bezPoints.a.ang = Math.PI + bezPoints.b.ang
+                }        
+                bezPoints.a.x = m1 + 1.8*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = m2 + 1.8*scaler*Math.cos(bezPoints.a.ang)
+            }        
+        }
+        ctx.stroke()
+        ctx.setLineDash([1, 0])
+    }
 }
