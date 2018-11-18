@@ -3,12 +3,16 @@ function drawEquipment(item, scaler, offset, addPoints){
     var b = offset + scaler*item.y
     var Theta = item.rotation
 
-    this.PathOptionPoints = function (x1,y1,x2,y2){
+    this.PathOptionPoints = function (x1,y1,x2,y2,x3,y3){
         var tempPoints = []
         tempPoints.x1 = a + (x1 * Math.cos(Theta) - y1 * Math.sin(Theta))
         tempPoints.y1 = b + (x1 * Math.sin(Theta) + y1 * Math.cos(Theta))
         tempPoints.x2 = a + (x2 * Math.cos(Theta) - y2 * Math.sin(Theta))
         tempPoints.y2 = b + (x2 * Math.sin(Theta) + y2 * Math.cos(Theta))
+        if (x3 || y3){
+            tempPoints.x3 = a + (x3 * Math.cos(Theta) - y3 * Math.sin(Theta))
+            tempPoints.y3 = b + (x3 * Math.sin(Theta) + y3 * Math.cos(Theta))
+        }
         if (addPoints == true){ 
             PathOptions.push(Object.assign({},tempPoints))
         }
@@ -209,6 +213,12 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.lineTo(Math.cos(-(length/radius)/2-Math.PI/2)*radius*scaler,Math.sin((length/radius)/2-Math.PI/2)*radius*scaler+radius*scaler)
                 ctx.stroke()
                 ctx.fill()
+                var length2 = (length/radius)*(radius-0.3045)
+                var x1 = Math.cos(-(length2/(radius-0.3045))/2-Math.PI/2)*(radius-0.3045)*scaler 
+                var y1 = Math.sin((length2/(radius-0.3045))/2-Math.PI/2)*(radius-0.3045)*scaler+(radius)*scaler
+                var x3 = 0
+                var y3 = 0.3045
+                PathOptionPoints(x1, y1,-x1, y1, x3, y3)
                 break
             case 1: //"Chute":
                 break
