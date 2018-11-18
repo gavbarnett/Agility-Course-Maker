@@ -152,7 +152,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                     ctx.stroke()
                     ctx.fill()
                 }
-                //ctx.fill()
+                PathOptionPoints(0, scaler*spread*0.225/2+0.05, 0, scaler*((spread+1)*-0.225/2-0.05))
                 break
             case 2: //"Tire Jump":
                 ctx.strokeStyle = '#000000';
@@ -184,6 +184,7 @@ function drawEquipment(item, scaler, offset, addPoints){
                 ctx.moveTo(scaler*-0.7095,scaler*-0.2)
                 ctx.lineTo(scaler*-0.7095,scaler*0.2)
                 ctx.stroke()
+                PathOptionPoints(0, scaler*0.05+scaler*0.733/2, 0, scaler*-0.05-scaler*0.733/2)
                 break
         }
     }
