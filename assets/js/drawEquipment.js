@@ -320,39 +320,40 @@ function drawDogsPath(points){
         var bezPoints = []
         bezPoints.a = []
         bezPoints.b = []
+        ctx.strokeStyle = '#0e1cea';
+        ctx.setLineDash([3, 2])
         ctx.beginPath()
         if (points[0].direction == 1) {
             ctx.moveTo(points[0].x1,points[0].y1)
-            bezPoints.b.ang = Math.atan((points[0].x1-points[0].x2)/(points[0].y1-points[0].y2))
-            bezPoints.a.x = points[0].x2 - 1*scaler*Math.sin(bezPoints.b.ang)
-            bezPoints.a.y = points[0].y2 - 1*scaler*Math.cos(bezPoints.b.ang)
+         
         } else {
             ctx.moveTo(points[0].x2,points[0].y2)
-            bezPoints.b.ang = Math.atan((points[0].x2-points[0].x1)/(points[0].y2-points[0].y1))
-            bezPoints.a.x = points[0].x1 + 1*scaler*Math.sin(bezPoints.b.ang)
-            bezPoints.a.y = points[0].y1 + 1*scaler*Math.cos(bezPoints.b.ang)
+            
         }
         for (let tempPoints of points){
             if (tempPoints.direction == 1) {
-                bezPoints.b.ang = Math.atan((tempPoints.x1-tempPoints.x2)/(tempPoints.y1-tempPoints.y2))
+                bezPoints.b.ang = Math.atan2((tempPoints.x1-tempPoints.x2),(tempPoints.y1-tempPoints.y2))
                 bezPoints.b.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.b.ang)
                 bezPoints.b.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.b.ang)
                 ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x1, tempPoints.y1)
                 ctx.lineTo(tempPoints.x1,tempPoints.y1)
                 ctx.lineTo(tempPoints.x2,tempPoints.y2)
-                bezPoints.a.x = tempPoints.x2 - 5*scaler*Math.sin(bezPoints.b.ang)
-                bezPoints.a.y = tempPoints.y2 - 5*scaler*Math.cos(bezPoints.b.ang)
+                bezPoints.a.ang = Math.PI + bezPoints.b.ang
+                bezPoints.a.x = tempPoints.x2 + 5*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = tempPoints.y2 + 5*scaler*Math.cos(bezPoints.a.ang)
             } else {
-                bezPoints.b.ang = Math.atan((tempPoints.x2-tempPoints.x1)/(tempPoints.y2-tempPoints.y1))
-                bezPoints.b.x = tempPoints.x2 - 5*scaler*Math.sin(bezPoints.b.ang)
-                bezPoints.b.y = tempPoints.y2 - 5*scaler*Math.cos(bezPoints.b.ang)
+                bezPoints.b.ang = Math.atan2((tempPoints.x2-tempPoints.x1),(tempPoints.y2-tempPoints.y1))
+                bezPoints.b.x = tempPoints.x2 + 5*scaler*Math.sin(bezPoints.b.ang)
+                bezPoints.b.y = tempPoints.y2 + 5*scaler*Math.cos(bezPoints.b.ang)
                 ctx.bezierCurveTo(bezPoints.a.x, bezPoints.a.y, bezPoints.b.x, bezPoints.b.y, tempPoints.x2, tempPoints.y2)
                 ctx.lineTo(tempPoints.x2,tempPoints.y2)
                 ctx.lineTo(tempPoints.x1,tempPoints.y1)
-                bezPoints.a.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.b.ang)
-                bezPoints.a.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.b.ang)
+                bezPoints.a.ang = Math.PI + bezPoints.b.ang
+                bezPoints.a.x = tempPoints.x1 + 5*scaler*Math.sin(bezPoints.a.ang)
+                bezPoints.a.y = tempPoints.y1 + 5*scaler*Math.cos(bezPoints.a.ang)
             }        
         }
         ctx.stroke()
+        ctx.setLineDash([1, 0])
     }
 }
