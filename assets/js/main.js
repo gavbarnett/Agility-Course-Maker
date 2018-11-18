@@ -285,6 +285,8 @@ function field(x,y){
         ctx.beginPath()
         ctx.rect(this.scaled[0], this.scaled[1], this.scaled[2]-this.scaled[0], this.scaled[3]-this.scaled[1]);
         ctx.stroke()
+        
+               
         //Draw Placed Equipment
         /* note to self - draw through equipment before contacts */
         for (var i = 0; i <PlacedEquipment.length; i++){
@@ -297,15 +299,7 @@ function field(x,y){
                 drawEquipment(PlacedEquipment[i], scaler, offset, true)
             }
         }
-        for (var i = 0; i <PlacedEquipment.length; i++){
-                if (PlacedEquipment[i].type[0] == "Numbers"){
-                    numberTracker[PlacedEquipment[i].type[1]] = 0
-                    drawEquipment(PlacedEquipment[i], scaler, offset, true)
-                }
-        }
-        //Draw Dogs Path
-        drawDogsPath(DogsPath)
-
+        
         //Draw Temp Equipment
         if (tempEquipment.type != ""){
             tempEquipment.x = mouse.x
@@ -320,8 +314,21 @@ function field(x,y){
             ctx.fill()
 
             //draw item
-            drawEquipment(tempEquipment, scaler, offset, false)
+            drawEquipment(tempEquipment, scaler, offset, true)
         }
+
+        
+        for (var i = 0; i <PlacedEquipment.length; i++){
+                if (PlacedEquipment[i].type[0] == "Numbers"){
+                    numberTracker[PlacedEquipment[i].type[1]] = 0
+                    drawEquipment(PlacedEquipment[i], scaler, offset, true)
+                }
+        }
+        
+        
+        //Draw Dogs Path
+        drawDogsPath(DogsPath)
+
         //Draw Logo bottom
         if (drawLogo == true){
             ctx.fillStyle = "#888";
