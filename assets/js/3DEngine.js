@@ -2,7 +2,7 @@ var container;
 var pause = false
 var camera, scene, renderer
 var equipment = [];
-var loader = new THREE.ColladaLoader(manager);
+var loader = new THREE.GLTFLoader(manager);
 var manager = new THREE.LoadingManager();
 var sceneObjects = []
 var lastposition
@@ -63,12 +63,14 @@ function start3D() {
         var loaderT = new THREE.TextureLoader();
         var groundTexture = loaderT.load( './assets/3Dassets/textures/grassII.jpg' );
             groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
-            groundTexture.repeat.set( 25, 25 );
-            groundTexture.anisotropy = 16;
+            groundTexture.repeat.set( 15, 15 );
+            groundTexture.anisotropy = 5;
         var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
             groundMaterial.receiveShadow = true
-         sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 300, 300 ), groundMaterial );
+         sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 30, 30 ), groundMaterial );
             sceneObjects.groundMesh.position.y = 0;
+            sceneObjects.groundMesh.position.x = 15;
+            sceneObjects.groundMesh.position.z = 15;
             sceneObjects.groundMesh.rotation.x = - Math.PI / 2;
             sceneObjects.groundMesh.receiveShadow = true;
             camera = sceneObjects.camera
@@ -98,7 +100,7 @@ function start3D() {
     //renderer = sceneObjects.renderer
     
     //fence
-    load( './assets/3Dassets/Collada Objects/Fence30m.dae', 0, 0, 30, 0)
+    load( './assets/3Dassets/GLTF Objects/Fence30m.gltf', 0, 0, 30, 0)
     //controls
     //controls = sceneObjects.controls
     //controls.update();
@@ -122,13 +124,13 @@ function drawEquipment3D(item){
     this.drawContact = function(){
         switch(item.type[1]){
             case 0: //"A-frame"
-            load( './assets/3Dassets/Collada Objects/Contact-1.dae', item.x, 0,item.y, -item.rotation-Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Contact-1.gltf', item.x, 0,item.y, -item.rotation-Math.PI/2)
                 break
             case 1: //"Dog Walk"
-            load( './assets/3Dassets/Collada Objects/Contact-2.dae', item.x, 0,item.y, -item.rotation-Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Contact-2.gltf', item.x, 0,item.y, -item.rotation-Math.PI/2)
                 break
             case 2: //"See Saw"
-                load( './assets/3Dassets/Collada Objects/Contact-3.dae', item.x, 0,item.y, -item.rotation-Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Contact-3.gltf', item.x, 0,item.y, -item.rotation-Math.PI/2)
                 break
             case 3: //"Table"
                 
@@ -141,13 +143,13 @@ function drawEquipment3D(item){
     this.drawOver = function(){
         switch(item.type[1]){
             case 0: //"Winged Single Jump":
-                load( './assets/3Dassets/Collada Objects/Over-1.dae', item.x, 0,item.y, -item.rotation)
+                load( './assets/3Dassets/GLTF Objects/Over-1.gltf', item.x, 0,item.y, -item.rotation)
                 break
             case 1: //"Spread":
                 
                 break
             case 2: //"Tire Jump":
-                load( './assets/3Dassets/Collada Objects/Over-3.dae', item.x, 0,item.y, -item.rotation)
+                load( './assets/3Dassets/GLTF Objects/Over-3.gltf', item.x, 0,item.y, -item.rotation)
                 break
         }
     }
@@ -179,13 +181,13 @@ function drawEquipment3D(item){
     this.drawWeave = function(){
         switch(item.type[1]){
             case 0: //"6":
-                load( './assets/3Dassets/Collada Objects/Pole-1.dae', item.x, 0,item.y, -item.rotation+Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Pole-1.gltf', item.x, 0,item.y, -item.rotation+Math.PI/2)
                 break
             case 1: //"9":
-                load( './assets/3Dassets/Collada Objects/Pole-2.dae', item.x, 0,item.y, -item.rotation+Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Pole-2.gltf', item.x, 0,item.y, -item.rotation+Math.PI/2)
                 break
             case 2: //"12":
-                load( './assets/3Dassets/Collada Objects/Pole-3.dae', item.x, 0,item.y, -item.rotation+Math.PI/2)
+                load( './assets/3Dassets/GLTF Objects/Pole-3.gltf', item.x, 0,item.y, -item.rotation+Math.PI/2)
                 break
         }
     }
