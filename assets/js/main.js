@@ -623,6 +623,31 @@ function imageDesign(){
 
 }
 
+function ThreeDExport (){
+    if (!pause) {
+        // Instantiate a exporter
+        var exporter = new THREE.GLTFExporter();
+
+        // Parse the input and generate the glTF output
+        exporter.parse( scene, function ( gltf ) {
+            console.log( gltf );
+
+            var notes = document.getElementById("Notes").value
+            var fieldSize = {"x": Field.x, "y": Field.y}
+            var blob = new Blob([JSON.stringify(gltf,null,2)], {type: 'text/json'}),
+            e = document.createEvent('MouseEvents'),
+            a = document.createElement('a')
+            var date = new Date().toDateString();
+            var time = new Date().toLocaleTimeString();
+            a.download = "MyAgilityField" + " ("+ date + " - "+ time +").gltf"
+            a.href = window.URL.createObjectURL(blob)
+            a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+            e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+            a.dispatchEvent(e)
+        });
+    }
+}
+
 function updateFieldSize(){
     try{
         tempx = 30

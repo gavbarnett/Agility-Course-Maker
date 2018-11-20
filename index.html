@@ -38,6 +38,8 @@
                 <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
                 <button id="Print" onclick="printDesign()"> PRINT </button>
                 <button id="ExportImage" onclick="imageDesign()"> IMAGE </button>
+                <button id="Export3D" onclick="ThreeDExport()"> 3D Export </button>
+
                 <!-- 
                 <button disabled id="Export3D" onclick="printDesign()"> EXPORT 3D </button>
                 //-->
@@ -99,6 +101,7 @@
         <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
         <script type="text/javascript" src="assets/js/3DEngine.js"></script>
         <script type="text/javascript" src="assets/js/OrbitControls.js"></script>
+        <script type="text/javascript" src="assets/js/GLTFExporter.js"></script>
         <footer>
             <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a></p>
             <p>Copyright © 2018 <a href = https://github.com/gavbarnett>Gavin Barnett</a></p>
