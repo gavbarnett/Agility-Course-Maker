@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+body {
+   width: 100%;
+   align-content: center;
+   font-size: 100%;
+   color: #000;
+   font-family: 'Verdana', sans-serif;
+   text-align: center;
+   background-color: #D5D5D5;
+   margin: 0 !important;
+   padding: 0 !important;
+}
+/*Landscape */
+@media screen and (orientation:landscape) { 
+    body {
+        display: grid;
+        grid-template-columns:  minmax(20%, 200px) auto;
+        grid-template-rows: repeat(5, auto);
+        grid-gap: 0px;
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas:
+        "head head"
+        "tool canv"
+        "patr canv"
+        "file note"
+        "foot foot";
+    }
+}
+@media screen and (orientation:portrait) { 
+    body {
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+        grid-template-rows: repeat(6, auto);
+        grid-gap: 10px;
+        grid-template-areas:
+        "head"
+        "canv"
+        "tool"
+        "file"
+        "note"
+        "foot";
+    }
+    #Header {
+        font-size:calc(100% + 2vw);
+    }
+}
+
+#Header {
+    grid-area: head;
+    width: 100%;
+    background-color: #9099A2;
+    color: white;
+    border: #9099A2;
+    margin: 0%;
+    padding: 10px;
+}
+#CanvasDiv {
+    padding: 10px;
+    grid-area: canv;
+    display:block;
+
+}
+#NotesDiv {
+    grid-area: note;
+    
+}
+#Notes {
+    resize: none;
+    font-family: 'Verdana', sans-serif;
+    font-size: 100%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 95%;
+    height: 5em;
+    max-width: 700px;
+}
+#Patreon {
+    grid-area: patr;
+    background-color: #9099A2;
+    padding-top: auto;
+}
+#FileMenu {
+    grid-area: file;
+    background-color: #9099A2;
+    padding-top: auto;
+}
+#FileMenu h2 {
+    width: 100%;
+    background-color: white;
+    margin: 0%;
+    padding: 5px;
+    font-size: 100%;
+}
+#ToolMenu {
+    grid-area: tool;
+    background-color: #9099A2;
+}
+#ToolMenu h2 {
+    width: 100%;
+    background-color: white;
+    margin: 0%;
+    padding: 5px;
+    font-size: 100%;
+}
+#ToolMenu h3 {
+    width: 100%;
+    background-color: #D5D5D5;
+    margin: 0%;
+    padding: 5px;
+    font-size: 80%;
+}
+#Shortcuts {
+    grid-area: short;
+    display: none;
+    visibility: hidden;
+}
+footer {
+    grid-area: foot;
+}
+#FileMenu button {
+    background-color: #9099A2;
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white;
+    font-size: 100%;
+    font-weight: bold;
+    width: 150px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 15px 32px;
+    min-width: fit-content;
+}
+#ToolMenu button {
+    background-color: #9099A2;
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white;
+    font-size: 80%;
+    font-weight: bold;
+    
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 5px 10px;
+    min-width: fit-content;
+}
+
+#FileMenu button:hover {
+    background-color: white;
+    color: black;
+}
+#ToolMenu button:hover {
+    background-color: white;
+    color: black;
+}

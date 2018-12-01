@@ -4,6 +4,8 @@
  */
 var drawLogo = false
 var dragging = false
+var rotating = false
+var oldRotation = 0
 var oldwindowwidth = 0
 var mousebutton = false
 var Field = new field(30,30)
@@ -118,6 +120,7 @@ function field(x,y){
     ]
     var tempEquipment = []
     this.AddTempEquipment = function(inputType){
+        dragging = true
         if (tempEquipment.type){
             if(tempEquipment.type[0] == "Numbers"){
                 numberTracker[tempEquipment.type[1]] = 1
@@ -125,6 +128,10 @@ function field(x,y){
         }
 
         tempEquipment = []
+        if (!tempEquipment.x){
+            tempEquipment.x = mouse.x
+            tempEquipment.y = mouse.y
+        }
         
         if (inputType.type){
             tempEquipment = inputType
@@ -303,16 +310,32 @@ function field(x,y){
         
         //Draw Temp Equipment
         if (tempEquipment.type != ""){
-            tempEquipment.x = mouse.x
-            tempEquipment.y = mouse.y
+            if (dragging && !rotating){
+                tempEquipment.x = mouse.x
+                tempEquipment.y = mouse.y
+            }
+            //draw rotation circle
+            
+            if(tempEquipment.type[0] != "Numbers"){       
+                ctx.fillStyle = '#9099A2';
+                var AngStart = tempEquipment.rotation
+                var segments = 36
+                for(var i =0; i < segments; i += 2){
+                    ctx.beginPath()
+                    ctx.arc(offset+scaler*tempEquipment.x,offset+scaler*tempEquipment.y,5*scaler,AngStart+2*Math.PI/segments*(i+1),AngStart+2*Math.PI/segments*i, true)
+                    ctx.arc(offset+scaler*tempEquipment.x,offset+scaler*tempEquipment.y,3*scaler,AngStart+2*Math.PI/segments*i,AngStart+2*Math.PI/segments*(i+1), false)
+                    ctx.fill()
+                }
+            }
             //draw highlight circle
-            var grd=ctx.createRadialGradient(offset+scaler*mouse.x,offset+scaler*mouse.y,0,offset+scaler*mouse.x,offset+scaler*mouse.y,2*scaler);
+            var grd=ctx.createRadialGradient(offset+scaler*tempEquipment.x,offset+scaler*tempEquipment.y,0,offset+scaler*tempEquipment.x,offset+scaler*tempEquipment.y,3*scaler);
             grd.addColorStop(0,"rgba(255, 255, 255, 0.5)");
             grd.addColorStop(1,"rgba(255, 255, 255, 0)");    
             ctx.fillStyle = grd;
             ctx.beginPath()
-            ctx.arc(offset+scaler*mouse.x,offset+scaler*mouse.y,2*scaler,0,2*Math.PI)
+            ctx.arc(offset+scaler*tempEquipment.x,offset+scaler*tempEquipment.y,3*scaler,0,2*Math.PI)
             ctx.fill()
+            
 
             //draw item
             drawEquipment(tempEquipment, scaler, offset, true)
@@ -353,8 +376,9 @@ function field(x,y){
             mouse.y = Math.max(mouse.y,0)
             mouse.x = Math.min(mouse.x,x)
             mouse.y = Math.min(mouse.y,y)
-            if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
-                dragging = true
+            if (rotating && tempEquipment.type != "" && !dragging){
+                var rot = Math.atan2(mouse.y - tempEquipment.y, mouse.x - tempEquipment.x )
+                tempEquipment.rotation = oldRotation + rot
             }
             if (tempEquipment.type != ""){
                 var mouseStyle = "move"
@@ -366,16 +390,13 @@ function field(x,y){
                         distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
                         if (distance < 2){
                             mouseStyle = "move";
+                            dragging = true
                             break
                         }
                     }
             }
-        } else {
-            var mouseStyle = "auto"
-        }
-        document.body.style.cursor = mouseStyle    
-
-        
+        }    
+        document.body.style.cursor = mouseStyle         
     }
     this.touchmove = function(event){
         event.preventDefault();
@@ -387,8 +408,9 @@ function field(x,y){
         mouse.y = Math.max(mouse.y,0)
         mouse.x = Math.min(mouse.x,x)
         mouse.y = Math.min(mouse.y,y)
-        if (Math.sqrt(Math.pow(mouse.oldx-mouse.x,2)+Math.pow(mouse.oldy-mouse.y,2))>1){
-            dragging = true
+        if (rotating && tempEquipment.type != "" && !dragging){
+            var rot = Math.atan2(mouse.y - tempEquipment.y, mouse.x - tempEquipment.x )
+            tempEquipment.rotation = oldRotation + rot
         }
         if (tempEquipment.type != ""){
             var mouseStyle = "move"
@@ -400,6 +422,7 @@ function field(x,y){
                     distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
                     if (distance < 2){
                         mouseStyle = "move";
+                        dragging = true
                         break
                     }
                 }
@@ -438,12 +461,27 @@ function field(x,y){
                 Field.PlaceEquipment()
                 tempEquipment = PlacedEquipment[itemSelected]
                 PlacedEquipment.splice(itemSelected, 1)
+                dragging = true
+                rotating = false
             } else {
                 distance = Math.sqrt(Math.pow((tempEquipment.x-mouse.x),2)+Math.pow((tempEquipment.y-mouse.y),2))
-                if(distance<(2)){
-                    //keep focus on current item and don't place it yet.
+                if(distance<(3))
+                {
+                    rotating = false
+                    dragging = true
                 } else {
-                    Field.PlaceEquipment()
+                    if(distance<5){
+                        //Begin Rotation
+                        console.log ("begin rotation")
+                        dragging = false
+                        rotating = true
+                        var rot = Math.atan2(mouse.y - tempEquipment.y, mouse.x - tempEquipment.x )
+                        oldRotation = tempEquipment.rotation-rot
+                    }else{
+                        Field.PlaceEquipment()
+                        rotating = false
+                        dragging = false
+                    }
                 }
             }
             Field.draw()
@@ -456,6 +494,13 @@ function field(x,y){
         }
     }
     this.touchstart = function(event){
+        var touch = event.touches[0];
+        mouse.x = (touch.clientX-xoffset-canvas.offsetLeft+window.scrollX)/scaler
+        mouse.y = (touch.clientY-yoffset-canvas.offsetTop+window.scrollY)/scaler
+        mouse.x = Math.max(mouse.x,0)
+        mouse.y = Math.max(mouse.y,0)
+        mouse.x = Math.min(mouse.x,x)
+        mouse.y = Math.min(mouse.y,y)
         console.log("start")
         mouse.oldx = mouse.x
         mouse.oldy = mouse.y
@@ -480,12 +525,27 @@ function field(x,y){
             Field.PlaceEquipment()
             tempEquipment = PlacedEquipment[itemSelected]
             PlacedEquipment.splice(itemSelected, 1)
+            dragging = true
+            rotating = false
         } else {
             distance = Math.sqrt(Math.pow((tempEquipment.x-mouse.x),2)+Math.pow((tempEquipment.y-mouse.y),2))
-            if(distance<(2)){
-                //keep focus on current item and don't place it yet.
+            if(distance<(3))
+            {
+                rotating = false
+                dragging = true
             } else {
-                Field.PlaceEquipment()
+                if(distance<5){
+                    //Begin Rotation
+                    console.log ("begin rotation")
+                    dragging = false
+                    rotating = true
+                    var rot = Math.atan2(mouse.y - tempEquipment.y, mouse.x - tempEquipment.x )
+                    oldRotation = tempEquipment.rotation-rot
+                    }else{
+                    Field.PlaceEquipment()
+                    rotating = false
+                    dragging = false
+                }
             }
         }
         Field.draw()
