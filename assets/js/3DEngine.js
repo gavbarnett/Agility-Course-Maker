@@ -65,7 +65,7 @@ function start3D() {
             groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
             groundTexture.repeat.set( 15, 15 );
             groundTexture.anisotropy = 5;
-        var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+        var groundMaterial = new THREE.MeshLambertMaterial( { color: 0x4fd44f } );
             groundMaterial.receiveShadow = true
          sceneObjects.groundMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 30, 30 ), groundMaterial );
             sceneObjects.groundMesh.position.y = 0;
@@ -75,7 +75,8 @@ function start3D() {
             sceneObjects.groundMesh.receiveShadow = true;
             camera = sceneObjects.camera
             renderer = sceneObjects.renderer
-            renderer.setPixelRatio( container.devicePixelRatio );
+            renderer.setPixelRatio( container.devicePixelRatio);
+            renderer.logarithmicDepthBuffer = true
             controls = sceneObjects.controls
             controls.update();
     }
