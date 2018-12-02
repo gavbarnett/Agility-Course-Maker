@@ -16,7 +16,9 @@ var DogsPath = []
 var DrawDogsPath = true
 var offset = 10
 var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(30,30)
+var touchMenu = []
 function main() {
+    touchMenu.timeout = 1000
     container = document.getElementById( 'MainCanvas2' );
     container.style.visibility = "collapse";
     var canvas = document.getElementById('MainCanvas');
@@ -88,6 +90,7 @@ allEquipment["Numbers"] = ["S",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,2
 var numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 function field(x,y){
+    var timeoutLongTouch
     var mouse = []
     if (!x) {
         var x = 30
@@ -355,6 +358,8 @@ function field(x,y){
             drawDogsPath(DogsPath)
         }
 
+        drawMenu(scaler, offset)
+
         //Draw Logo bottom
         if (drawLogo == true){
             ctx.fillStyle = "#888";
@@ -436,6 +441,9 @@ function field(x,y){
                 //Field.PlaceEquipment()
             }
         }
+        clearTimeout(timeoutLongTouch)
+        touchMenu.Enabled = false
+        Field.draw()
     }
     this.mousedown = function(event){
             mousebutton = true
@@ -450,6 +458,18 @@ function field(x,y){
             var distance = 0
             var minDist = 3
             var itemSelected = 0
+
+            if (tempEquipment.type == "" && PlacedEquipment.length == 0){
+                //this is countdown for long press to activate the menu
+                timeoutLongTouch = setTimeout(function () {
+                    console.log("Menu Active");
+                    touchMenu.Enabled = true
+                    touchMenu.x = mouse.x
+                    touchMenu.y = mouse.y
+                    Field.draw()
+                }, touchMenu.timeout);
+            }
+
             for (var i = 0; i < PlacedEquipment.length; i++){
                 distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
                 if (distance < minDist){
@@ -481,6 +501,15 @@ function field(x,y){
                         Field.PlaceEquipment()
                         rotating = false
                         dragging = false
+
+                        //this is countdown for long press to activate the menu
+                        timeoutLongTouch = setTimeout(function () {
+                            console.log("Menu Active");
+                            touchMenu.Enabled = true
+                            touchMenu.x = mouse.x
+                            touchMenu.y = mouse.y
+                            Field.draw()
+                        }, touchMenu.timeout);
                     }
                 }
             }
@@ -492,6 +521,9 @@ function field(x,y){
                 //Field.PlaceEquipment()
             }
         }
+        clearTimeout(timeoutLongTouch)
+        touchMenu.Enabled = false
+        Field.draw()
     }
     this.touchstart = function(event){
         var touch = event.touches[0];
@@ -514,6 +546,18 @@ function field(x,y){
         var distance = 0
         var minDist = 3
         var itemSelected = 0
+        
+        if (tempEquipment.type == "" && PlacedEquipment.length == 0){
+            //this is countdown for long press to activate the menu
+            timeoutLongTouch = setTimeout(function () {
+                console.log("Menu Active");
+                touchMenu.Enabled = true
+                touchMenu.x = mouse.x
+                touchMenu.y = mouse.y
+                Field.draw()
+            }, touchMenu.timeout);
+        }
+
         for (var i = 0; i < PlacedEquipment.length; i++){
             distance = Math.sqrt(Math.pow((PlacedEquipment[i].x-mouse.x),2)+Math.pow((PlacedEquipment[i].y-mouse.y),2))
             if (distance < minDist){
@@ -545,6 +589,15 @@ function field(x,y){
                     Field.PlaceEquipment()
                     rotating = false
                     dragging = false
+
+                    //this is countdown for long press to activate the menu
+                    timeoutLongTouch = setTimeout(function () {
+                        console.log("Menu Active");
+                        touchMenu.Enabled = true
+                        touchMenu.x = mouse.x
+                        touchMenu.y = mouse.y
+                        Field.draw()
+                    }, touchMenu.timeout);
                 }
             }
         }

@@ -403,3 +403,19 @@ function drawDogsPath(points){
         ctx.setLineDash([1, 0])
     }
 }
+
+function drawMenu(scaler, offset){
+    console.log('in draw loop')
+    console.log(touchMenu)
+
+    if (touchMenu.Enabled){
+        canvas = document.getElementById('MainCanvas');
+        ctx = canvas.getContext("2d");
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath()
+        ctx.arc(offset+scaler*touchMenu.x,offset+scaler*touchMenu.y,3*scaler,0,2*Math.PI)
+        ctx.fill()
+        console.log('drawing menu')
+
+    }
+}
