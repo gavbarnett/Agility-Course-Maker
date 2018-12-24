@@ -662,6 +662,53 @@ function printDesign(){
     Field.draw(false)
 }
 
+function OpenFromLink(id){
+    numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    var notes = document.getElementById("Notes")
+
+    if (!id){
+        //get id from url
+        id = "rjax8"
+    }
+
+    $.get("https://api.myjson.com/bins/" + id, function(data, textStatus, jqXHR) {
+        var FileData = data
+        try{
+            Field = new field(FileData.Field.x, FileData.Field.y)
+            document.getElementById('fieldx').value = FileData.Field.x
+            document.getElementById('fieldx').value = FileData.Field.y
+        }
+        catch{
+            Field = new field(30, 30)
+            document.getElementById('fieldx').value = 30
+            document.getElementById('fieldx').value = 30
+        }
+        PlacedEquipment = FileData.Equipment
+        notes.value = FileData.Notes
+        Field.draw()
+    });
+}
+
+function shareAsLink(){
+    var notes = document.getElementById("Notes").value
+    var fieldSize = {"x": Field.x, "y": Field.y}
+    var jsonData = JSON.stringify({'Field': fieldSize, 'Equipment': PlacedEquipment,'Notes':notes})
+    $.ajax({
+        url:"https://api.myjson.com/bins",
+        type:"POST",
+        data:jsonData,
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        success: function (data, textStatus, jqXHR) {
+            var json = JSON.stringify(data);
+            var jsonID = json.substr(json.lastIndexOf("/")+1)
+            var jsonID = jsonID.substr(0,jsonID.lastIndexOf('"'))
+            console.log(json)
+            console.log(jsonID)
+        }
+    }); 
+}
+
 function imageDesign(){
     //const dataUrl = document.getElementById('MainCanvas').toDataURL("image/png")
     var canvas = document.getElementById("MainCanvas");
