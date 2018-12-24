@@ -31,6 +31,13 @@ function main() {
     var notes = document.getElementById('Notes')
     notes.width = canvas.width
     Field.draw()
+
+    if(window.location.href.indexOf("myjsonid") != -1){
+        //this is not very robust
+        var id = window.location.href.substr(window.location.href.indexOf("myjsonid")+9)
+        console.log (id)
+        OpenFromLink(id)
+    }
     
 
     //This is code to add a tool bar for users without keyboards
@@ -660,6 +667,60 @@ function printDesign(){
         printWin.close();            
     }, true);
     Field.draw(false)
+}
+
+function OpenFromLink(id){
+    numberTracker = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    var notes = document.getElementById("Notes")
+
+    if (!id){
+        //get id from url
+        id = "rjax8"
+    }
+
+    $.get("https://api.myjson.com/bins/" + id, function(data, textStatus, jqXHR) {
+        var FileData = data
+        try{
+            Field = new field(FileData.Field.x, FileData.Field.y)
+            document.getElementById('fieldx').value = FileData.Field.x
+            document.getElementById('fieldx').value = FileData.Field.y
+        }
+        catch{
+            Field = new field(30, 30)
+            document.getElementById('fieldx').value = 30
+            document.getElementById('fieldx').value = 30
+        }
+        if (FileData.Equipment) {
+            PlacedEquipment = FileData.Equipment
+        } else {
+            PlacedEquipment = []
+        }
+        if (FileData.Notes) {
+            notes.value = FileData.Notes
+        } else {
+            notes.value = "Add your notes here."
+        }
+        Field.draw()
+    });
+}
+
+function shareAsLink(){
+    var notes = document.getElementById("Notes").value
+    var fieldSize = {"x": Field.x, "y": Field.y}
+    var jsonData = JSON.stringify({'Field': fieldSize, 'Equipment': PlacedEquipment,'Notes':notes})
+    $.ajax({
+        url:"https://api.myjson.com/bins",
+        type:"POST",
+        data:jsonData,
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        success: function (data, textStatus, jqXHR) {
+            var json = JSON.stringify(data);
+            var jsonID = json.substr(json.lastIndexOf("/")+1)
+            var jsonID = jsonID.substr(0,jsonID.lastIndexOf('"'))
+            var jsonPrompt = prompt("Share this link: \r [Note: do not rely on this link for long term storage]:", "https://agilitycoursemaker.com?myjsonid=" + jsonID);
+        }
+    }); 
 }
 
 function imageDesign(){

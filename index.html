@@ -13,6 +13,7 @@
 
               gtag('config', 'UA-129307079-1');
         </script>
+        
     </head>
     
     <body onload="main()">
@@ -38,6 +39,7 @@
                 <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
                 <button id="Print" onclick="printDesign()"> PRINT </button>
                 <button id="ExportImage" onclick="imageDesign()"> IMAGE </button>
+                <button id="ShareAsLink" onclick="shareAsLink()"> SHARE </button>
                 <!-- 
                 <button disabled id="Export3D" onclick="printDesign()"> EXPORT 3D </button>
                 //-->
@@ -92,6 +94,7 @@
                 <p> <b>[R]</b>otate, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
                 <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
             </div>
+        <script type="text/javascript" src="assets/js/jQuery.js"></script>
         <script type="text/javascript" src="assets/js/three.min.js"></script>
         <script type="text/javascript" src="assets/js/WebGL.js"></script>
         <script type="text/javascript" src="assets/js/ColladaLoader.js"></script>
