@@ -31,6 +31,13 @@ function main() {
     var notes = document.getElementById('Notes')
     notes.width = canvas.width
     Field.draw()
+
+    if(window.location.href.indexOf("myjsonid") != -1){
+        //this is not very robust
+        var id = window.location.href.substr(window.location.href.indexOf("myjsonid")+9)
+        console.log (id)
+        OpenFromLink(id)
+    }
     
 
     //This is code to add a tool bar for users without keyboards
@@ -683,8 +690,16 @@ function OpenFromLink(id){
             document.getElementById('fieldx').value = 30
             document.getElementById('fieldx').value = 30
         }
-        PlacedEquipment = FileData.Equipment
-        notes.value = FileData.Notes
+        if (FileData.Equipment) {
+            PlacedEquipment = FileData.Equipment
+        } else {
+            PlacedEquipment = []
+        }
+        if (FileData.Notes) {
+            notes.value = FileData.Notes
+        } else {
+            notes.value = "Add your notes here."
+        }
         Field.draw()
     });
 }
@@ -703,8 +718,7 @@ function shareAsLink(){
             var json = JSON.stringify(data);
             var jsonID = json.substr(json.lastIndexOf("/")+1)
             var jsonID = jsonID.substr(0,jsonID.lastIndexOf('"'))
-            console.log(json)
-            console.log(jsonID)
+            var jsonPrompt = prompt("Share this link: \r [Note: do not rely on this link for long term storage]:", "https://agilitycoursemaker.com?myjsonid=" + jsonID);
         }
     }); 
 }
