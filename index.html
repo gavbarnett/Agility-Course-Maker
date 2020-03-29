@@ -27,9 +27,43 @@
     <body onload="main()">
             <h1 id="Header"> Agility Course Maker </h1>
             <div id="CanvasDiv">
-                <canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
-                <canvas id="MainCanvas2" width="0" height="0" style="border:1px solid #ffffff;" ></canvas>
-
+                <div id="Canvases">
+                    <canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
+                    <canvas id="MainCanvas2" width="0" height="0" style="border:1px solid #ffffff;" ></canvas>
+                </div>
+                <div id = "ToolMenu">
+            
+                        <h2>Modify</h2>
+                        <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <u>R</u>otate </button>
+                        <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
+                        <button id="Bend" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
+                        <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
+                        <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
+                        <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
+                        <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
+        
+                        <h2>Equipment</h2>
+                        <h3><u>C</u>ontacts</h3>
+                        <button id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"> A-frame </button>
+                        <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"> Dog Walk </button>
+                        <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"> See-Saw </button>
+                        <h3><u>J</u>umps</h3>
+                        <button id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"> Jump </button>
+                        <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"> Spread </button>
+                        <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
+                        <h3><u>T</u>hroughs</h3>
+                        <button id="Tunnel" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"> Tunnel </button>
+                        <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"> Chute </button>
+                        <h3><u>W</u>eaves</h3>
+                        <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"> Weaves 6 </button>
+                        <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"> Weaves 9 </button>
+                        <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"> Weaves 12 </button>
+                        <h3><u>N</u>umbers</h3>
+                        <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"> Numbers</button>
+                        <h3><u>3</u>D / <u>2</u>D  </h3>
+                        <button id="3D" onclick="start3D()"> 3D</button>
+                        <button id="2D" onclick="end3D()"> 2D</button>
+                </div>
             </div>
             <div id="NotesDiv">
                 Field Width  (m): 
@@ -51,39 +85,6 @@
                 <!-- 
                 <button disabled id="Export3D" onclick="printDesign()"> EXPORT 3D </button>
                 //-->
-            </div>
-            <div id = "ToolMenu">
-                
-                <h2>Modify</h2>
-                <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <u>R</u>otate </button>
-                <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
-                <button id="Bend" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
-                <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
-                <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
-                <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
-                <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
-
-                <h2>Equipment</h2>
-                <h3><u>C</u>ontacts</h3>
-                <button id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"> A-frame </button>
-                <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"> Dog Walk </button>
-                <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"> See-Saw </button>
-                <h3><u>J</u>umps</h3>
-                <button id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"> Jump </button>
-                <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"> Spread </button>
-                <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
-                <h3><u>T</u>hroughs</h3>
-                <button id="Tunnel" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"> Tunnel </button>
-                <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"> Chute </button>
-                <h3><u>W</u>eaves</h3>
-                <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"> Weaves 6 </button>
-                <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"> Weaves 9 </button>
-                <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"> Weaves 12 </button>
-                <h3><u>N</u>umbers</h3>
-                <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"> Numbers</button>
-                <h3><u>3</u>D / <u>2</u>D  </h3>
-                <button id="3D" onclick="start3D()"> 3D</button>
-                <button id="2D" onclick="end3D()"> 2D</button>
             </div>
             <div id= "Patreon">
                     <!-- Advert prep.
@@ -112,10 +113,12 @@
         <script type="text/javascript" src="assets/js/OrbitControls.js"></script>
         <footer>
             <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a>
-            | Copyright © 2018 <a href = https://github.com/gavbarnett>Gavin Barnett</a>
-            | Code is hosted on <a href = https://github.com/gavbarnett/Dog-Agility-Course-Designer> Github here</a></p>
-            <a href="https://www.patreon.com/AgilityCourseMaker">
+            | Copyright © 2020 <a href = https://github.com/gavbarnett>Gavin Barnett</a>
+            | Code is hosted on <a href = https://github.com/gavbarnett/Dog-Agility-Course-Designer> Github here</a>
+            <!-- <a href="https://www.patreon.com/AgilityCourseMaker">
                 <img border="0" alt="Patreon" src="assets/img/patreon.png" height = "100">
+            -->
+            </p>
         </footer>
     </body>
     </html>

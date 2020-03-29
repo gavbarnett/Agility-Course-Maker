@@ -16,14 +16,13 @@ body {
 @media screen and (orientation:landscape) { 
     body {
         display: grid;
-        grid-template-columns:  minmax(20%, 200px) auto;
-        grid-template-rows: repeat(5, auto);
+        grid-template-columns:  20% auto;
+        grid-template-rows: repeat(4, auto);
         grid-gap: 0px;
         grid-auto-rows: minmax(100px, auto);
         grid-template-areas:
         "head head"
-        "tool canv"
-        "patr canv"
+        "file canv"
         "file note"
         "foot foot";
     }
@@ -32,12 +31,11 @@ body {
     body {
         display: grid;
         grid-template-columns: repeat(1, auto);
-        grid-template-rows: repeat(6, auto);
+        grid-template-rows: repeat(5, auto);
         grid-gap: 10px;
         grid-template-areas:
         "head"
         "canv"
-        "tool"
         "file"
         "note"
         "foot";
@@ -60,12 +58,13 @@ body {
 #CanvasDiv {
     padding: 10px;
     grid-area: canv;
-    display:block;
-
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #NotesDiv {
     grid-area: note;
-    
 }
 #Notes {
     resize: none;
@@ -79,11 +78,6 @@ body {
     height: 5em;
     max-width: 700px;
 }
-#Patreon {
-    grid-area: patr;
-    background-color: #9099A2;
-    padding-top: auto;
-}
 #FileMenu {
     grid-area: file;
     background-color: #9099A2;
@@ -96,9 +90,15 @@ body {
     padding: 5px;
     font-size: 100%;
 }
+#Canvases{
+    position: absolute;
+    top: 10px;
+}
 #ToolMenu {
-    grid-area: tool;
+    position: absolute;
     background-color: #9099A2;
+    top: 20px;
+    z-index: 1;
 }
 #ToolMenu h2 {
     width: 100%;
@@ -121,6 +121,10 @@ body {
 }
 footer {
     grid-area: foot;
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    bottom: 0;
 }
 #FileMenu button {
     background-color: #9099A2;
