@@ -31,38 +31,68 @@
                     <canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
                     <canvas id="MainCanvas2" width="0" height="0" style="border:1px solid #ffffff;" ></canvas>
                 </div>
-                <div id = "ToolMenu">
-            
-                        <h2>Modify</h2>
-                        <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <img src="assets/icons/png/Rotate.png"></button>
-                        <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
-                        <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
+                <div id = "oldTools">
                         <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
                         <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
                         <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
                         <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
+
+                </div>
+                <div id = "ToolMenu">
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Move" onclick="Field.draw()"> <img src="assets/icons/png/Move.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                    <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <img src="assets/icons/png/Rotate.png"></button>
+                                    <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
+                                    <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
+                                </div>
+                        </div>
         
-                        <h2>Equipment</h2>
-                        <h3><u>C</u>ontacts</h3>
-                        <button id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"><img src="assets/icons/png/A-frame.png"></button>
-                        <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"> Dog Walk </button>
-                        <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"> See-Saw </button>
-                        <h3><u>J</u>umps</h3>
-                        <button id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Jump.png"></button>
-                        <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"> Spread </button>
-                        <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
-                        <h3><u>T</u>hroughs</h3>
-                        <button id="Tunnel" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-9m.png"></button>
-                        <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"> Chute </button>
-                        <h3><u>W</u>eaves</h3>
-                        <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"> Weaves 6 </button>
-                        <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"> Weaves 9 </button>
-                        <button id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"><img src="assets/icons/png/weaves-12.png"></button>
-                        <h3><u>N</u>umbers</h3>
-                        <button id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"><img src="assets/icons/png/Numbers.png"></button>
-                        <h3><u>3</u>D / <u>2</u>D  </h3>
-                        <button id="3D" onclick="start3D()"> 3D</button>
-                        <button id="2D" onclick="end3D()"> 2D</button>
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"><img src="assets/icons/png/A-frame.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"> Dog Walk </button>
+                                <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"> See-Saw </button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Jump.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"> Spread </button>
+                                <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Tunnel" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-9m.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"> Chute </button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"><img src="assets/icons/png/weaves-12.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"> Weaves 9 </button>
+                                <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"> Weaves 6 </button>
+                            </div>
+                        </div>
+                        
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Numbers" onclick="Field.AddTempEquipment(['Numbers',0]);Field.draw()"><img src="assets/icons/png/Numbers.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="3D" onclick="start3D()"> 3D</button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="2D" onclick="end3D()"> 2D</button>
+                            </div>
+                        </div>
+
                 </div>
             </div>
             <div id="NotesDiv">

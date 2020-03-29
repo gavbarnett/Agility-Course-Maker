@@ -80,7 +80,7 @@ body {
 }
 #FileMenu {
     grid-area: file;
-    background-color: #9099A2;
+    background-color: #404040ff;
     padding-top: auto;
 }
 #FileMenu h2 {
@@ -96,23 +96,10 @@ body {
 }
 #ToolMenu {
     position: absolute;
-    background-color: #9099A2;
+    background-color: #404040ff;
     top: 20px;
+    border-radius: 3px;
     z-index: 1;
-}
-#ToolMenu h2 {
-    width: 100%;
-    background-color: white;
-    margin: 0%;
-    padding: 5px;
-    font-size: 100%;
-}
-#ToolMenu h3 {
-    width: 100%;
-    background-color: #D5D5D5;
-    margin: 0%;
-    padding: 5px;
-    font-size: 80%;
 }
 #Shortcuts {
     grid-area: short;
@@ -127,7 +114,7 @@ footer {
     bottom: 0;
 }
 #FileMenu button {
-    background-color: #9099A2;
+    background-color: #404040ff;
     border: 2px solid white;
     border-radius: 3px;
     color: white;
@@ -140,24 +127,43 @@ footer {
     min-width: fit-content;
 }
 #ToolMenu button {
-    background-color: #9099A2;
-    border: 2px solid white;
+    background-color: #404040ff;
+    border: 0px solid white;
     border-radius: 3px;
     color: white;
     font-size: 80%;
     font-weight: bold;
-    
+    cursor: pointer;
     margin-top: 1%;
     margin-bottom: 1%;
-    padding: 5px 10px;
+    padding: 5px;
     min-width: fit-content;
 }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    align-items: left;
+    background-color: #404040ff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+.dropdown-content a:hover {background-color: #6283a2ff;}
+.dropdown:hover .dropdown-content {display: block;}
 
 #FileMenu button:hover {
-    background-color: white;
-    color: black;
+    background-color: #6283a2ff;
 }
 #ToolMenu button:hover {
-    background-color: white;
-    color: black;
+    background-color: #6283a2ff;
 }
