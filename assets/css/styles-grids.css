@@ -107,8 +107,20 @@ footer {
     grid-area: foot;
     position: absolute;
     width: 100%;
+    height: auto;
     margin: auto;
     bottom: 0;
+    background-color: #404040ff;
+    z-index: 10;
+}
+footer p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+footer a {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 button {
