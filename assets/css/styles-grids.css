@@ -22,7 +22,7 @@ body {
         grid-auto-rows: minmax(100px, auto);
         grid-template-areas:
         "head head"
-        "file canv"
+        "file file"
         "note canv"
         "foot foot";
     }
@@ -81,14 +81,9 @@ body {
 #FileMenu {
     grid-area: file;
     background-color: #404040ff;
-    padding-top: auto;
-}
-#FileMenu h2 {
-    width: 100%;
-    background-color: white;
-    margin: 0%;
-    padding: 5px;
-    font-size: 100%;
+    top: 0px;
+    left: 0px;
+    border-radius: 3px;
 }
 #Canvases{
     position: absolute;
@@ -115,15 +110,14 @@ footer {
 }
 #FileMenu button {
     background-color: #404040ff;
-    border: 2px solid white;
+    border: 0px solid white;
     border-radius: 3px;
     color: white;
     font-size: 100%;
     font-weight: bold;
-    width: 150px;
     margin-top: 1%;
     margin-bottom: 1%;
-    padding: 15px 32px;
+    padding: 5px;
     min-width: fit-content;
 }
 #ToolMenu button {
