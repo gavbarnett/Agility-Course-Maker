@@ -23,7 +23,7 @@ body {
         grid-template-areas:
         "head head"
         "file canv"
-        "file note"
+        "note canv"
         "foot foot";
     }
 }
