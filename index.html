@@ -42,7 +42,7 @@
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Move" onclick="Field.draw()"> <img src="assets/icons/png/Move.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                    <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"> <img src="assets/icons/png/Rotate.png"></button>
+                                    <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"><img src="assets/icons/png/Rotate.png"></button>
                                     <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
                                     <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
                                 </div>
@@ -51,16 +51,21 @@
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"><img src="assets/icons/png/A-frame.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"> Dog Walk </button>
-                                <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"> See-Saw </button>
+                                <button id="DogWalk" onclick="Field.AddTempEquipment(['Contact',1]);Field.draw()"><img src="assets/icons/png/Dogwalk.png"></button>
+                                <button id="SeeSaw" onclick="Field.AddTempEquipment(['Contact',2]);Field.draw()"><img src="assets/icons/png/Seesaw.png"></button>
                             </div>
                         </div>
 
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Jump.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"> Spread </button>
+                                <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"><img src="assets/icons/png/Long-jump.png"></button>
                                 <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
+                                <button id="Rising Spread" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Rising-spread-jump.png"></button>
+                                <button id="Fence" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Fence-jump.png"></button>
+                                <button id="Wall" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Wall-jump.png"></button>
+                                <button id="Wishing Well" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Wishing-well-jump.png"></button>
+                                <button id="Water Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Water-jump.png"></button>
                             </div>
                         </div>
 

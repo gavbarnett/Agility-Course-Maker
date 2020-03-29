@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32px"
+   height="32px"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Box.svg"
+   inkscape:export-filename="C:\Users\gav_b\GitHub\Agility-Course-Maker\assets\icons\png\Seesaw.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs6482">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1-6-2">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77-3-6"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker16295"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.3,0,0,0.3,-0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#5c85de;fill-opacity:1;fill-rule:evenodd;stroke:#5c85de;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path16293" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker16295-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.3,0,0,0.3,-0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#5c85de;fill-opacity:1;fill-rule:evenodd;stroke:#5c85de;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path16293-0" />
+    </marker>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1-4-8-9">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77-4-3-4"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1-3-4-9">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77-1-4-1"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-4">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-9"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6136-7">
+      <circle
+         style="opacity:1;fill:#64562a;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle6138-8"
+         cx="182.93539"
+         cy="85.151443"
+         r="1.5902536" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6136">
+      <circle
+         style="opacity:1;fill:#64562a;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle6138"
+         cx="182.93539"
+         cy="85.151443"
+         r="1.5902536" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1-0">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77-0"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-1-6">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-77-3"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-3-5-1">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-7-3-2"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-8">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-4"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-3">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-7"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3778-3-3">
+      <rect
+         style="fill:#c5c5c5;fill-opacity:1;stroke-width:0.26458332"
+         id="rect3780-7-9"
+         width="4.9945993"
+         height="2.9065561"
+         x="58.081589"
+         y="190.46774"
+         transform="rotate(-45)" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="16"
+     inkscape:cx="0.754197"
+     inkscape:cy="11.478864"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:grid-bbox="true"
+     showguides="true" />
+  <metadata
+     id="metadata6485">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       style="display:inline"
+       id="g10372"
+       transform="matrix(3.752286,0,0,3.752286,-1427.7434,-412.94541)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path10344"
+         d="m 384.66014,116.41853 c 0.0116,-0.90036 0.0116,-0.90036 0.0116,-0.90036"
+         style="fill:none;stroke:#947f3e;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path10344-5"
+         d="m 387.68869,115.26091 c 0.0116,-0.90036 0.0116,-0.90036 0.0116,-0.90036"
+         style="fill:none;stroke:#947f3e;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path10344-53"
+         d="m 382.21635,115.1089 c 0.0116,-0.90036 0.0116,-0.90036 0.0116,-0.90036"
+         style="fill:none;stroke:#947f3e;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path10340"
+         d="m 381.7462,114.09231 v 0.27699 l 2.85462,1.3994 3.55555,-1.22691 v -0.30695 l -3.54524,1.19073 z"
+         style="fill:#f6d380;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path10342"
+         d="m 381.7462,114.09231 2.86493,1.33326 3.54524,-1.19073 -3.04593,-0.97638 z"
+         style="fill:#f9e4b7;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
