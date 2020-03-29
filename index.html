@@ -36,16 +36,28 @@
                         <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
                         <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
                         <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
+                        <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
 
                 </div>
                 <div id = "ToolMenu">
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Move" onclick="Field.draw()"> <img src="assets/icons/png/Move.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                    <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"><img src="assets/icons/png/Rotate.png"></button>
-                                    <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"> Tunnel <u>B</u>end </button>
-                                    <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
-                                </div>
+                                <button id="Rotate" onclick="Field.RotateTempEquipment();Field.draw()"><img src="assets/icons/png/Rotate.png"></button>
+                                <button id="Select" onclick="Field.draw()"><img src="assets/icons/png/Select.png"></button>
+                                <button id="Bend" onclick="Field.TunnelRadius();Field.draw()"><img src="assets/icons/png/Bend.png"></button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="Align-left" onclick="Field.draw()"> <img src="assets/icons/png/Align-left.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="Align-right" onclick="Field.draw()"><img src="assets/icons/png/Align-right.png"></button>
+                                <button id="Align-top" onclick="Field.draw()"><img src="assets/icons/png/Align-top.png"></button>
+                                <button id="Align-bottom" onclick="Field.draw()"><img src="assets/icons/png/Align-bottom.png"></button></button>
+                                <button id="Align-vetrical" onclick="Field.draw()"><img src="assets/icons/png/Align-vertical.png"></button></button>
+                                <button id="Align-horizontal" onclick="Field.draw()"><img src="assets/icons/png/Align-horizontal.png"></button></button>
+                            </div>
                         </div>
         
                         <div class="dropdown" style="float:left;">
@@ -60,7 +72,7 @@
                             <button class="dropbtn" id="Winged Single Jump" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Jump.png"></button>
                             <div class="dropdown-content" style="left:0;">
                                 <button id="Spread" onclick="Field.AddTempEquipment(['Over',1]);Field.draw()"><img src="assets/icons/png/Long-jump.png"></button>
-                                <button id="Tire" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"> Tire </button>
+                                <button id="Tyre" onclick="Field.AddTempEquipment(['Over',2]);Field.draw()"><img src="assets/icons/png/Tyre-jump.png"></button>
                                 <button id="Rising Spread" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Rising-spread-jump.png"></button>
                                 <button id="Fence" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Fence-jump.png"></button>
                                 <button id="Wall" onclick="Field.AddTempEquipment(['Over',0]);Field.draw()"><img src="assets/icons/png/Wall-jump.png"></button>
@@ -70,17 +82,22 @@
                         </div>
 
                         <div class="dropdown" style="float:left;">
-                            <button class="dropbtn" id="Tunnel" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-9m.png"></button>
+                            <button class="dropbtn" id="Tunnel-6" onclick="Field.AddTempEquipment(['Through', 0, 6, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-6m.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"> Chute </button>
+                                <button id="Tunnel-5" onclick="Field.AddTempEquipment(['Through', 0, 5, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-5m.png"></button>
+                                <button id="Tunnel-4" onclick="Field.AddTempEquipment(['Through', 0, 4, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-4m.png"></button>
+                                <button id="Tunnel-3" onclick="Field.AddTempEquipment(['Through', 0, 3, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-3m.png"></button>
+                                <button id="Tunnel-2" onclick="Field.AddTempEquipment(['Through', 0, 2, (1.309*2).toFixed(3)]) ;Field.draw()"><img src="assets/icons/png/Tunnel-2m.png"></button>
+                                <!-- <button id="Chute" onclick="Field.AddTempEquipment(['Through',1]);Field.draw()"><img src="assets/icons/png/Chute.png"> </button> -->
                             </div>
                         </div>
 
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Weaves 12" onclick="Field.AddTempEquipment(['Weave',2]);Field.draw()"><img src="assets/icons/png/weaves-12.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"> Weaves 9 </button>
-                                <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"> Weaves 6 </button>
+                                <button id="Weaves 9" onclick="Field.AddTempEquipment(['Weave',1]);Field.draw()"><img src="assets/icons/png/weaves-9.png"></button>
+                                <button id="Weaves 6" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"><img src="assets/icons/png/weaves-6.png"></button>
+                                <button id="Weaves 6z" onclick="Field.AddTempEquipment(['Weave',0]);Field.draw()"><img src="assets/icons/png/weaves-6z.png"></button>
                             </div>
                         </div>
                         
@@ -92,9 +109,17 @@
                         </div>
 
                         <div class="dropdown" style="float:left;">
-                            <button class="dropbtn" id="3D" onclick="start3D()"> 3D</button>
+                            <button class="dropbtn" id="Text" onclick="Field.draw()"><img src="assets/icons/png/Text.png"></button>
                             <div class="dropdown-content" style="left:0;">
-                                <button id="2D" onclick="end3D()"> 2D</button>
+                                <button id="Judge" onclick="Field.draw()"><img src="assets/icons/png/Judge.png"></button>
+                                <button id="Camera" onclick="Field.draw()"><img src="assets/icons/png/Camera.png"></button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" style="float:left;">
+                            <button class="dropbtn" id="3D" onclick="start3D()"><img src="assets/icons/png/3D.png"></button>
+                            <div class="dropdown-content" style="left:0;">
+                                <button id="2D" onclick="end3D()"><img src="assets/icons/png/2D.png"></button>
                             </div>
                         </div>
 
