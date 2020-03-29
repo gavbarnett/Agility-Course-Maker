@@ -5,10 +5,10 @@ body {
    width: 100%;
    align-content: center;
    font-size: 100%;
-   color: #000;
+   color: #ffffff;
    font-family: 'Verdana', sans-serif;
    text-align: center;
-   background-color: #D5D5D5;
+   background-color: #313131ff;
    margin: 0 !important;
    padding: 0 !important;
 }
@@ -50,7 +50,8 @@ body {
 #Header {
     grid-area: head;
     width: 100%;
-    background-color: #9099A2;
+    text-align: left;
+    background-color: #5c5c5cff;
     color: white;
     border: #9099A2;
     margin: 0%;
