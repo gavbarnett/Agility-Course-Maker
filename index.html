@@ -136,12 +136,12 @@
             </div>
             <div id ="FileMenu">
                 <h2>File</h2>
-                <button id="SaveAs" onclick="saveDesign()"> SAVE </button>
-                <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();">OPEN</button>
+                <button id="SaveAs" onclick="saveDesign()"><img src="assets/icons/png/Save.png"></button>
+                <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();"><img src="assets/icons/png/Open.png"></button>
                 <input type="file" accept=".json" style="display:none;" id="OpenFile" name="file" onchange="loadDesign()"/>
-                <button id="Print" onclick="printDesign()"> PRINT </button>
-                <button id="ExportImage" onclick="imageDesign()"> IMAGE </button>
-                <button id="ShareAsLink" onclick="shareAsLink()"> SHARE </button>
+                <button id="Print" onclick="printDesign()"><img src="assets/icons/png/Print.png"></button>
+                <!--<button id="ExportImage" onclick="imageDesign()"> IMAGE </button>-->
+                <button id="ShareAsLink" onclick="shareAsLink()"><img src="assets/icons/png/Share.png"></button>
                 <!-- 
                 <button disabled id="Export3D" onclick="printDesign()"> EXPORT 3D </button>
                 //-->
