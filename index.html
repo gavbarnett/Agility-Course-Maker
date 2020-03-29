@@ -31,14 +31,15 @@
                     <canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
                     <canvas id="MainCanvas2" width="0" height="0" style="border:1px solid #ffffff;" ></canvas>
                 </div>
-                <div id = "oldTools">
-                        <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
-                        <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
-                        <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
-                        <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
-                        <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
-
-                </div>
+                <!--
+                    <div id = "oldTools">
+                            <button id="Delete" onclick="Field.AddTempEquipment('');Field.draw()"> <u>Del</u>ete </button>
+                            <button id="Tab" onclick="Field.SwitchTempEquipment();Field.draw()"> <u>Tab</u> </button>
+                            <button id="Grid" onclick="if (Field.gridSize == 5){Field.gridSize = 2;} else {Field.gridSize = 5;};Field.draw()"> <u>G</u>rid</button>
+                            <button id="DogsPath" onclick="if (DrawDogsPath == true){DrawDogsPath = false;} else {DrawDogsPath = true;};Field.draw()"> <u>D</u>ogs Path</button>
+                            <button id="Length" onclick="Field.TunnelLength();Field.draw()"> Tunnel <u>L</u>ength </button>
+                    </div>
+                -->
                 <div id = "ToolMenu">
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Move" onclick="Field.draw()"> <img src="assets/icons/png/Move.png"></button>
@@ -59,6 +60,8 @@
                                 <button id="Align-horizontal" onclick="Field.draw()"><img src="assets/icons/png/Align-horizontal.png"></button></button>
                             </div>
                         </div>
+
+                        <div class="vl"></div>
         
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="A-frame" onclick="Field.AddTempEquipment(['Contact',0]);Field.draw()"><img src="assets/icons/png/A-frame.png"></button>
@@ -107,6 +110,8 @@
                                 
                             </div>
                         </div>
+                        
+                        <div class="vl"></div>
 
                         <div class="dropdown" style="float:left;">
                             <button class="dropbtn" id="Text" onclick="Field.draw()"><img src="assets/icons/png/Text.png"></button>
@@ -125,7 +130,8 @@
 
                 </div>
             </div>
-            <div id="NotesDiv">
+            
+            <div id="NotesDiv" style="display: none;">
                 Field Width  (m): 
                 <input type="text" id="fieldx" value="30" maxlength=4 min = 2><br>
                 Field Height (m):
@@ -134,6 +140,7 @@
                 <h3>Notes:</h3>
                 <textarea id="Notes">Add your notes here.</textarea>
             </div>
+            
             <div id ="FileMenu">
                 <button id="SaveAs" onclick="saveDesign()"><img src="assets/icons/png/Save.png"></button>
                 <button id="loadFileXml" onclick="document.getElementById('OpenFile').click();"><img src="assets/icons/png/Open.png"></button>
@@ -144,17 +151,66 @@
                 <!-- 
                 <button disabled id="Export3D" onclick="printDesign()"> EXPORT 3D </button>
                 //-->
+                
+                <div class="vl"></div>
+
+                <button id="Zoom-all" onclick="Field.draw()"> <img src="assets/icons/png/Zoom-all.png"></button>
+                <button id="Zoom-selection" onclick="Field.draw()"><img src="assets/icons/png/Zoom-selection.png"></button>
+                <button id="Zoom-in" onclick="Field.draw()"><img src="assets/icons/png/Zoom-in.png"></button>
+                <button id="Zoom-out" onclick="Field.draw()"><img src="assets/icons/png/Zoom-out.png"></button>
+
+                <div class="vl"></div>
+
             </div>
-            <div id= "Patreon">
-                    <!-- Advert prep.
-                    <a href= mailto:gavbarnett@gmail.com>
-                        <img border="0" alt="Here" src="assets/img/Here.png" width = 100%>
-                        </a>
-                    //-->
-                    <a href="https://www.patreon.com/AgilityCourseMaker">
-                        <img border="0" alt="Patreon" src="assets/img/patreon.png" width = 100%>
-                        </a>
+            <div id ="PropertiesPanel" class = "Panel">
+                <div class="PanelTitle">Properties</div>
+                <form action="action_page.php">
+                    <div class="row">
+                        <div class="form-property">
+                        <label for="fname">Course Title</label>
+                        </div>
+                        <div class="form-value">
+                        <input type="text" id="ctitle" name="coursetitle" placeholder="Course title..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-property">
+                        <label for="author">Author</label>
+                        </div>
+                        <div class="form-value">
+                        <input type="text" id="author" name="author" placeholder="Your name..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-property">
+                        <label for="ctime">Course Time</label>
+                        </div>
+                        <div class="form-value">
+                        <input type="text" id="ctime" name="coursetime" placeholder="00:00">
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="form-property">
+                            <label for="notes">Course Notes</label>
+                            </div>
+                            <div class="form-value">
+                            <textarea type="text" id="notes" name="notes" placeholder="..."></textarea>
+                            </div>
+                        </div>
+                </form>
+
             </div>
+            <!-- 
+                <div id= "Patreon">
+                        Advert prep.
+                        <a href= mailto:gavbarnett@gmail.com>
+                            <img border="0" alt="Here" src="assets/img/Here.png" width = 100%>
+                            </a>
+                        <a href="https://www.patreon.com/AgilityCourseMaker">
+                            <img border="0" alt="Patreon" src="assets/img/patreon.png" width = 100%>
+                            </a>
+                </div> 
+            -->
             <div id="Shortcuts">
                 <h3> Keyboard Controls: </h3>
                 <p> <b>[C]</b>ontacts, <b>[O]</b>vers/<b>[J]</b>umps, <b>[T]</b>hroughs, <b>[W]</b>eaves, <b>[N]</b>umbers </p>

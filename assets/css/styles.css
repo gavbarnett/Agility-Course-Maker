@@ -151,3 +151,15 @@ button:hover {
     background-color: white;
     color: black;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border: 1px solid black;
+    width: 100%;
+}
+
+td, th {
+border: 1px solid black;
+text-align: left;
+padding: 8px;
+}
