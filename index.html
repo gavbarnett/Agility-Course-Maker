@@ -131,6 +131,54 @@
                 </div>
             </div>
             
+            <div id ="PanelArea">
+                <div id ="PropertiesPanel" class = "Panel">
+                    <div class="PanelTitle">Properties</div>
+                    <div class="PanelData">
+                        <form action="action_page.php">
+                            <div class="row">
+                                <div class="form-property">
+                                <label for="fname">Course Title</label>
+                                </div>
+                                <div class="form-value">
+                                <input type="text" id="ctitle" name="coursetitle" placeholder="Course title..">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-property">
+                                <label for="author">Author</label>
+                                </div>
+                                <div class="form-value">
+                                <input type="text" id="author" name="author" placeholder="Your name..">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-property">
+                                <label for="ctime">Course Time</label>
+                                </div>
+                                <div class="form-value">
+                                <input type="text" id="ctime" name="coursetime" placeholder="00:00">
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="form-property">
+                                    <label for="notes">Course Notes</label>
+                                    </div>
+                                    <div class="form-value">
+                                    <textarea type="text" id="notes" name="notes" placeholder="..."></textarea>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+                <div id ="EquipmentPanel" class = "Panel">
+                        <div class="PanelTitle">Equipment</div>
+                </div>
+                <div id ="DRCPanel" class = "Panel">
+                        <div class="PanelTitle">Design Rule Check</div>
+                </div>
+            </div>
+
             <div id="NotesDiv" style="display: none;">
                 Field Width  (m): 
                 <input type="text" id="fieldx" value="30" maxlength=4 min = 2><br>
@@ -162,44 +210,6 @@
                 <div class="vl"></div>
 
                 <a href ="https://www.patreon.com/bePatron?u=14525006"><button id="Patron" href><img src="assets/icons/png/Become-a-patron.png"></button></a>
-
-            </div>
-            <div id ="PropertiesPanel" class = "Panel">
-                <div class="PanelTitle">Properties</div>
-                <form action="action_page.php">
-                    <div class="row">
-                        <div class="form-property">
-                        <label for="fname">Course Title</label>
-                        </div>
-                        <div class="form-value">
-                        <input type="text" id="ctitle" name="coursetitle" placeholder="Course title..">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-property">
-                        <label for="author">Author</label>
-                        </div>
-                        <div class="form-value">
-                        <input type="text" id="author" name="author" placeholder="Your name..">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-property">
-                        <label for="ctime">Course Time</label>
-                        </div>
-                        <div class="form-value">
-                        <input type="text" id="ctime" name="coursetime" placeholder="00:00">
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="form-property">
-                            <label for="notes">Course Notes</label>
-                            </div>
-                            <div class="form-value">
-                            <textarea type="text" id="notes" name="notes" placeholder="..."></textarea>
-                            </div>
-                        </div>
-                </form>
 
             </div>
             <!-- 

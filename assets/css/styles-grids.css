@@ -16,14 +16,17 @@ body {
 @media screen and (orientation:landscape) { 
     body {
         display: grid;
-        grid-template-columns:  minmax(300px, 20%) auto;
+        grid-template-columns: minmax(300px, 25%) auto;
         grid-template-rows: repeat(4, auto);
         grid-gap: 0px;
         grid-template-areas:
         "head head"
         "file file"
-        "prop canv"
+        "panl canv"
         "foot foot";
+    }
+    footer {
+        position: absolute;
     }
 }
 @media screen and (orientation:portrait) { 
@@ -36,11 +39,14 @@ body {
         "head"
         "file"
         "canv"
-        "note"
+        "panl"
         "foot";
     }
     #Header {
         font-size:calc(100% + 2vw);
+    }
+    footer {
+        position: relative;
     }
 }
 
@@ -59,15 +65,16 @@ body {
     grid-area: canv;
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    width: 100%;
 }
-#PropertiesPanel{
-    grid-area: prop;
+#PanelArea{
+    position: relative;
+    grid-area: panl;
+    padding: 10px;
+    z-index: 10;
 }
-#NotesDiv {
-    grid-area: note;
-}
+
 #Notes {
     resize: none;
     font-family: 'Verdana', sans-serif;
@@ -88,13 +95,16 @@ body {
     align-items: left;
 }
 #Canvases{
-    position: absolute;
+    position: relative;
     top: 10px;
+    margin: auto;
+    z-index:0;
 }
 #ToolMenu {
     position: absolute;
+    margin-left: calc(50% - 392px / 2);
     background-color: #404040ff;
-    top: 20px;
+    top: 40px;
     border-radius: 3px;
     z-index: 1;
 }
@@ -105,7 +115,6 @@ body {
 }
 footer {
     grid-area: foot;
-    position: absolute;
     width: 100%;
     height: auto;
     margin: auto;
@@ -169,7 +178,6 @@ button:hover {
     background-color: #404040ff;
     z-index: 10;
     padding: 0.3em;
-
 }
 
 .PanelTitle{
