@@ -18,7 +18,7 @@ body {
 @media screen and (orientation:landscape) { 
     body {
         display: grid;
-        grid-template-columns: minmax(300px, 25%) auto;
+        grid-template-columns: minmax(350px, 25%) auto;
         grid-template-rows: repeat(4, auto);
         grid-gap: 0px;
         grid-template-areas:
@@ -26,6 +26,9 @@ body {
         "file file"
         "panl canv"
         "foot foot";
+    }
+    #ToolMenu {
+        left: calc(350px + (100vw - 350px) / 2 - (392px / 2) );
     }
     footer {
         position: absolute;
@@ -43,6 +46,9 @@ body {
         "canv"
         "panl"
         "foot";
+    }
+    #ToolMenu {
+        left: calc((100vw) / 2 - (392px / 2) );
     }
     footer {
         position: relative;
@@ -109,10 +115,9 @@ body {
     border: 1px solid #5c5c5cff;
 }
 #ToolMenu {
-    position: absolute;
-    margin-left: calc(50% - 392px / 2);
+    position: fixed;
     background-color: #404040ff;
-    top: 40px;
+    top: 144px;
     border-radius: 3px;
     z-index: 1;
 }
