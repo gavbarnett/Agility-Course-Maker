@@ -58,6 +58,7 @@ body {
     padding: 10px;
 }
 #CanvasDiv {
+    background-color: #ddddddff;
     padding: 10px;
     grid-area: canv;
     position: relative;
