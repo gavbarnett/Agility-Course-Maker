@@ -42,9 +42,6 @@ body {
         "panl"
         "foot";
     }
-    #Header {
-        font-size:calc(100% + 2vw);
-    }
     footer {
         position: relative;
     }
