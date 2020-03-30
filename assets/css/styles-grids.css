@@ -11,6 +11,8 @@ body {
    background-color: #313131ff;
    margin: 0 !important;
    padding: 0 !important;
+   height: 100vh;
+   width: 100vw;
 }
 /*Landscape */
 @media screen and (orientation:landscape) { 
@@ -57,14 +59,18 @@ body {
     margin: 0%;
     padding: 10px;
 }
+
+
 #CanvasDiv {
     background-color: #ddddddff;
     padding: 10px;
     grid-area: canv;
     position: relative;
-    display: flex;
-    height: 100%;
+    
+    height: calc(100% - 29px);
     width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 #PanelArea{
     position: relative;
@@ -97,6 +103,10 @@ body {
     top: 10px;
     margin: auto;
     z-index:0;
+}
+#Template{
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.2);
+    border: 1px solid #5c5c5cff;
 }
 #ToolMenu {
     position: absolute;
@@ -148,7 +158,7 @@ button {
     position: absolute;
     align-items: left;
     background-color: #404040ff;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(58, 41, 41, 0.2);
     z-index: 1;
 }
 .dropdown-content a {
