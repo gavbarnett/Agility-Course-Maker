@@ -63,13 +63,13 @@ body {
     color: white;
     border: #9099A2;
     margin: 0%;
-    padding: 10px;
+    padding: 5px;
 }
 
 
 #CanvasDiv {
     background-color: #ddddddff;
-    padding: 10px;
+    padding: 5px;
     grid-area: canv;
     position: relative;
     
@@ -81,7 +81,7 @@ body {
 #PanelArea{
     position: relative;
     grid-area: panl;
-    padding: 10px;
+    padding: 5px;
     z-index: 10;
 }
 
@@ -120,6 +120,7 @@ body {
     top: 144px;
     border-radius: 3px;
     z-index: 1;
+    padding: 5px;
 }
 #Shortcuts {
     grid-area: short;
