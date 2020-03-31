@@ -120,7 +120,6 @@ body {
     top: 144px;
     border-radius: 3px;
     z-index: 1;
-    padding: 5px;
 }
 #Shortcuts {
     grid-area: short;
