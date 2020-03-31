@@ -759,7 +759,9 @@ function updateFieldSize(){
 }
 
 function buttonMaster(){
-    var canvas = document.getElementById('MainCanvas');
+    //var canvas = document.getElementById('MainCanvas');
+    var canvas = document.getElementById('CanvasDiv');
+
     
     window.onresize = function(e) {
         Field.resize()
