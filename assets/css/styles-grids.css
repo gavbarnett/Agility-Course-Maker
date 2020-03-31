@@ -77,8 +77,6 @@ body {
     width: 100%;
     overflow-x: scroll;
     overflow-y: scroll;
-    scroll-
-
 }
 #PanelArea{
     position: relative;
@@ -240,4 +238,4 @@ input[type=text], select, textarea{
     content: "";
     display: table;
     clear: both;
-  }
+ }

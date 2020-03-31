@@ -17,6 +17,7 @@ var DrawDogsPath = true
 var offset = 10
 var scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -offset*2)/Math.max(30,30)
 function main() {
+    setview()
     container = document.getElementById( 'MainCanvas2' );
     container.style.visibility = "collapse";
     var canvas = document.getElementById('MainCanvas');
@@ -39,23 +40,6 @@ function main() {
         OpenFromLink(id)
     }
     
-
-    //This is code to add a tool bar for users without keyboards
-    //It is a work in progress
-    //***************
-    // var toolCanvas = document.createElement('canvas');
-    // var ToolDiv = document.getElementById('ToolDiv')
-    // toolCanvas.id = "ToolCanvas";
-    // toolCanvas.width = Math.min(window.innerWidth*0.95,window.innerHeight*0.75) 
-    // toolCanvas.height =  toolCanvas.width*0.2
-    // toolCanvas.style.zIndex = 8;
-    // toolCanvas.style.position = "flex";
-    // var tempeq = Field.AddTempEquipment({type:["Contact",0],'x':1,'y':1})
-    // console.log (tempeq)
-    // scaler = (Math.min(window.innerWidth*0.95,window.innerHeight*0.75) -10*2)/(50)
-    // drawEquipment(tempeq, scaler, 10, toolCanvas)
-    // Field.AddTempEquipment("")
-    // ToolDiv.appendChild(toolCanvas);
     buttonMaster()
 
     //IE11 object.assign fix:
@@ -83,6 +67,16 @@ function main() {
         return to;
        };
       }
+      setview()
+
+}
+
+function setview(){
+    CanvasDiv = document.getElementById( 'CanvasDiv' );
+    CanvasDiv.scrollTop = CanvasDiv.scrollHeight/2
+    CanvasDiv.scrollLeft = CanvasDiv.scrollWidth/2
+    console.log("scroll set!")
+    console.log(CanvasDiv.scrollTop)
 }
 
 //http://agilitynerd.com/images/CourseLegend.jpg

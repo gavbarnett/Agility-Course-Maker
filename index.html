@@ -28,10 +28,12 @@
             <p id="Header"> Agility Course Maker </p>
             <div id="CanvasDiv">
                 <div id="Canvases">
-                    <svg width="10000" height="5000" viewBox="-50 -50 1000 500">
-                        <g transform="scale(0.1)">
-                            <image id="Template" href="assets/Templates/A4-Landscape.svg" width="1000"/>
-                            <text x="10" y="50" font-size="30">My SVG</text>
+                    <svg width="10000" height="5000" viewBox="-500 -500 1000 1000">
+                        <g id="canvasscale" transform="scale(0.5)">
+                            <image id="Template" href="assets/Templates/A4-Landscape.svg" width="800" length="auto"/>
+                            <g id="fieldscale" transform="scale(0.5)">
+                                <text x="10" y="50" font-size="30">My SVG</text>
+                            </g>
                         </g>
                     </svg>
                     <!--<canvas id="MainCanvas" width="100" height="100" style="border:1px solid #000000;" ></canvas>
