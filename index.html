@@ -11,7 +11,8 @@
         <meta property="og:description" content="Free and open source dog agility course design software.">
 
         <title>Agility Course Maker</title>
-        <link rel="stylesheet" href="assets/css/styles-grids.css">    
+        <link rel="stylesheet" href="assets/css/styles-grids.css">  
+          
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129307079-1"></script>
         <script>
@@ -25,6 +26,10 @@
     </head>
     
     <body onload="main()">
+        <div id=loader style="display: block;">
+            Loading...
+        </div>
+        <div id=MainDiv style="display: none;">
             <p id="Header"> Agility Course Maker </p>
             <div id="CanvasDiv">
                 <div id="Canvases">
@@ -239,22 +244,23 @@
                 <p> <b>[R]</b>otate, <b>[TAB]</b> Cycle through objects, <b>[G]</b>rid (2m/5m)</p>
                 <p> <b>[ESC]</b> to abandon object, <b>[Click]</b> to place/select object</p>
             </div>
-        <script type="text/javascript" src="assets/js/jQuery.js"></script>
-        <script type="text/javascript" src="assets/js/three.min.js"></script>
-        <script type="text/javascript" src="assets/js/WebGL.js"></script>
-        <script type="text/javascript" src="assets/js/ColladaLoader.js"></script>
-        <script type="text/javascript" src="assets/js/main2.js"></script>
-        <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
-        <script type="text/javascript" src="assets/js/3DEngine.js"></script>
-        <script type="text/javascript" src="assets/js/OrbitControls.js"></script>
-        <footer>
-            <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a>
-            | Copyright © 2020 <a href = https://github.com/gavbarnett>Gavin Barnett</a>
-            | Code is hosted on <a href = https://github.com/gavbarnett/Dog-Agility-Course-Designer> Github here</a>
-            <!-- <a href="https://www.patreon.com/AgilityCourseMaker">
-                <img border="0" alt="Patreon" src="assets/img/patreon.png" height = "100">
-            -->
-            </p>
-        </footer>
+            <script type="text/javascript" src="assets/js/jQuery.js"></script>
+            <script type="text/javascript" src="assets/js/three.min.js"></script>
+            <script type="text/javascript" src="assets/js/WebGL.js"></script>
+            <script type="text/javascript" src="assets/js/ColladaLoader.js"></script>
+            <script type="text/javascript" src="assets/js/main2.js"></script>
+            <script type="text/javascript" src="assets/js/drawEquipment.js"></script>
+            <script type="text/javascript" src="assets/js/3DEngine.js"></script>
+            <script type="text/javascript" src="assets/js/OrbitControls.js"></script>
+            <footer>
+                <p>Open Source project under <a href = https://opensource.org/licenses/MIT>MIT License</a>
+                | Copyright © 2020 <a href = https://github.com/gavbarnett>Gavin Barnett</a>
+                | Code is hosted on <a href = https://github.com/gavbarnett/Dog-Agility-Course-Designer> Github here</a>
+                <!-- <a href="https://www.patreon.com/AgilityCourseMaker">
+                    <img border="0" alt="Patreon" src="assets/img/patreon.png" height = "100">
+                -->
+                </p>
+            </footer>
+        </div>
     </body>
     </html>

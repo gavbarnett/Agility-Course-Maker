@@ -1,5 +1,12 @@
 function main() {
+    end_preload()
     setview()
+}
+
+function end_preload(){
+    console.log("Loaded!")
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("MainDiv").style.display = "grid";
 }
 
 function setview(z='Center'){
