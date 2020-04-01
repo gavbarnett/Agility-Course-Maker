@@ -9,30 +9,43 @@ function end_preload(){
     document.getElementById("MainDiv").style.display = "grid";
 }
 
-function setview(z='Center'){
+function setview(z='All'){
     //set view zoom/scale
+    CanvasDiv = document.getElementById( 'CanvasDiv' );
     CanvasScale = document.getElementById( 'canvasscale' );
+    Workspace = document.getElementById( 'Workspace' );
+
+    Template = document.getElementById( 'Template' ).getBoundingClientRect();
     CurrentScale = CanvasScale.getAttribute("transform", "scale")
     CurrentScale = parseFloat(CurrentScale.substr(6,CurrentScale.length - 7))
     if (z=='+'){
+        oldTopc = (CanvasDiv.scrollTop +500)/CurrentScale
+        oldLeftc = (CanvasDiv.scrollLeft +500)/CurrentScale
         NewScale = CurrentScale * 1.1
         CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
+        CanvasDiv.scrollTop = oldTopc*NewScale -500
+        CanvasDiv.scrollLeft = oldLeftc*NewScale -500
     }
     if (z=='-'){
+        oldTopc = (CanvasDiv.scrollTop +500)/CurrentScale
+        oldLeftc = (CanvasDiv.scrollLeft +500)/CurrentScale
         NewScale = CurrentScale * 0.9
         CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
+        CanvasDiv.scrollTop = oldTopc*NewScale -500
+        CanvasDiv.scrollLeft = oldLeftc*NewScale -500
     }
     if (z=='All'){
-        NewScale = 1 //Much more complex than this!
+        console.log(Template.width, CanvasDiv.offsetWidth, CurrentScale, )
+        NewScale = CanvasDiv.offsetWidth/(Template.width/CurrentScale)
+        NewScale = Math.min(NewScale, CanvasDiv.offsetHeight/(Template.height/CurrentScale))*0.95
         CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
         z='Center'
     }
     
     if (z=='Center'){
         //set view coordinates
-        CanvasDiv = document.getElementById( 'CanvasDiv' );
-        CanvasDiv.scrollTop = CanvasDiv.scrollHeight/2
-        CanvasDiv.scrollLeft = CanvasDiv.scrollWidth/2
+        CanvasDiv.scrollTop = 0
+        CanvasDiv.scrollLeft = 0
     }
     
 }

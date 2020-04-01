@@ -89,13 +89,11 @@ body {
 #loader img{
     margin: 0;
     position: absolute;
-    display: relative;
     background-color: #000000;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    
     animation-name: load-anime;
     animation-duration: 2s;
     animation-iteration-count: infinite;

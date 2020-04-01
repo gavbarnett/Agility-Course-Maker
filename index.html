@@ -33,11 +33,23 @@
             <p id="Header"> Agility Course Maker </p>
             <div id="CanvasDiv">
                 <div id="Canvases">
-                    <svg width="10000" height="5000" viewBox="-500 -500 1000 1000">
-                        <g id="canvasscale" transform="scale(0.5)">
-                            <image id="Template" href="assets/Templates/A4-Landscape.svg" width="800" length="auto"/>
+                    <svg id="Workspace" width="5000" height="5000" viewBox="0 0 1000 1000">
+                        <g id="canvasscale" transform="scale(1)">
+                            <image id="Template" href="assets/Templates/A4-Landscape.svg" width="295" length="auto" x="0" y="0"/>
                             <g id="fieldscale" transform="scale(0.5)">
-                                <text x="10" y="50" font-size="30">My SVG</text>
+                                <!--Grid-->
+                                <defs>
+                                    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+                                        <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
+                                    </pattern>
+                                    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                                        <rect width="80" height="80" fill="url(#smallGrid)"/>
+                                        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
+                                    </pattern>
+                                </defs>
+                                <rect x="0" y="0" width="4000" height="4000" fill="url(#grid)" />
+                                
+                                <text x="0" y="0" font-size="30">My SVG</text>
                             </g>
                         </g>
                     </svg>
