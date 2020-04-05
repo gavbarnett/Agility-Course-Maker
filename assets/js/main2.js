@@ -13,48 +13,46 @@ function setview(z='All'){
     //set view zoom/scale
     CanvasDiv = document.getElementById( 'CanvasDiv' );
     CanvasScale = document.getElementById( 'canvasscale' );
-    Workspace = document.getElementById( 'Workspace' ).getBoundingClientRect();
+    Workspace = document.getElementById( 'Workspace' );
 
-    Template = document.getElementById( 'Template' ).getBoundingClientRect();
+    TemplateR = document.getElementById( 'Template' ).getBoundingClientRect();
     CurrentScale = CanvasScale.getAttribute("transform", "scale")
     CurrentScale = parseFloat(CurrentScale.substr(6,CurrentScale.length - 7))
     NewScale = CurrentScale
 
     if (z=='+'){
-        oldTopc = (CanvasDiv.scrollTop +500)/CurrentScale
-        oldLeftc = (CanvasDiv.scrollLeft +500)/CurrentScale
-        NewScale = CurrentScale * 1.1
-        CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
-        CanvasDiv.scrollTop = oldTopc*NewScale -500
-        CanvasDiv.scrollLeft = oldLeftc*NewScale -500
+        oldTop = CanvasDiv.scrollTop + CanvasDiv.offsetHeight/2
+        oldLeft = CanvasDiv.scrollLeft + CanvasDiv.offsetWidth/2
+        Workspace.setAttribute('width',Workspace.getAttribute('width')*1.1)
+        Workspace.setAttribute('height',Workspace.getAttribute('height')*1.1)
+        CanvasDiv.scrollTop = oldTop*(1.1) - CanvasDiv.offsetHeight/2
+        CanvasDiv.scrollLeft = oldLeft*(1.1) - CanvasDiv.offsetWidth/2
     }
     if (z=='-'){
-        oldTopc = (CanvasDiv.scrollTop +500)/CurrentScale
-        oldLeftc = (CanvasDiv.scrollLeft +500)/CurrentScale
-        NewScale = CurrentScale * 0.9
-        CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
-        CanvasDiv.scrollTop = oldTopc*NewScale -500
-        CanvasDiv.scrollLeft = oldLeftc*NewScale -500
+        oldTop = CanvasDiv.scrollTop + CanvasDiv.offsetHeight/2
+        oldLeft = CanvasDiv.scrollLeft + CanvasDiv.offsetWidth/2
+        Workspace.setAttribute('width',Workspace.getAttribute('width')*0.9)
+        Workspace.setAttribute('height',Workspace.getAttribute('height')*0.9)
+        CanvasDiv.scrollTop = (Workspace.getAttribute('height')*0.45)
+        CanvasDiv.scrollLeft = (Workspace.getAttribute('width')*0.45)
+        CanvasDiv.scrollTop = oldTop*(0.9) - CanvasDiv.offsetHeight/2
+        CanvasDiv.scrollLeft = oldLeft*(0.9) - CanvasDiv.offsetWidth/2
     }
     if (z=='All'){
-       // console.log(Template.width, CanvasDiv.offsetWidth, CurrentScale)
-        NewScale = CanvasDiv.offsetWidth/(Template.width/CurrentScale)
-        NewScale = Math.min(NewScale, CanvasDiv.offsetHeight/(Template.height/CurrentScale))*0.95
-        CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
+        NewScale = CanvasDiv.offsetWidth/(TemplateR.width)
+        NewScale = Math.min(NewScale, CanvasDiv.offsetHeight/(TemplateR.height))*9.5
+        //CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
+
+        Workspace.setAttribute('width', TemplateR.width*NewScale)
+        Workspace.setAttribute('height', TemplateR.height*NewScale)
         z='Center'
     }
     
     if (z=='Center'){
-        //set view coordinates
         CanvasDiv = document.getElementById( 'CanvasDiv' );
         Template = document.getElementById( 'Template' ).getBoundingClientRect();
-        if ( CanvasDiv.offsetWidth/(Template.width/CurrentScale) < CanvasDiv.offsetHeight/(Template.height/CurrentScale)){
-            CanvasDiv.scrollTop = 2500*NewScale  - (CanvasDiv.offsetHeight-Template.height)/2*NewScale
-            CanvasDiv.scrollLeft = 2500*NewScale
-        } else {
-            CanvasDiv.scrollTop = 2500*NewScale
-            CanvasDiv.scrollLeft = 2500*NewScale - (CanvasDiv.offsetWidth-Template.width)/2*NewScale 
-        }
+        CanvasDiv.scrollTop = (Workspace.getAttribute('height')*0.45) - (CanvasDiv.offsetHeight-Template.height)/2
+        CanvasDiv.scrollLeft = (Workspace.getAttribute('width')*0.45) - (CanvasDiv.offsetWidth-Template.width)/2 
     }
     
 }
