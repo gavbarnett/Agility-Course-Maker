@@ -16,9 +16,6 @@ function setview(z='All'){
     Workspace = document.getElementById( 'Workspace' );
 
     TemplateR = document.getElementById( 'Template' ).getBoundingClientRect();
-    CurrentScale = CanvasScale.getAttribute("transform", "scale")
-    CurrentScale = parseFloat(CurrentScale.substr(6,CurrentScale.length - 7))
-    NewScale = CurrentScale
 
     if (z=='+'){
         oldTop = CanvasDiv.scrollTop + CanvasDiv.offsetHeight/2
@@ -41,7 +38,6 @@ function setview(z='All'){
     if (z=='All'){
         NewScale = CanvasDiv.offsetWidth/(TemplateR.width)
         NewScale = Math.min(NewScale, CanvasDiv.offsetHeight/(TemplateR.height))*9.5
-        //CanvasScale.setAttribute("transform", "scale(" + NewScale + ")")
 
         Workspace.setAttribute('width', TemplateR.width*NewScale)
         Workspace.setAttribute('height', TemplateR.height*NewScale)
@@ -144,3 +140,24 @@ function buttonMaster(){
         }
     })
 }
+
+const position = { x: 0, y: 0 }
+
+interact('.draggable').draggable({    
+  listeners: {
+    start (event) {
+        Workspace = document.getElementById( 'Workspace' );
+
+      NewScale = Workspace.getAttribute('width')/2970/2 //viewBox="-1485 -1050 2970 2100"
+      console.log (NewScale)
+      console.log(event.type, event.target)
+    },
+    move (event) {
+      position.x += event.dx/NewScale
+      position.y += event.dy/NewScale
+
+      event.target.style.transform =
+        `translate(${position.x}px, ${position.y}px)`
+    },
+  }
+})
